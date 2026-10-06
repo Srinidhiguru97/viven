@@ -31,28 +31,33 @@ function initBrandLoaderSequence() {
     return;
   }
 
-  // Lock scrolling during brand intro reveal
+  // Lock scrolling during loader activation
   document.body.style.overflow = 'hidden';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (prefersReducedMotion) {
-    loader.classList.add('reduced-motion');
+    loader.classList.add('v-activated');
     setTimeout(() => {
       finishIntro();
     }, 600);
     return;
   }
 
-  // Trigger CSS timelines on next frame
+  // Step 1: Start jet flight trajectory across screen
   requestAnimationFrame(() => {
     loader.classList.add('active');
   });
 
-  // Seamless transition to homepage at 2.85s mark
+  // Step 2: Key Contact Moment — Jet reaches center V mark -> V activates to 100%
+  setTimeout(() => {
+    loader.classList.add('v-activated');
+  }, 1050);
+
+  // Step 3: Transition seamlessly into homepage at 2.15s
   setTimeout(() => {
     finishIntro();
-  }, 2850);
+  }, 2150);
 
   function finishIntro() {
     loader.classList.add('finish');
@@ -65,7 +70,7 @@ function initBrandLoaderSequence() {
 
     setTimeout(() => {
       loader.style.display = 'none';
-    }, 700);
+    }, 600);
   }
 }
 

@@ -77,7 +77,7 @@ body {
 }
 
 /* ==========================================================================
-   VIVEN AVIATION - INITIAL BRAND INTRO LOADER (LIGHT THEME)
+   VIVEN AVIATION - MINIMAL FLIGHT ACTIVATION BRAND LOADER
    ========================================================================== */
 .viven-brand-loader {
   position: fixed;
@@ -85,12 +85,12 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  background-color: #f7f9fc;
+  background: #f8f6f0; /* Soft warm luxury ivory/beige */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s ease;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.55s ease;
 }
 
 .viven-brand-loader.finish {
@@ -99,165 +99,78 @@ body {
   pointer-events: none;
 }
 
-/* Background Atmosphere & Grid */
-.loader-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+/* Center V Mark Container */
+.loader-v-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 50px;
 }
 
-.loader-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(10, 22, 40, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 22, 40, 0.035) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0;
-  transition: opacity 0.8s ease 0.2s;
+.loader-v-mark {
+  width: 80px;
+  height: auto;
+  display: block;
+  opacity: 0.12; /* Initial low opacity: 10 - 15% */
+  filter: drop-shadow(0 0 0 transparent);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.viven-brand-loader.active .loader-grid {
-  opacity: 0.5;
+/* Activated State (when aircraft touches/passes center) */
+.viven-brand-loader.v-activated .loader-v-mark {
+  opacity: 1;
+  filter: drop-shadow(0 4px 20px rgba(94, 168, 46, 0.35));
 }
 
-/* Flight Path SVG Canvas */
-.loader-flight-canvas {
+/* Flight Track Canvas & Jet Silhouette */
+.loader-flight-track {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2;
+  z-index: 5;
 }
 
-.flight-trajectory-line {
+.flight-svg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flight-trail-line {
   stroke-dasharray: 1400;
   stroke-dashoffset: 1400;
-  transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+  transition: stroke-dashoffset 1.45s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
 }
 
-.viven-brand-loader.active .flight-trajectory-line {
+.viven-brand-loader.active .flight-trail-line {
   stroke-dashoffset: 0;
 }
 
-/* Waypoint Nodes */
-.waypoint-node {
+.loader-jet-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
   opacity: 0;
-  transform: scale(0);
-  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(-60px, 80vh) rotate(-18deg);
+  transition: transform 1.55s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0.25s ease 0.3s;
 }
 
-.viven-brand-loader.active .node-1 {
+.viven-brand-loader.active .loader-jet-icon {
   opacity: 1;
-  transform: scale(1);
-  transition-delay: 0.7s;
+  transform: translate(calc(100vw + 60px), -10vh) rotate(-18deg);
 }
 
-.viven-brand-loader.active .node-2 {
-  opacity: 1;
-  transform: scale(1);
-  transition-delay: 0.95s;
-}
-
-.viven-brand-loader.active .node-3 {
-  opacity: 1;
-  transform: scale(1);
-  transition-delay: 1.25s;
-}
-
-/* Micro Navigation Labels */
-.loader-nav-label {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.viven-brand-loader.active .label-1 {
-  opacity: 0.65;
-  transition-delay: 0.8s;
-}
-
-.viven-brand-loader.active .label-2 {
-  opacity: 0.9;
-  transition-delay: 1.3s;
-}
-
-/* Center Stage Logo Container */
-.loader-logo-stage {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.viven-brand-loader.finish .loader-logo-stage {
-  transform: translateY(-25px);
-  opacity: 0;
-}
-
-.loader-logo-wrapper {
-  position: relative;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.25s;
-}
-
-.viven-brand-loader.active .loader-logo-wrapper {
-  clip-path: inset(0 0% 0 0);
-}
-
-.loader-logo-img {
-  height: 52px;
-  width: auto;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(10, 22, 40, 0.06));
-}
-
-/* Micro Brand Statement */
-.loader-tagline-wrap {
-  overflow: hidden;
-}
-
-.loader-tagline {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #0a1628;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.85s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.85s;
-}
-
-.viven-brand-loader.active .loader-tagline {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Reduced Motion Override */
-@media (prefers-reduced-motion: reduce) {
-  .viven-brand-loader .flight-trajectory-line {
-    stroke-dashoffset: 0 !important;
-    transition: none !important;
-  }
-
-  .viven-brand-loader .loader-logo-wrapper {
-    clip-path: inset(0 0 0 0) !important;
-    transition: opacity 0.3s ease !important;
-  }
-
-  .viven-brand-loader .loader-tagline {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+@media (max-width: 768px) {
+  .loader-v-mark {
+    width: 65px;
   }
 }
 
