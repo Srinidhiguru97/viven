@@ -77,7 +77,7 @@ body {
 }
 
 /* ==========================================================================
-   VIVEN AVIATION - MINIMAL FLIGHT ACTIVATION BRAND LOADER
+   VIVEN AVIATION - CINEMATIC BRAND SIGNATURE REVEAL (MINIMAL BEIGE)
    ========================================================================== */
 .viven-brand-loader {
   position: fixed;
@@ -106,71 +106,41 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90px;
-  height: 50px;
 }
 
 .loader-v-mark {
-  width: 80px;
+  width: 84px;
   height: auto;
   display: block;
-  opacity: 0.12; /* Initial low opacity: 10 - 15% */
-  filter: drop-shadow(0 0 0 transparent);
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Activated State (when aircraft touches/passes center) */
-.viven-brand-loader.v-activated .loader-v-mark {
-  opacity: 1;
-  filter: drop-shadow(0 4px 20px rgba(94, 168, 46, 0.35));
-}
-
-/* Flight Track Canvas & Jet Silhouette */
-.loader-flight-track {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.flight-svg-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.flight-trail-line {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1400;
-  transition: stroke-dashoffset 1.45s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
-}
-
-.viven-brand-loader.active .flight-trail-line {
-  stroke-dashoffset: 0;
-}
-
-.loader-jet-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 24px;
   opacity: 0;
-  transform: translate(-60px, 80vh) rotate(-18deg);
-  transition: transform 1.55s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, opacity 0.25s ease 0.3s;
+  transform: scale(0.97);
+  filter: blur(5px);
+  transition: opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
 }
 
-.viven-brand-loader.active .loader-jet-icon {
+/* Reveal State: Coming smoothly into focus & 100% opacity */
+.viven-brand-loader.active .loader-v-mark {
   opacity: 1;
-  transform: translate(calc(100vw + 60px), -10vh) rotate(-18deg);
+  transform: scale(1);
+  filter: blur(0px) drop-shadow(0 4px 20px rgba(94, 168, 46, 0.22));
 }
 
 @media (max-width: 768px) {
   .loader-v-mark {
-    width: 65px;
+    width: 68px;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .loader-v-mark {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.3s ease !important;
   }
 }
 

@@ -31,33 +31,27 @@ function initBrandLoaderSequence() {
     return;
   }
 
-  // Lock scrolling during loader activation
+  // Lock scrolling during loader intro
   document.body.style.overflow = 'hidden';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (prefersReducedMotion) {
-    loader.classList.add('v-activated');
     setTimeout(() => {
       finishIntro();
-    }, 600);
+    }, 400);
     return;
   }
 
-  // Step 1: Start jet flight trajectory across screen
-  requestAnimationFrame(() => {
-    loader.classList.add('active');
-  });
-
-  // Step 2: Key Contact Moment — Jet reaches center V mark -> V activates to 100%
+  // 0.2s: Begin smooth focus & opacity reveal curve
   setTimeout(() => {
-    loader.classList.add('v-activated');
-  }, 1050);
+    loader.classList.add('active');
+  }, 180);
 
-  // Step 3: Transition seamlessly into homepage at 2.15s
+  // 1.85s: Seamless transition into homepage
   setTimeout(() => {
     finishIntro();
-  }, 2150);
+  }, 1850);
 
   function finishIntro() {
     loader.classList.add('finish');
