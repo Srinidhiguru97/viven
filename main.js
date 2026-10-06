@@ -57,57 +57,41 @@ function initNavbarScrollState() {
    3. RESTRAINED MOUSE PARALLAX EFFECT
    -------------------------------------------------------------------------- */
 function initMouseParallax() {
-  const layerBg = document.getElementById('heroLayerBg');
-  const layerMid = document.getElementById('heroLayerMid');
-  const layerFg = document.getElementById('heroLayerFg');
+  const visualCol = document.getElementById('heroVisualCol');
   const textBlock = document.getElementById('heroTextBlock');
 
-  if (!textBlock) return;
+  if (!textBlock && !visualCol) return;
 
   let targetX = 0;
   let targetY = 0;
   let currentX = 0;
   let currentY = 0;
 
-  // Lerp factor for ultra-smooth fluid movement (lower = smoother)
   const lerpFactor = 0.05;
 
   const onMouseMove = (e) => {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    // Normalize coordinates from -1 to 1
     targetX = (e.clientX / width - 0.5) * 2;
     targetY = (e.clientY / height - 0.5) * 2;
   };
 
   const updateParallax = () => {
-    // Interpolate towards target
     currentX += (targetX - currentX) * lerpFactor;
     currentY += (targetY - currentY) * lerpFactor;
 
-    // Layer 1: Background Sky (-6px max)
-    if (layerBg) {
-      layerBg.style.transform = `translate3d(${currentX * -6}px, ${currentY * -4}px, 0)`;
+    if (visualCol) {
+      visualCol.style.transform = `translate3d(${currentX * -12}px, ${currentY * -8}px, 0)`;
     }
 
-    // Layer 2: Midground Clouds (-12px max)
-    if (layerMid) {
-      layerMid.style.transform = `translate3d(${currentX * -12}px, ${currentY * -8}px, 0)`;
+    if (textBlock) {
+      textBlock.style.transform = `translate3d(${currentX * 6}px, ${currentY * 4}px, 0)`;
     }
-
-    // Layer 3: Foreground Aircraft (-20px max)
-    if (layerFg) {
-      layerFg.style.transform = `translate3d(${currentX * -20}px, ${currentY * -12}px, 0)`;
-    }
-
-    // Foreground Typography (+8px max forward)
-    textBlock.style.transform = `translate3d(${currentX * 8}px, ${currentY * 5}px, 0)`;
 
     requestAnimationFrame(updateParallax);
   };
 
-  // Only run parallax on desktop/pointer devices
   if (window.matchMedia('(pointer: fine)').matches) {
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     requestAnimationFrame(updateParallax);
@@ -119,25 +103,27 @@ function initMouseParallax() {
    -------------------------------------------------------------------------- */
 function initScrollParallax() {
   const textBlock = document.getElementById('heroTextBlock');
-  const scrollIndicator = document.getElementById('scrollIndicator');
+  const visualCol = document.getElementById('heroVisualCol');
 
-  if (!textBlock) return;
+  if (!textBlock && !visualCol) return;
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const heroHeight = window.innerHeight;
 
     if (scrollY <= heroHeight) {
-      // Fade out and translate upward
       const scrollRatio = scrollY / (heroHeight * 0.85);
-      const opacity = Math.max(0, 1 - scrollRatio * 1.2);
-      const translateY = scrollY * 0.4;
+      const opacity = Math.max(0, 1 - scrollRatio * 1.3);
+      const translateY = scrollY * 0.3;
 
-      textBlock.style.opacity = opacity.toString();
-      textBlock.style.transform = `translate3d(0, -${translateY}px, 0)`;
+      if (textBlock) {
+        textBlock.style.opacity = opacity.toString();
+        textBlock.style.transform = `translate3d(0, -${translateY}px, 0)`;
+      }
 
-      if (scrollIndicator) {
-        scrollIndicator.style.opacity = Math.max(0, 1 - scrollRatio * 2.5).toString();
+      if (visualCol) {
+        visualCol.style.opacity = opacity.toString();
+        visualCol.style.transform = `translate3d(0, -${translateY * 0.5}px, 0)`;
       }
     }
   };

@@ -25,7 +25,7 @@
   <!-- Atmospheric Canvas for Ambient Particle & Thermal Depth -->
   <canvas id="atmosphereCanvas"></canvas>
 
-  <!-- Minimal Transparent Navigation -->
+  <!-- Light Executive Navigation -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="brand-logo" id="brandLogo" aria-label="Viven Aviation Home">
@@ -36,7 +36,7 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#services" class="nav-link">Services</a>
         <a href="#aircraft" class="nav-link">Aircraft</a>
-        <a href="#team" class="nav-link">Our Team</a>
+        <a href="#insights" class="nav-link">Insights</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -52,75 +52,76 @@
     </div>
   </header>
 
-  <!-- Main Hero Section (90-100vh) -->
-  <section class="hero-section" id="hero">
-    <!-- Cinematic Aircraft 3-Layer Background Stack -->
-    <div class="hero-bg-wrapper" id="heroBgWrapper">
-      <!-- Layer 1: Background Dark Sky & Night Horizon -->
-      <div class="hero-layer-bg" id="heroLayerBg"></div>
-
-      <!-- Layer 2: Midground Volumetric Clouds & Haze -->
-      <div class="hero-layer-mid" id="heroLayerMid"></div>
-
-      <!-- Layer 3: Foreground Aircraft & Navigation Highlight -->
-      <div class="hero-layer-fg" id="heroLayerFg">
-        <div class="hero-aircraft-container" id="heroAircraftContainer">
-          <div class="hero-bg-img" id="heroBgImg" style="background-image: url('/hero-jet.jpg');"></div>
-
-          <!-- Optional Micro-detail: Subtle Wingtip Navigation Glow -->
-          <div class="aircraft-nav-strobe" title="Navigation Beacon"></div>
-        </div>
-      </div>
-
-      <!-- Atmospheric Dark Overlays for Typography Contrast -->
-      <div class="hero-overlay-vignette"></div>
-      <div class="hero-overlay-gradient"></div>
-      <div class="hero-grid-lines"></div>
+  <!-- Light Hero Section -->
+  <section class="hero-section hero-light" id="hero">
+    <!-- Abstract Brand Geometry Background (Logo Motifs & Flight Technical Vectors) -->
+    <div class="hero-bg-light" id="heroBgWrapper">
+      <!-- Ambient Soft Ivory / Light Blue Atmospheric Radiance -->
+      <div class="hero-glow-soft"></div>
+      
+      <!-- Abstract Logo Geometry Watermark Vector -->
+      <svg class="hero-brand-motif" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 250 L200 50 L350 250 H280 L200 130 L120 250 Z" fill="url(#brandMotifGrad)" opacity="0.04" />
+        <defs>
+          <linearGradient id="brandMotifGrad" x1="0" y1="0" x2="400" y2="300" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#1e50a2" />
+            <stop offset="100%" stop-color="#5ea82e" />
+          </linearGradient>
+        </defs>
+      </svg>
+      
+      <!-- Subtle Precision Grid Pattern -->
+      <div class="hero-grid-light"></div>
+      
+      <!-- Dynamic Flight Path / Trajectory Lines -->
+      <svg class="hero-flight-paths" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
+        <path class="flight-path-line path-1" d="M -100 450 Q 400 150 1540 380" stroke="rgba(30, 80, 162, 0.12)" stroke-width="1.5" stroke-dasharray="6 6" />
+        <path class="flight-path-line path-2" d="M -50 600 C 500 700 900 200 1500 250" stroke="rgba(94, 168, 46, 0.15)" stroke-width="1" />
+        <circle cx="880" cy="280" r="3" fill="#1e50a2" opacity="0.6" />
+        <circle cx="880" cy="280" r="16" stroke="rgba(30, 80, 162, 0.2)" stroke-width="1" fill="none" />
+      </svg>
     </div>
 
-
-
-    <!-- Hero Main Content Grid -->
+    <!-- Hero Main Container (2-Column Executive Layout) -->
     <div class="hero-content-container">
+      <!-- Left Column: Editorial Headline & Copy & CTAs -->
       <div class="hero-text-block" id="heroTextBlock">
-
-        <!-- Eyebrow -->
+        
+        <!-- Eyebrow Badge -->
         <div class="hero-eyebrow-wrap">
           <span class="hero-eyebrow" id="heroEyebrow">
-            <span class="eyebrow-accent-line"></span>
-            VIVEN AVIATION
-            <span class="eyebrow-accent-line"></span>
+            <span class="eyebrow-accent-dot"></span>
+            GLOBAL AVIATION SOLUTIONS PLATFORM
           </span>
         </div>
 
-        <!-- Main Headline -->
+        <!-- Main Editorial Headline -->
         <h1 class="hero-headline" id="heroHeadline">
           <span class="headline-line-wrap">
             <span class="headline-line">CONNECTING AIRCRAFT.</span>
           </span>
           <span class="headline-line-wrap">
-            <span class="headline-line headline-accent">CREATING POSSIBILITIES.</span>
+            <span class="headline-line">CREATING <span class="headline-accent-blue">POSSIBILITIES.</span></span>
           </span>
         </h1>
 
         <!-- Supporting Copy -->
         <p class="hero-supporting-copy" id="heroCopy">
-          Viven Aviation connects aircraft, operators and opportunities through tailored solutions across charter,
-          sales, leasing, financing and aviation components.
+          Viven Aviation connects aircraft, operators, owners and opportunities through tailored solutions across charter, aircraft sales and leasing, financing, ACMI, consultancy, and aviation components.
         </p>
 
-        <!-- CTAs -->
+        <!-- Primary CTA Buttons -->
         <div class="hero-cta-group" id="heroCtaGroup">
-          <a href="#services" class="btn-primary" id="btnPrimary">
-            <span>Explore Our Services</span>
+          <a href="#services" class="btn-primary-blue" id="btnPrimary">
+            <span>EXPLORE OUR SOLUTIONS</span>
             <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </a>
 
-          <a href="#contact" class="btn-secondary" id="btnSecondary">
-            <span>Talk to Our Aviation Team</span>
+          <a href="#contact" class="btn-secondary-navy" id="btnSecondary">
+            <span>TALK TO OUR AVIATION TEAM</span>
             <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -129,14 +130,58 @@
         </div>
 
       </div>
+
+      <!-- Right Column: Sophisticated Light Aviation Visual Composition -->
+      <div class="hero-visual-col" id="heroVisualCol">
+        <div class="hero-visual-wrapper">
+          
+          <!-- Soft Atmospheric Background Halo -->
+          <div class="aircraft-halo-bg"></div>
+
+          <!-- Real Aircraft Image entering frame from right -->
+          <div class="hero-aircraft-frame">
+            <img src="/hero-jet.jpg" alt="Viven Executive Aviation Jet" class="hero-aircraft-img" id="heroAircraftImg" />
+          </div>
+
+          <!-- Precision Technical Overlay Elements -->
+          <div class="tech-badge tech-badge-top">
+            <span class="tech-dot"></span>
+            <span class="tech-text">SYS // VIVEN FLIGHT PLATFORM</span>
+          </div>
+
+          <div class="tech-badge tech-badge-bottom">
+            <span class="tech-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <circle cx="6" cy="6" r="4.5" stroke="#1e50a2" stroke-width="1" />
+                <path d="M6 1.5V10.5M1.5 6H10.5" stroke="#1e50a2" stroke-width="0.75" />
+              </svg>
+            </span>
+            <span class="tech-text">LAT 01°18'N • LON 103°51'E | FL380</span>
+          </div>
+
+          <!-- Subtle Flight Vector Overlay Grid Lines -->
+          <div class="aircraft-vector-decor">
+            <div class="vector-corner-tl"></div>
+            <div class="vector-corner-br"></div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="hero-scroll-indicator" id="scrollIndicator">
-      <div class="scroll-track">
-        <div class="scroll-thumb"></div>
+    <!-- Hero Information Strip -->
+    <div class="hero-info-strip">
+      <div class="info-strip-container">
+        <span class="info-strip-item">AIRCRAFT CHARTER</span>
+        <span class="info-strip-bullet">•</span>
+        <span class="info-strip-item">AIRCRAFT SALES & LEASING</span>
+        <span class="info-strip-bullet">•</span>
+        <span class="info-strip-item">FINANCING</span>
+        <span class="info-strip-bullet">•</span>
+        <span class="info-strip-item">ACMI</span>
+        <span class="info-strip-bullet">•</span>
+        <span class="info-strip-item">PARTS & COMPONENTS</span>
       </div>
-      <span class="scroll-text">DISCOVER MORE</span>
     </div>
   </section>
 
