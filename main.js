@@ -1,26 +1,22 @@
 /* ==========================================================================
-   VIVEN AVIATION - HERO SECTION INTERACTION LOGIC
-   Engineered with smooth requestAnimationFrame interpolation
+   VIVEN AVIATION - INTERACTION & INTERACTIVE PLATFORM LOGIC
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   initBrandLoaderSequence();
   initNavbarScrollState();
-  initMouseParallax();
-  initScrollParallax();
-  initAtmosphereCanvas();
-  initIntroScrollObserver();
-  initIntroParallax();
+  initInteractiveHelp();
+  initEcosystemNodes();
+  initSolutionsAccordion();
   initCharterShowcase();
-  initServicesChapterSpy();
-  initWhyVivenScrollSpy();
-  initTeamScrollObserver();
-  initContactScrollObserver();
+  initComponentCategories();
+  initTeamSpotlight();
+  initFinalCtaSelector();
   initContactForm();
 });
 
 /* --------------------------------------------------------------------------
-   1. VIVEN BRAND INTRO LOADER SEQUENCE
+   1. BRAND REVEAL LOADER SEQUENCE
    -------------------------------------------------------------------------- */
 function initBrandLoaderSequence() {
   const loader = document.getElementById('vivenBrandLoader');
@@ -31,7 +27,6 @@ function initBrandLoaderSequence() {
     return;
   }
 
-  // Lock scrolling during loader intro
   document.body.style.overflow = 'hidden';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -43,12 +38,10 @@ function initBrandLoaderSequence() {
     return;
   }
 
-  // 0.2s: Begin smooth focus & opacity reveal curve
   setTimeout(() => {
     loader.classList.add('active');
   }, 180);
 
-  // 1.85s: Seamless transition into homepage
   setTimeout(() => {
     finishIntro();
   }, 1850);
@@ -57,7 +50,6 @@ function initBrandLoaderSequence() {
     loader.classList.add('finish');
     document.body.style.overflow = '';
 
-    // Reveal hero section & homepage
     if (heroSection) {
       heroSection.classList.add('loaded');
     }
@@ -69,7 +61,7 @@ function initBrandLoaderSequence() {
 }
 
 /* --------------------------------------------------------------------------
-   2. NAVBAR SCROLL GLASSMORPHISM STATE
+   2. NAVBAR SCROLL STATE
    -------------------------------------------------------------------------- */
 function initNavbarScrollState() {
   const navbar = document.getElementById('navbar');
@@ -88,667 +80,302 @@ function initNavbarScrollState() {
 }
 
 /* --------------------------------------------------------------------------
-   3. RESTRAINED MOUSE PARALLAX EFFECT
+   3. SECTION 02 — INTERACTIVE REQUIREMENT SELECTOR ("WHAT BRINGS YOU TO VIVEN?")
    -------------------------------------------------------------------------- */
-function initMouseParallax() {
-  const visualCol = document.getElementById('heroVisualCol');
-  const textBlock = document.getElementById('heroTextBlock');
+function initInteractiveHelp() {
+  const buttons = document.querySelectorAll('.help-option-btn');
+  const previewImg = document.getElementById('helpCardImg');
+  const previewBadge = document.getElementById('helpCardBadge');
+  const previewTitle = document.getElementById('helpCardTitle');
+  const previewDesc = document.getElementById('helpCardDesc');
+  const previewCta = document.getElementById('helpCardCta');
 
-  if (!textBlock && !visualCol) return;
+  if (!buttons.length) return;
 
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-
-  const lerpFactor = 0.05;
-
-  const onMouseMove = (e) => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    targetX = (e.clientX / width - 0.5) * 2;
-    targetY = (e.clientY / height - 0.5) * 2;
+  const helpData = {
+    'help-charter': {
+      img: '/service-charter.jpg',
+      badge: 'PRIVATE & GROUP CHARTER',
+      title: 'Executive Aircraft Charter',
+      desc: 'Direct access to luxury business jets, turboprops, and mission-ready charter aircraft customized around your exact flight schedule.',
+      cta: 'INITIATE CHARTER REQUEST →',
+      reqVal: 'Aircraft Charter'
+    },
+    'help-buy': {
+      img: '/service-sales.jpg',
+      badge: 'AIRCRAFT ACQUISITION',
+      title: 'Aircraft Sales & Leasing',
+      desc: 'End-to-end guidance for business jet acquisitions, off-market sales, dry-leases, and global fleet transactions.',
+      cta: 'EXPLORE SALES & LEASING →',
+      reqVal: 'Aircraft Sales & Leasing'
+    },
+    'help-financing': {
+      img: '/service-financing.jpg',
+      badge: 'CAPITAL STRUCTURES',
+      title: 'Structured Aircraft Financing',
+      desc: 'Asset-backed credit, debt financing, and tailored financial advisory for aircraft buyers and operators.',
+      cta: 'DISCUSS FINANCING →',
+      reqVal: 'Aircraft Financing'
+    },
+    'help-parts': {
+      img: '/service-parts.jpg',
+      badge: 'SUPPLY CHAIN',
+      title: 'Aircraft Parts & Rotatables',
+      desc: 'Global sourcing for turbine engines, avionics, landing gear, and certified replacement rotatables.',
+      cta: 'SUBMIT PARTS INQUIRY →',
+      reqVal: 'Parts & Components'
+    },
+    'help-consultancy': {
+      img: '/intro-turbine.jpg',
+      badge: 'FLEET ADVISORY',
+      title: 'Aviation Consultancy',
+      desc: 'Strategic fleet planning, aircraft valuation, regulatory compliance, and operational auditing.',
+      cta: 'BOOK ADVISORY SESSION →',
+      reqVal: 'Aviation Consultancy'
+    }
   };
 
-  const updateParallax = () => {
-    currentX += (targetX - currentX) * lerpFactor;
-    currentY += (targetY - currentY) * lerpFactor;
+  buttons.forEach((btn) => {
+    btn.addEventListener('mouseenter', () => {
+      const targetKey = btn.getAttribute('data-help-target');
+      const data = helpData[targetKey];
+      if (!data) return;
 
-    if (visualCol) {
-      visualCol.style.transform = `translate3d(${currentX * -12}px, ${currentY * -8}px, 0)`;
-    }
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
 
-    if (textBlock) {
-      textBlock.style.transform = `translate3d(${currentX * 6}px, ${currentY * 4}px, 0)`;
-    }
+      if (previewImg) previewImg.src = data.img;
+      if (previewBadge) previewBadge.textContent = data.badge;
+      if (previewTitle) previewTitle.textContent = data.title;
+      if (previewDesc) previewDesc.textContent = data.desc;
+      if (previewCta) previewCta.textContent = data.cta;
 
-    requestAnimationFrame(updateParallax);
-  };
-
-  if (window.matchMedia('(pointer: fine)').matches) {
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
-    requestAnimationFrame(updateParallax);
-  }
+      // Sync pre-select on enquiry form dropdown
+      const enquirySelect = document.getElementById('enquiryType');
+      if (enquirySelect) enquirySelect.value = data.reqVal;
+    });
+  });
 }
 
 /* --------------------------------------------------------------------------
-   4. SCROLL DEPTH TRANSITION
+   4. SECTION 04 — INTERACTIVE AVIATION ECOSYSTEM NETWORK
    -------------------------------------------------------------------------- */
-function initScrollParallax() {
-  const textBlock = document.getElementById('heroTextBlock');
-  const visualCol = document.getElementById('heroVisualCol');
+function initEcosystemNodes() {
+  const nodes = document.querySelectorAll('.ecosystem-node');
+  const infoTitle = document.getElementById('ecoInfoTitle');
+  const infoDesc = document.getElementById('ecoInfoDesc');
 
-  if (!textBlock && !visualCol) return;
+  if (!nodes.length) return;
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const heroHeight = window.innerHeight;
-
-    if (scrollY <= heroHeight) {
-      const scrollRatio = scrollY / (heroHeight * 0.85);
-      const opacity = Math.max(0, 1 - scrollRatio * 1.3);
-      const translateY = scrollY * 0.3;
-
-      if (textBlock) {
-        textBlock.style.opacity = opacity.toString();
-        textBlock.style.transform = `translate3d(0, -${translateY}px, 0)`;
-      }
-
-      if (visualCol) {
-        visualCol.style.opacity = opacity.toString();
-        visualCol.style.transform = `translate3d(0, -${translateY * 0.5}px, 0)`;
-      }
+  const nodeData = {
+    aircraft: {
+      title: 'AIRCRAFT ASSETS',
+      desc: 'Commercial, corporate, and specialized mission airframes connected for charter, sale, or lease.'
+    },
+    operators: {
+      title: 'FLIGHT OPERATORS',
+      desc: 'Certified AOC holders and flight management teams supported with ACMI and fleet capacity.'
+    },
+    owners: {
+      title: 'AIRCRAFT OWNERS',
+      desc: 'Private and corporate owners optimizing asset utilization and lifecycle financing.'
+    },
+    clients: {
+      title: 'CHARTER & B2B CLIENTS',
+      desc: 'Executives, corporations, and travel managers seeking reliable private flight logistics.'
+    },
+    investors: {
+      title: 'CAPITAL INVESTORS',
+      desc: 'Financial institutions and private funds participating in structured aviation debt and equity.'
+    },
+    suppliers: {
+      title: 'COMPONENT SUPPLIERS',
+      desc: 'MRO facilities, engine overhaul shops, and certified parts manufacturers.'
+    },
+    capital: {
+      title: 'AVIATION CAPITAL',
+      desc: 'Tailored financial structures backing fleet acquisitions, dry-leases, and engine overhauls.'
     }
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-}
+  nodes.forEach((node) => {
+    node.addEventListener('mouseenter', () => {
+      const ecoKey = node.getAttribute('data-eco');
+      const data = nodeData[ecoKey];
+      if (!data) return;
 
-/* --------------------------------------------------------------------------
-   5. ATMOSPHERIC PARTICLES CANVAS
-   -------------------------------------------------------------------------- */
-function initAtmosphereCanvas() {
-  const canvas = document.getElementById('atmosphereCanvas');
-  if (!canvas) return;
+      nodes.forEach((n) => n.classList.remove('active'));
+      node.classList.add('active');
 
-  const ctx = canvas.getContext('2d');
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
+      if (infoTitle) infoTitle.textContent = data.title;
+      if (infoDesc) infoDesc.textContent = data.desc;
 
-  const particles = [];
-  const particleCount = Math.min(Math.floor(width / 30), 45);
-
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.radius = Math.random() * 1.2 + 0.3;
-      this.alpha = Math.random() * 0.5 + 0.1;
-      this.speedX = Math.random() * 0.3 - 0.15;
-      this.speedY = -(Math.random() * 0.2 + 0.05);
-      this.pulseSpeed = Math.random() * 0.01 + 0.005;
-    }
-
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-
-      // Pulse alpha for gentle starry glow
-      this.alpha += Math.sin(Date.now() * this.pulseSpeed) * 0.003;
-
-      if (this.y < -10 || this.x < -10 || this.x > width + 10) {
-        this.reset();
-        this.y = height + 10;
-      }
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(212, 175, 55, ${Math.max(0, Math.min(1, this.alpha))})`;
-      ctx.shadowBlur = 4;
-      ctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  const animate = () => {
-    ctx.clearRect(0, 0, width, height);
-
-    particles.forEach((p) => {
-      p.update();
-      p.draw();
-    });
-
-    requestAnimationFrame(animate);
-  };
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }, { passive: true });
-
-  animate();
-}
-
-/* --------------------------------------------------------------------------
-   6. SECTION 02 — INTRODUCTION INTERSECTION OBSERVER & PARALLAX
-   -------------------------------------------------------------------------- */
-function initIntroScrollObserver() {
-  const introSection = document.getElementById('intro');
-  if (!introSection) return;
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -15% 0px',
-    threshold: 0.15
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        introSection.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  observer.observe(introSection);
-}
-
-function initIntroParallax() {
-  const introSection = document.getElementById('intro');
-  const introImg = document.getElementById('introVisualImg');
-  const introGrid = document.querySelector('.intro-grid-pattern');
-
-  if (!introSection || !introImg) return;
-
-  const handleScroll = () => {
-    const rect = introSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // Check if section is visible in viewport
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-      const translateY = (scrollProgress - 0.5) * 35; // Subtle parallax shift
-
-      introImg.style.transform = `scale(1.03) translate3d(0, ${translateY * -0.6}px, 0)`;
-
-      if (introGrid) {
-        introGrid.style.transform = `translate3d(0, ${translateY * 0.4}px, 0)`;
-      }
-    }
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-}
-
-/* --------------------------------------------------------------------------
-   7. SECTION 03 — SERVICES STICKY CHAPTER SPY & PROGRESS TRACKER
-   -------------------------------------------------------------------------- */
-function initServicesChapterSpy() {
-  const servicesSection = document.getElementById('services');
-  const chapterCards = document.querySelectorAll('.service-chapter-card');
-  const activeNum = document.getElementById('activeChapterNum');
-  const fillLine = document.getElementById('progressFillLine');
-  const chapterDots = document.querySelectorAll('.chapter-dot');
-  const gridPattern = document.querySelector('.services-grid-pattern');
-
-  if (!servicesSection || !chapterCards.length) return;
-
-  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-
-  const handleScroll = () => {
-    const windowHeight = window.innerHeight;
-    const windowCenter = windowHeight / 2;
-    const sectionRect = servicesSection.getBoundingClientRect();
-
-    // 1. LAYER 1: Background Grid Parallax (moves at slowest speed)
-    if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
-      const scrollProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionRect.height);
-      if (gridPattern) {
-        gridPattern.style.transform = `translate3d(0, ${(scrollProgress - 0.5) * 45}px, 0)`;
-      }
-    }
-
-    // 2. LAYERS 2 & 3: Service Image Parallax & Content Progress Integration
-    let activeChapter = 1;
-    let closestDistance = Infinity;
-
-    chapterCards.forEach((card, index) => {
-      const cardRect = card.getBoundingClientRect();
-      const cardCenter = cardRect.top + cardRect.height / 2;
-      const distanceFromCenter = Math.abs(cardCenter - windowCenter);
-
-      // Track chapter closest to viewport center
-      if (distanceFromCenter < closestDistance) {
-        closestDistance = distanceFromCenter;
-        activeChapter = index + 1;
-      }
-
-      if (isFinePointer && cardRect.top < windowHeight && cardRect.bottom > 0) {
-        // Normalized progress relative to viewport center (-1.0 to +1.0)
-        const normalizedProgress = (cardCenter - windowCenter) / (windowHeight * 0.65);
-        const normDistance = Math.min(1, Math.abs(normalizedProgress));
-
-        // Smooth Opacity: Peak 1.0 when centered, fading smoothly to 0.35 when inactive
-        const opacity = Math.max(0.35, 1 - Math.pow(normDistance, 1.6) * 0.65);
-
-        // Smooth Scale: Peak 1.03-1.04 when centered, scaling smoothly to 0.97 when inactive
-        const scale = 0.97 + (1 - normDistance) * 0.06;
-
-        // Smooth Image Parallax: Shift vertical position within card frame (-40px to +40px)
-        const imgParallaxY = normalizedProgress * -40;
-
-        card.style.opacity = opacity.toFixed(3);
-        card.style.transform = `translate3d(0, 0, 0) scale(${scale.toFixed(3)})`;
-
-        const img = card.querySelector('.chapter-visual-img');
-        if (img) {
-          img.style.transform = `scale(1.06) translate3d(0, ${imgParallaxY.toFixed(1)}px, 0)`;
-        }
-
-        if (distanceFromCenter < windowHeight * 0.38) {
-          card.classList.add('active-chapter');
-        } else {
-          card.classList.remove('active-chapter');
-        }
-      } else if (!isFinePointer) {
-        // Mobile fallback: Keep clean natural opacity and layout
-        card.style.opacity = '1';
-        card.style.transform = 'none';
-        card.classList.add('active-chapter');
-      }
-    });
-
-    // 3. LAYER 4: Fixed/Sticky Context Indicator Updates
-    if (activeNum) {
-      activeNum.textContent = `0${activeChapter}`;
-    }
-
-    if (fillLine) {
-      fillLine.style.width = `${activeChapter * 25}%`;
-    }
-
-    chapterDots.forEach((dot) => {
-      const dotChapter = parseInt(dot.getAttribute('data-chapter'), 10);
-      if (dotChapter === activeChapter) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  };
-
-  let ticking = false;
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        handleScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  handleScroll(); // Initial run
-
-  // Click handler on progress dots to scroll smoothly to chapter
-  chapterDots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const targetChapter = dot.getAttribute('data-chapter');
-      const targetCard = document.getElementById(`service-chapter-${targetChapter}`);
-      if (targetCard) {
-        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Highlight line
+      const lines = document.querySelectorAll('.eco-line');
+      lines.forEach((l) => (l.style.stroke = 'rgba(10, 22, 40, 0.15)'));
+      const activeLine = document.getElementById(`line-${ecoKey}`);
+      if (activeLine) {
+        activeLine.style.stroke = '#5ea82e';
+        activeLine.style.strokeWidth = '2.5';
       }
     });
   });
 }
 
 /* --------------------------------------------------------------------------
-   8. SECTION 05 — WHY VIVEN SCROLL SPY & DIFFERENTIATOR PROGRESS TRACKER
+   5. SECTION 05 — STACKED SOLUTIONS ACCORDION
    -------------------------------------------------------------------------- */
-  function initWhyVivenScrollSpy() {
-    const whyVivenSection = document.getElementById('why-viven');
-    const diffCards = document.querySelectorAll('.differentiator-card');
-    const fillLine = document.getElementById('diffFillLine');
-    const visualImg = document.getElementById('whyVivenVisualImg');
-    const gridPattern = document.querySelector('.why-viven-grid-pattern');
+function initSolutionsAccordion() {
+  const items = document.querySelectorAll('.solution-item');
+  const featuredImg = document.getElementById('solFeaturedImg');
+  const featuredBadge = document.getElementById('solFeaturedBadge');
 
-    if (!whyVivenSection || !diffCards.length) return;
+  if (!items.length) return;
 
-    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      items.forEach((i) => i.classList.remove('active'));
+      item.classList.add('active');
 
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const windowCenter = windowHeight / 2;
-      const sectionRect = whyVivenSection.getBoundingClientRect();
+      const imgSrc = item.getAttribute('data-sol-img');
+      const badgeText = item.getAttribute('data-sol-badge');
 
-      // 1. Background Grid & Visual Image Parallax
-      if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
-        const scrollProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionRect.height);
-        if (gridPattern) {
-          gridPattern.style.transform = `translate3d(0, ${(scrollProgress - 0.5) * 45}px, 0)`;
-        }
-        if (visualImg) {
-          visualImg.style.transform = `scale(1.06) translate3d(0, ${(scrollProgress - 0.5) * -35}px, 0)`;
-        }
-      }
-
-      // 2. Track Active Differentiator Item (01 -> 04)
-      let activeIndex = 1;
-      let closestDistance = Infinity;
-
-      diffCards.forEach((card, index) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.top + cardRect.height / 2;
-        const distanceFromCenter = Math.abs(cardCenter - windowCenter);
-
-        if (distanceFromCenter < closestDistance) {
-          closestDistance = distanceFromCenter;
-          activeIndex = index + 1;
-        }
-
-        if (isFinePointer && cardRect.top < windowHeight && cardRect.bottom > 0) {
-          const normalizedProgress = (cardCenter - windowCenter) / (windowHeight * 0.65);
-          const normDistance = Math.min(1, Math.abs(normalizedProgress));
-
-          const opacity = Math.max(0.35, 1 - Math.pow(normDistance, 1.6) * 0.65);
-          const scale = 0.97 + (1 - normDistance) * 0.05;
-
-          card.style.opacity = opacity.toFixed(3);
-          card.style.transform = `translate3d(0, 0, 0) scale(${scale.toFixed(3)})`;
-
-          if (distanceFromCenter < windowHeight * 0.38) {
-            card.classList.add('active-diff');
-          } else {
-            card.classList.remove('active-diff');
-          }
-        } else if (!isFinePointer) {
-          card.style.opacity = '1';
-          card.style.transform = 'none';
-          card.classList.add('active-diff');
-        }
-      });
-
-      // 3. Update Fill Line Height (25%, 50%, 75%, 100%)
-      if (fillLine) {
-        fillLine.style.height = `${activeIndex * 25}%`;
-      }
-    };
-
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    handleScroll();
-  }
+      if (featuredImg && imgSrc) featuredImg.src = imgSrc;
+      if (featuredBadge && badgeText) featuredBadge.textContent = badgeText;
+    });
+  });
+}
 
 /* --------------------------------------------------------------------------
-   9. SECTION 02.5 — AIRCRAFT CHARTER SHOWCASE LOGIC
-   -------------------------------------------------------------------------- */
-/* --------------------------------------------------------------------------
-   9. SECTION 02.5 — AIRCRAFT CHARTER SHOWCASE LOGIC (CENTERED CAROUSEL)
+   6. SECTION 06 — AIRCRAFT CHARTER SHOWCASE
    -------------------------------------------------------------------------- */
 function initCharterShowcase() {
-  const charterSection = document.getElementById('charter-showcase');
-  if (!charterSection) return;
+  const tabs = document.querySelectorAll('.charter-tab');
+  const stageImg = document.getElementById('charterStageImg');
+  const modelName = document.getElementById('charterModelName');
+  const modelDesc = document.getElementById('charterModelDesc');
+  const specsRow = document.getElementById('charterSpecsRow');
 
-  // 1. Intersection Observer for staggered entrance
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -15% 0px',
-    threshold: 0.15
-  };
+  if (!tabs.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        charterSection.classList.add('in-view');
-        observer.unobserve(entry.target);
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const imgSrc = tab.getAttribute('data-charter-img');
+      const nameText = tab.getAttribute('data-name');
+      const descText = tab.getAttribute('data-desc');
+      const specsText = tab.getAttribute('data-specs');
+
+      if (stageImg && imgSrc) stageImg.src = imgSrc;
+      if (modelName && nameText) modelName.textContent = nameText;
+      if (modelDesc && descText) modelDesc.textContent = descText;
+
+      if (specsRow && specsText) {
+        const specsArr = specsText.split(' | ');
+        specsRow.innerHTML = specsArr
+          .map((s) => `<div class="spec-pill">${s}</div>`)
+          .join('');
       }
-    });
-  }, observerOptions);
-
-  observer.observe(charterSection);
-
-  // 2. Carousel Interaction Elements
-  const prevBtn = document.getElementById('charterPrevBtn');
-  const nextBtn = document.getElementById('charterNextBtn');
-  const planeCards = charterSection.querySelectorAll('.charter-plane-card');
-  const trackDots = charterSection.querySelectorAll('.track-dot');
-  const numBadge = document.getElementById('charterNumBadge');
-  const planeName = document.getElementById('charterPlaneName');
-  const planeCat = document.getElementById('charterPlaneCat');
-
-  let currentIndex = 0;
-  const totalCards = planeCards.length;
-
-  const updateCarousel = (newIndex, direction = 'next') => {
-    if (newIndex === currentIndex || newIndex < 0 || newIndex >= totalCards) return;
-
-    const currentCard = planeCards[currentIndex];
-    const newCard = planeCards[newIndex];
-
-    // Card slide & fade transition
-    currentCard.classList.remove('active');
-    currentCard.classList.add(direction === 'next' ? 'exit-left' : 'enter-right');
-
-    setTimeout(() => {
-      currentCard.classList.remove('exit-left', 'enter-right');
-    }, 700);
-
-    newCard.classList.remove('exit-left', 'enter-right');
-    newCard.classList.add('active');
-
-    // Update Info Panel
-    const cardNum = newCard.getAttribute('data-num');
-    const cardName = newCard.getAttribute('data-name');
-    const cardCat = newCard.getAttribute('data-cat');
-
-    if (numBadge) numBadge.textContent = cardNum;
-    if (planeName) planeName.textContent = cardName;
-    if (planeCat) planeCat.textContent = cardCat;
-
-    // Update Dots
-    trackDots.forEach((dot, idx) => {
-      if (idx === newIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-
-    currentIndex = newIndex;
-  };
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const targetIndex = (currentIndex - 1 + totalCards) % totalCards;
-      updateCarousel(targetIndex, 'prev');
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const targetIndex = (currentIndex + 1) % totalCards;
-      updateCarousel(targetIndex, 'next');
-    });
-  }
-
-  trackDots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
-      const direction = targetIndex > currentIndex ? 'next' : 'prev';
-      updateCarousel(targetIndex, direction);
     });
   });
-
-  // 3. Scroll Parallax Effect
-  const cloudHaze = document.getElementById('charterCloudHaze');
-  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-
-  const handleScroll = () => {
-    const rect = charterSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-
-      if (isFinePointer) {
-        if (cloudHaze) {
-          cloudHaze.style.transform = `translate3d(0, ${(scrollProgress - 0.5) * -35}px, 0)`;
-        }
-      }
-    }
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
 }
 
 /* --------------------------------------------------------------------------
-   10. SECTION 06 — OUR TEAM INTERSECTION OBSERVER
+   7. SECTION 08 — B2B COMPONENT CATEGORIES
    -------------------------------------------------------------------------- */
-function initTeamScrollObserver() {
-  const teamSection = document.getElementById('team');
-  if (!teamSection) return;
+function initComponentCategories() {
+  const items = document.querySelectorAll('.comp-cat-item');
+  const img = document.getElementById('compPreviewImg');
+  const title = document.getElementById('compPreviewTitle');
+  const desc = document.getElementById('compPreviewDesc');
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -15% 0px',
-    threshold: 0.12
-  };
+  if (!items.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        teamSection.classList.add('in-view');
-        observer.unobserve(entry.target);
+  items.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      items.forEach((i) => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const imgSrc = item.getAttribute('data-comp-img');
+      const titleText = item.getAttribute('data-comp-title');
+      const descText = item.getAttribute('data-comp-desc');
+
+      if (img && imgSrc) img.src = imgSrc;
+      if (title && titleText) title.textContent = titleText;
+      if (desc && descText) desc.textContent = descText;
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   8. SECTION 12 — EDITORIAL TEAM SPOTLIGHT
+   -------------------------------------------------------------------------- */
+function initTeamSpotlight() {
+  const btns = document.querySelectorAll('.team-profile-btn');
+  const img = document.getElementById('teamFeaturedImg');
+  const role = document.getElementById('teamFeaturedRole');
+  const name = document.getElementById('teamFeaturedName');
+  const bio = document.getElementById('teamFeaturedBio');
+
+  if (!btns.length) return;
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const imgSrc = btn.getAttribute('data-team-img');
+      const roleText = btn.getAttribute('data-role');
+      const nameText = btn.getAttribute('data-name');
+      const bioText = btn.getAttribute('data-bio');
+
+      if (img && imgSrc) img.src = imgSrc;
+      if (role && roleText) role.textContent = roleText;
+      if (name && nameText) name.textContent = nameText;
+      if (bio && bioText) bio.textContent = bioText;
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   9. SECTION 14 — FINAL REQUIREMENT CTA SELECTOR
+   -------------------------------------------------------------------------- */
+function initFinalCtaSelector() {
+  const btns = document.querySelectorAll('.final-opt-btn');
+  const enquirySelect = document.getElementById('enquiryType');
+
+  if (!btns.length) return;
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const val = btn.getAttribute('data-req-val');
+      if (enquirySelect && val) {
+        enquirySelect.value = val;
       }
     });
-  }, observerOptions);
-
-  observer.observe(teamSection);
+  });
 }
 
 /* --------------------------------------------------------------------------
-   11. SECTION 07 — CONTACT US INTERSECTION OBSERVER & PARALLAX
-   -------------------------------------------------------------------------- */
-function initContactScrollObserver() {
-  const contactSection = document.getElementById('contact');
-  if (!contactSection) return;
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -15% 0px',
-    threshold: 0.12
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        contactSection.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  observer.observe(contactSection);
-
-  // Subtle atmospheric background movement on scroll
-  const horizonBackdrop = contactSection.querySelector('.contact-horizon-backdrop');
-  const glowAura = contactSection.querySelector('.contact-glow-aura');
-  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-
-  const handleScroll = () => {
-    const rect = contactSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-      if (isFinePointer) {
-        if (horizonBackdrop) {
-          horizonBackdrop.style.transform = `scale(1.04) translate3d(0, ${(scrollProgress - 0.5) * -25}px, 0)`;
-        }
-        if (glowAura) {
-          glowAura.style.transform = `translate3d(0, ${(scrollProgress - 0.5) * 20}px, 0)`;
-        }
-      }
-    }
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
-}
-
-/* --------------------------------------------------------------------------
-   12. SECTION 07 — CONTACT FORM INTERACTION & SUBMISSION
+   10. SECTION 15 — CONTACT FORM SUBMISSION
    -------------------------------------------------------------------------- */
 function initContactForm() {
-  const contactForm = document.getElementById('vivenContactForm');
-  const submitBtn = document.getElementById('contactSubmitBtn');
+  const form = document.getElementById('vivenContactForm');
   const successBox = document.getElementById('contactSuccessBox');
 
-  if (!contactForm || !submitBtn || !successBox) return;
+  if (!form) return;
 
-  contactForm.addEventListener('submit', (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic HTML validation check
-    if (!contactForm.checkValidity()) {
-      contactForm.reportValidity();
-      return;
+    if (form.checkValidity()) {
+      form.style.display = 'none';
+      if (successBox) successBox.style.display = 'block';
     }
-
-    // Set loading state
-    submitBtn.disabled = true;
-    const btnText = submitBtn.querySelector('.btn-text');
-    const originalText = btnText ? btnText.textContent : 'SEND ENQUIRY';
-    if (btnText) btnText.textContent = 'SENDING ENQUIRY...';
-    submitBtn.style.opacity = '0.75';
-
-    // Simulate submission delay for refined UI feedback
-    setTimeout(() => {
-      // Fade out form smoothly
-      contactForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-      contactForm.style.opacity = '0';
-      contactForm.style.transform = 'translateY(-10px)';
-
-      setTimeout(() => {
-        contactForm.style.display = 'none';
-
-        // Reveal success feedback state
-        successBox.style.display = 'block';
-        requestAnimationFrame(() => {
-          successBox.classList.add('active');
-        });
-
-        // Reset form for future use
-        contactForm.reset();
-        if (btnText) btnText.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        contactForm.style.transform = 'none';
-      }, 400);
-    }, 1200);
   });
 }

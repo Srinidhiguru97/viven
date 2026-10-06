@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Viven Aviation | Connecting Aircraft. Creating Possibilities.</title>
+  <title>Viven Aviation | Aviation, Connected.</title>
   <meta name="description"
-    content="Viven Aviation connects aircraft, operators and opportunities through tailored solutions across charter, sales, leasing, financing and aviation components." />
+    content="Viven Aviation connects aircraft, operators, owners and opportunities through tailored solutions across charter, sales, leasing, financing, ACMI, consultancy and components." />
 
   <!-- Fonts: Outfit (Headline/Brand) & Inter (Body/Telemetry) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +24,6 @@
 <body>
   <!-- Minimal Viven Brand Signature Reveal Loader -->
   <div id="vivenBrandLoader" class="viven-brand-loader" aria-hidden="true">
-    <!-- Center V Aircraft Symbol -->
     <div class="loader-v-container">
       <svg class="loader-v-mark" viewBox="0 0 52 28.39" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
@@ -43,10 +42,10 @@
     </div>
   </div>
 
-  <!-- Atmospheric Canvas for Ambient Particle & Thermal Depth -->
+  <!-- Background Atmosphere -->
   <canvas id="atmosphereCanvas"></canvas>
 
-  <!-- Light Executive Navigation -->
+  <!-- Light Navigation Header -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="brand-logo" id="brandLogo" aria-label="Viven Aviation Home">
@@ -55,8 +54,12 @@
 
       <nav class="nav-links">
         <a href="#about" class="nav-link">About</a>
-        <a href="#services" class="nav-link">Services</a>
+        <a href="#interactive-help" class="nav-link">Requirements</a>
+        <a href="#services" class="nav-link">Solutions</a>
+        <a href="#charter" class="nav-link">Charter</a>
         <a href="#aircraft" class="nav-link">Aircraft</a>
+        <a href="#components" class="nav-link">Components</a>
+        <a href="#team" class="nav-link">Team</a>
         <a href="#insights" class="nav-link">Insights</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
@@ -73,42 +76,23 @@
     </div>
   </header>
 
-  <!-- Light Hero Section -->
+  <!-- 01 — HERO SECTION -->
   <section class="hero-section hero-light" id="hero">
-    <!-- Abstract Brand Geometry Background (Logo Motifs & Flight Technical Vectors) -->
     <div class="hero-bg-light" id="heroBgWrapper">
-      <!-- Ambient Soft Ivory / Light Blue Atmospheric Radiance -->
       <div class="hero-glow-soft"></div>
-      
-      <!-- Abstract Logo Geometry Watermark Vector -->
       <svg class="hero-brand-motif" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 250 L200 50 L350 250 H280 L200 130 L120 250 Z" fill="url(#brandMotifGrad)" opacity="0.04" />
-        <defs>
-          <linearGradient id="brandMotifGrad" x1="0" y1="0" x2="400" y2="300" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#1e50a2" />
-            <stop offset="100%" stop-color="#5ea82e" />
-          </linearGradient>
-        </defs>
+        <path d="M50 250 L200 50 L350 250 H280 L200 130 L120 250 Z" fill="rgba(94, 168, 46, 0.04)" />
       </svg>
-      
-      <!-- Subtle Precision Grid Pattern -->
       <div class="hero-grid-light"></div>
-      
-      <!-- Dynamic Flight Path / Trajectory Lines -->
       <svg class="hero-flight-paths" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
-        <path class="flight-path-line path-1" d="M -100 450 Q 400 150 1540 380" stroke="rgba(30, 80, 162, 0.12)" stroke-width="1.5" stroke-dasharray="6 6" />
-        <path class="flight-path-line path-2" d="M -50 600 C 500 700 900 200 1500 250" stroke="rgba(94, 168, 46, 0.15)" stroke-width="1" />
-        <circle cx="880" cy="280" r="3" fill="#1e50a2" opacity="0.6" />
-        <circle cx="880" cy="280" r="16" stroke="rgba(30, 80, 162, 0.2)" stroke-width="1" fill="none" />
+        <path class="flight-path-line" d="M -100 450 Q 400 150 1540 380" stroke="rgba(94, 168, 46, 0.2)" stroke-width="1.5" stroke-dasharray="6 6" />
+        <circle cx="880" cy="280" r="3" fill="#5ea82e" />
+        <circle cx="880" cy="280" r="16" stroke="rgba(94, 168, 46, 0.25)" stroke-width="1" fill="none" />
       </svg>
     </div>
 
-    <!-- Hero Main Container (2-Column Executive Layout) -->
     <div class="hero-content-container">
-      <!-- Left Column: Editorial Headline & Copy & CTAs -->
       <div class="hero-text-block" id="heroTextBlock">
-        
-        <!-- Eyebrow Badge -->
         <div class="hero-eyebrow-wrap">
           <span class="hero-eyebrow" id="heroEyebrow">
             <span class="eyebrow-accent-dot"></span>
@@ -116,971 +100,838 @@
           </span>
         </div>
 
-        <!-- Main Editorial Headline -->
         <h1 class="hero-headline" id="heroHeadline">
           <span class="headline-line-wrap">
-            <span class="headline-line">CONNECTING AIRCRAFT.</span>
+            <span class="headline-line">AVIATION,</span>
           </span>
           <span class="headline-line-wrap">
-            <span class="headline-line">CREATING <span class="headline-accent-blue">POSSIBILITIES.</span></span>
+            <span class="headline-line headline-accent-green">CONNECTED.</span>
           </span>
         </h1>
 
-        <!-- Supporting Copy -->
         <p class="hero-supporting-copy" id="heroCopy">
-          Viven Aviation connects aircraft, operators, owners and opportunities through tailored solutions across charter, aircraft sales and leasing, financing, ACMI, consultancy, and aviation components.
+          Aircraft, capital, charter and expertise — connected through one aviation partner.
         </p>
 
-        <!-- Primary CTA Buttons -->
         <div class="hero-cta-group" id="heroCtaGroup">
-          <a href="#services" class="btn-primary-blue" id="btnPrimary">
-            <span>EXPLORE OUR SOLUTIONS</span>
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+          <a href="#services" class="btn-primary-green" id="btnPrimary">
+            <span>EXPLORE OUR SOLUTIONS →</span>
           </a>
 
           <a href="#contact" class="btn-secondary-navy" id="btnSecondary">
-            <span>TALK TO OUR AVIATION TEAM</span>
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <span>TALK TO OUR AVIATION TEAM →</span>
           </a>
         </div>
-
       </div>
 
-      <!-- Right Column: Sophisticated Light Aviation Visual Composition -->
       <div class="hero-visual-col" id="heroVisualCol">
         <div class="hero-visual-wrapper">
-          
-          <!-- Soft Atmospheric Background Halo -->
           <div class="aircraft-halo-bg"></div>
-
-          <!-- Real Aircraft Image entering frame from right -->
           <div class="hero-aircraft-frame">
-            <img src="/hero-jet.jpg" alt="Viven Executive Aviation Jet" class="hero-aircraft-img" id="heroAircraftImg" />
+            <img src="/hero-jet.jpg" alt="Viven Executive Aviation Aircraft" class="hero-aircraft-img" id="heroAircraftImg" />
           </div>
-
-          <!-- Precision Technical Overlay Elements -->
           <div class="tech-badge tech-badge-top">
             <span class="tech-dot"></span>
             <span class="tech-text">SYS // VIVEN FLIGHT PLATFORM</span>
           </div>
-
           <div class="tech-badge tech-badge-bottom">
-            <span class="tech-icon">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="4.5" stroke="#1e50a2" stroke-width="1" />
-                <path d="M6 1.5V10.5M1.5 6H10.5" stroke="#1e50a2" stroke-width="0.75" />
-              </svg>
-            </span>
             <span class="tech-text">LAT 01°18'N • LON 103°51'E | FL380</span>
           </div>
-
-          <!-- Subtle Flight Vector Overlay Grid Lines -->
           <div class="aircraft-vector-decor">
             <div class="vector-corner-tl"></div>
             <div class="vector-corner-br"></div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- Hero Information Strip -->
+    <!-- Category Anchor Bar -->
     <div class="hero-info-strip">
       <div class="info-strip-container">
-        <span class="info-strip-item">AIRCRAFT CHARTER</span>
+        <a href="#charter" class="info-strip-item">CHARTER</a>
         <span class="info-strip-bullet">•</span>
-        <span class="info-strip-item">AIRCRAFT SALES & LEASING</span>
+        <a href="#aircraft" class="info-strip-item">AIRCRAFT</a>
         <span class="info-strip-bullet">•</span>
-        <span class="info-strip-item">FINANCING</span>
+        <a href="#services" class="info-strip-item">FINANCING</a>
         <span class="info-strip-bullet">•</span>
-        <span class="info-strip-item">ACMI</span>
+        <a href="#services" class="info-strip-item">ACMI</a>
         <span class="info-strip-bullet">•</span>
-        <span class="info-strip-item">PARTS & COMPONENTS</span>
+        <a href="#components" class="info-strip-item">COMPONENTS</a>
+        <span class="info-strip-bullet">•</span>
+        <a href="#services" class="info-strip-item">CONSULTANCY</a>
       </div>
     </div>
   </section>
 
-  <!-- Section 02 — Introduction -->
-  <section class="intro-section" id="intro">
-    <!-- Subtle Background Grid & Depth Gradient -->
-    <div class="intro-bg-layer" id="introBgLayer">
-      <div class="intro-grid-pattern"></div>
-      <div class="intro-glow-aura"></div>
-    </div>
-
-    <div class="intro-container">
-      <!-- Left Column: Story Content -->
-      <div class="intro-content-col" id="introContentCol">
-
-        <!-- Eyebrow -->
-        <div class="intro-eyebrow-wrap">
-          <span class="intro-eyebrow" id="introEyebrow">
-            <span class="eyebrow-accent-line"></span>
-            WHO WE ARE
-          </span>
-        </div>
-
-        <!-- Main Headline -->
-        <h2 class="intro-headline" id="introHeadline">
-          <span class="intro-line-wrap">
-            <span class="intro-line">A SMARTER WAY</span>
-          </span>
-          <span class="intro-line-wrap">
-            <span class="intro-line intro-line-accent">TO NAVIGATE AVIATION.</span>
-          </span>
-        </h2>
-
-        <!-- Supporting Paragraphs -->
-        <div class="intro-copy-wrap" id="introCopyWrap">
-          <p class="intro-copy">
-            PT. VIVEN GLOBAL AVIASI is an aviation company based in Indonesia, trading as Viven Aviation was established
-            in 2023 by a group of experts with solid aviation and financing background. We are specializing in ACMI
-            Leasing, Air charter, Aircraft sales & Leasing, financing and aviation consultanty services. Viven Aviation
-            provides a comprehensive range of reliable resources and solutions to customers in Indonesia and to our
-            global clients.
-          </p>
-          <p class="intro-copy">
-            Viven Aviation connects owners, operators and aviation businesses with tailored solutions across aircraft
-            sourcing, charter, sales, leasing, financing and components.
-          </p>
-        </div>
-
-        <!-- CTA Link -->
-        <div class="intro-cta-wrap" id="introCtaWrap">
-          <a href="#about" class="intro-cta-btn" id="introCtaBtn">
-            <span>Discover Viven</span>
-            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-        </div>
-
+  <!-- 02 — HOW CAN WE HELP? (INTERACTIVE REQUIREMENT SELECTOR) -->
+  <section class="help-section" id="interactive-help">
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>REQUIREMENTS ASSESSOR</span>
+        <h2 class="section-title">WHAT BRINGS YOU TO VIVEN?</h2>
+        <p class="section-subtitle">Select your primary objective to explore tailored aviation solutions.</p>
       </div>
 
-      <!-- Right Column: Authentic Viven Aviation Operations & Team Visual -->
-      <div class="intro-visual-col" id="introVisualCol">
-        <div class="intro-visual-frame" id="introVisualFrame">
-          <!-- Clip-path Reveal Wrapper -->
-          <div class="intro-visual-mask">
-            <img src="/who-we-are.jpg" alt="Viven Aviation Operations & Aviation Team" class="intro-visual-img"
-              id="introVisualImg" />
-            <div class="intro-visual-overlay"></div>
+      <div class="help-interactive-grid">
+        <div class="help-options-list">
+          <button class="help-option-btn active" data-help-target="help-charter">
+            <span class="opt-num">01</span>
+            <span class="opt-title">I NEED TO CHARTER AN AIRCRAFT</span>
+            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+
+          <button class="help-option-btn" data-help-target="help-buy">
+            <span class="opt-num">02</span>
+            <span class="opt-title">I WANT TO BUY OR LEASE</span>
+            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+
+          <button class="help-option-btn" data-help-target="help-financing">
+            <span class="opt-num">03</span>
+            <span class="opt-title">I NEED AVIATION FINANCING</span>
+            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+
+          <button class="help-option-btn" data-help-target="help-parts">
+            <span class="opt-num">04</span>
+            <span class="opt-title">I NEED AIRCRAFT PARTS</span>
+            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+
+          <button class="help-option-btn" data-help-target="help-consultancy">
+            <span class="opt-num">05</span>
+            <span class="opt-title">I NEED AVIATION CONSULTANCY</span>
+            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+
+        <div class="help-preview-card" id="helpPreviewCard">
+          <div class="help-card-image-wrap">
+            <img src="/service-charter.jpg" alt="Aviation Solution Preview" id="helpCardImg" class="help-card-img" />
+            <div class="help-card-badge" id="helpCardBadge">PRIVATE & GROUP CHARTER</div>
+          </div>
+          <div class="help-card-body">
+            <h3 class="help-card-title" id="helpCardTitle">Executive Aircraft Charter</h3>
+            <p class="help-card-desc" id="helpCardDesc">
+              Direct access to luxury business jets, turboprops, and mission-ready charter aircraft customized around your exact flight schedule.
+            </p>
+            <a href="#contact" class="btn-text-green" id="helpCardCta">INITIATE CHARTER REQUEST →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — WHO WE ARE -->
+  <section class="about-section" id="about">
+    <div class="section-container grid-two-col">
+      <div class="about-text-col">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>WHO WE ARE</span>
+        <h2 class="about-headline">A SMARTER WAY TO NAVIGATE AVIATION.</h2>
+        <p class="about-copy">
+          PT. VIVEN GLOBAL AVIASI is an aviation company based in Indonesia, trading as Viven Aviation. We connect aircraft, operators and opportunities through tailored solutions across charter, sales, leasing, financing and components.
+        </p>
+
+        <div class="about-stats-grid">
+          <div class="stat-box">
+            <span class="stat-num">2023</span>
+            <span class="stat-lbl">Established</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">INDONESIA</span>
+            <span class="stat-lbl">Operational HQ</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">GLOBAL</span>
+            <span class="stat-lbl">Aviation Network</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image-col">
+        <div class="about-img-frame">
+          <img src="/who-we-are.jpg" alt="Viven Aviation Headquarters and Operations" class="about-parallax-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — AVIATION ECOSYSTEM -->
+  <section class="ecosystem-section" id="ecosystem">
+    <div class="section-container">
+      <div class="section-header-meta center-text">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>INTELLIGENT CONNECTIVITY</span>
+        <h2 class="section-title">ONE NETWORK. MANY POSSIBILITIES.</h2>
+        <p class="section-subtitle">Viven Aviation acts as the central hub connecting all facets of the global aviation ecosystem.</p>
+      </div>
+
+      <div class="ecosystem-interactive-wrapper">
+        <div class="ecosystem-hub">
+          <img src="/Logo_web.svg" alt="Viven Aviation Central Hub" class="hub-logo-img" />
+          <span class="hub-title">CENTRAL HUB</span>
+        </div>
+
+        <svg class="ecosystem-svg-lines" viewBox="0 0 1000 600" fill="none">
+          <line x1="500" y1="300" x2="200" y2="120" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-aircraft"/>
+          <line x1="500" y1="300" x2="500" y2="100" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-operators"/>
+          <line x1="500" y1="300" x2="800" y2="120" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-owners"/>
+          <line x1="500" y1="300" x2="850" y2="300" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-clients"/>
+          <line x1="500" y1="300" x2="800" y2="480" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-investors"/>
+          <line x1="500" y1="300" x2="500" y2="500" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-suppliers"/>
+          <line x1="500" y1="300" x2="200" y2="480" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4" class="eco-line" id="line-capital"/>
+        </svg>
+
+        <div class="ecosystem-node node-aircraft" data-eco="aircraft">
+          <span class="node-dot"></span>
+          <span class="node-label">AIRCRAFT</span>
+        </div>
+
+        <div class="ecosystem-node node-operators" data-eco="operators">
+          <span class="node-dot"></span>
+          <span class="node-label">OPERATORS</span>
+        </div>
+
+        <div class="ecosystem-node node-owners" data-eco="owners">
+          <span class="node-dot"></span>
+          <span class="node-label">OWNERS</span>
+        </div>
+
+        <div class="ecosystem-node node-clients" data-eco="clients">
+          <span class="node-dot"></span>
+          <span class="node-label">CLIENTS</span>
+        </div>
+
+        <div class="ecosystem-node node-investors" data-eco="investors">
+          <span class="node-dot"></span>
+          <span class="node-label">INVESTORS</span>
+        </div>
+
+        <div class="ecosystem-node node-suppliers" data-eco="suppliers">
+          <span class="node-dot"></span>
+          <span class="node-label">SUPPLIERS</span>
+        </div>
+
+        <div class="ecosystem-node node-capital" data-eco="capital">
+          <span class="node-dot"></span>
+          <span class="node-label">CAPITAL</span>
+        </div>
+
+        <div class="ecosystem-info-box" id="ecoInfoBox">
+          <h4 id="ecoInfoTitle">HOVER A NODE TO EXPLORE CONNECTIVITY</h4>
+          <p id="ecoInfoDesc">Viven Aviation seamlessly bridges operational requirements, capital structures, and aircraft availability across the global market.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — SOLUTIONS / SERVICES -->
+  <section class="solutions-section" id="services">
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>WHAT WE DO</span>
+        <h2 class="section-title">AVIATION SOLUTIONS, BUILT AROUND YOUR MISSION.</h2>
+      </div>
+
+      <div class="solutions-stacked-layout">
+        <div class="solutions-list-col">
+          <div class="solution-item active" data-sol-img="/service-charter.jpg" data-sol-badge="01 // CHARTER">
+            <div class="sol-item-header">
+              <span class="sol-num">01</span>
+              <h3 class="sol-title">Aircraft Charter</h3>
+              <span class="sol-toggle">+</span>
+            </div>
+            <div class="sol-item-body">
+              <p>Tailored private executive charter, passenger flights, medical evacuations, and specialized missions connecting destinations worldwide with complete discretion.</p>
+              <a href="#contact" class="btn-text-green">REQUEST CHARTER →</a>
+            </div>
           </div>
 
-          <!-- Subtle Aerospace Technical Markings -->
-          <div class="tech-markings">
-            <div class="tech-corner top-left"></div>
-            <div class="tech-corner top-right"></div>
-            <div class="tech-corner bottom-left"></div>
-            <div class="tech-corner bottom-right"></div>
-            <div class="tech-crosshair"></div>
-            <div class="tech-spec-label">
-              <span class="spec-dot"></span>
-              FIELD OPERATIONS // AIRCRAFT & HELICOPTER EXPERTISE
+          <div class="solution-item" data-sol-img="/service-sales.jpg" data-sol-badge="02 // SALES & LEASING">
+            <div class="sol-item-header">
+              <span class="sol-num">02</span>
+              <h3 class="sol-title">Aircraft Sales & Leasing</h3>
+              <span class="sol-toggle">+</span>
+            </div>
+            <div class="sol-item-body">
+              <p>End-to-end support for aircraft acquisition, disposition, dry/wet lease agreements, and portfolio management across business jets and commercial aircraft.</p>
+              <a href="#contact" class="btn-text-green">EXPLORE SALES & LEASING →</a>
+            </div>
+          </div>
+
+          <div class="solution-item" data-sol-img="/charter-missions.jpg" data-sol-badge="03 // ACMI SOLUTIONS">
+            <div class="sol-item-header">
+              <span class="sol-num">03</span>
+              <h3 class="sol-title">ACMI Solutions</h3>
+              <span class="sol-toggle">+</span>
+            </div>
+            <div class="sol-item-body">
+              <p>Comprehensive Aircraft, Crew, Maintenance, and Insurance (ACMI) wet-lease coverage for airlines and charter operators requiring immediate capacity expansion.</p>
+              <a href="#contact" class="btn-text-green">STRUCTURE ACMI LEASE →</a>
+            </div>
+          </div>
+
+          <div class="solution-item" data-sol-img="/service-financing.jpg" data-sol-badge="04 // FINANCING">
+            <div class="sol-item-header">
+              <span class="sol-num">04</span>
+              <h3 class="sol-title">Aircraft Financing</h3>
+              <span class="sol-toggle">+</span>
+            </div>
+            <div class="sol-item-body">
+              <p>Structured capital solutions, asset-backed debt financing, and financial advisory designed for corporate fleet buyers, operators, and private investors.</p>
+              <a href="#contact" class="btn-text-green">DISCUSS FINANCING →</a>
+            </div>
+          </div>
+
+          <div class="solution-item" data-sol-img="/intro-turbine.jpg" data-sol-badge="05 // CONSULTANCY">
+            <div class="sol-item-header">
+              <span class="sol-num">05</span>
+              <h3 class="sol-title">Aviation Consultancy</h3>
+              <span class="sol-toggle">+</span>
+            </div>
+            <div class="sol-item-body">
+              <p>Strategic fleet advisory, asset valuation, market analysis, and operational auditing backed by deep technical and commercial expertise.</p>
+              <a href="#contact" class="btn-text-green">BOOK ADVISORY SESSION →</a>
+            </div>
+          </div>
+
+          <div class="solution-item" data-sol-img="/service-parts.jpg" data-sol-badge="06 // COMPONENTS">
+            <div class="sol-item-header">
+              <span class="sol-num">06</span>
+              <h3 class="sol-title">Parts & Components</h3>
+              <span class="sol-toggle">+</span>
+            </div>
+            <div class="sol-item-body">
+              <p>Global sourcing and procurement for certified aircraft engines, avionics, landing gear, rotatables, and ground support equipment.</p>
+              <a href="#contact" class="btn-text-green">SUBMIT PARTS INQUIRY →</a>
             </div>
           </div>
         </div>
+
+        <div class="solutions-display-col">
+          <div class="sol-display-card">
+            <img src="/service-charter.jpg" alt="Selected Aviation Solution" id="solFeaturedImg" class="sol-featured-img" />
+            <div class="sol-display-badge" id="solFeaturedBadge">01 // CHARTER</div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- Section Transition Visual Breathing Room -->
-    <div class="intro-section-divider"></div>
   </section>
 
-  <!-- Section 02.5 — AIRCRAFT CHARTER SHOWCASE (Center-Aligned Cinematic Showcase) -->
-  <section class="charter-showcase-section" id="charter-showcase">
-    <!-- Atmospheric Background Layers & Environmental Glow -->
-    <div class="charter-bg-layer">
-      <div class="charter-grid-pattern"></div>
-      <div class="charter-radial-glow"></div>
-      <div class="charter-cloud-haze" id="charterCloudHaze"></div>
-      <div class="charter-floor-reflection"></div>
-    </div>
-
-    <!-- Micro Aviation Decorative Tech Labels (Left/Right margins) -->
-    <div class="charter-deco-side left-side">
-      <span class="deco-label">VERSATILE</span>
-      <span class="deco-divider">•</span>
-      <span class="deco-label">RELIABLE</span>
-      <span class="deco-divider">•</span>
-      <span class="deco-label">MISSION READY</span>
-    </div>
-    <div class="charter-deco-side right-side">
-      <span class="deco-coord">LAT 47.4502° N // LON 8.5622° E</span>
-    </div>
-
-    <div class="charter-showcase-container">
-      <!-- TOP: Eyebrow -->
-      <div class="charter-eyebrow-wrap">
-        <span class="charter-eyebrow">
-          <span class="eyebrow-accent-line"></span>
-          AIRCRAFT CHARTER
-          <span class="eyebrow-accent-line"></span>
-        </span>
+  <!-- 06 — AIRCRAFT CHARTER EXPERIENCE -->
+  <section class="charter-showcase-section" id="charter">
+    <div class="section-container">
+      <div class="section-header-meta center-text">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>AIRCRAFT CHARTER</span>
+        <h2 class="section-title">YOUR JOURNEY. YOUR AIRCRAFT. YOUR WAY.</h2>
+        <p class="section-subtitle">Experience bespoke luxury, privacy, and flight flexibility across our global charter network.</p>
       </div>
 
-      <!-- CENTER TOP: Headline -->
-      <h2 class="charter-headline">
-        <span class="charter-line-wrap">
-          <span class="charter-line">YOUR JOURNEY.</span>
-        </span>
-        <span class="charter-line-wrap">
-          <span class="charter-line charter-line-accent">YOUR AIRCRAFT.</span>
-        </span>
-        <span class="charter-line-wrap">
-          <span class="charter-line">YOUR WAY.</span>
-        </span>
-      </h2>
+      <div class="charter-showcase-wrapper">
+        <div class="charter-main-stage">
+          <div class="charter-stage-img-wrap">
+            <img src="/charter-business.jpg" alt="Executive Charter Jet" id="charterStageImg" class="charter-stage-img" />
+          </div>
+          <div class="charter-stage-info">
+            <h3 class="charter-model-name" id="charterModelName">Bombardier Global 7500</h3>
+            <p class="charter-model-desc" id="charterModelDesc">Ultra long-range business jet providing unprecedented cabin comfort, non-stop intercontinental range, and executive productivity.</p>
+            <div class="charter-specs-row" id="charterSpecsRow">
+              <div class="spec-pill"><span>RANGE:</span> 7,700 NM</div>
+              <div class="spec-pill"><span>PASSENGERS:</span> UP TO 19</div>
+              <div class="spec-pill"><span>SPEED:</span> MACH 0.925</div>
+            </div>
+            <a href="#contact" class="btn-primary-green">CHARTER THIS AIRCRAFT →</a>
+          </div>
+        </div>
 
-      <!-- BELOW HEADLINE: Supporting Paragraph -->
-      <p class="charter-supporting-copy">
-        From business travel to specialized missions, Viven Aviation connects clients with aircraft suited to their journey, schedule and requirements.
-      </p>
+        <div class="charter-selector-tabs">
+          <button class="charter-tab active" data-charter-img="/charter-business.jpg" data-name="Bombardier Global 7500" data-desc="Ultra long-range business jet providing unprecedented cabin comfort, non-stop intercontinental range, and executive productivity." data-specs="RANGE: 7,700 NM | PASSENGERS: UP TO 19 | SPEED: MACH 0.925">
+            <span>01</span> Bombardier Global 7500
+          </button>
 
-      <!-- CENTER: Aircraft Carousel Stage -->
-      <div class="charter-stage-wrapper">
-        <!-- Arrow Left -->
-        <button class="charter-arrow-btn prev-btn" id="charterPrevBtn" aria-label="Previous Aircraft" type="button">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-            <polyline points="15 18 9 12 15 6"></polyline>
+          <button class="charter-tab" data-charter-img="/hero-jet.jpg" data-name="Gulfstream G650ER" data-desc="The benchmark for ultra-high-speed long-range corporate aviation, offering unmatched luxury and seamless global connectivity." data-specs="RANGE: 7,500 NM | PASSENGERS: UP TO 18 | SPEED: MACH 0.90">
+            <span>02</span> Gulfstream G650ER
+          </button>
+
+          <button class="charter-tab" data-charter-img="/charter-missions.jpg" data-name="Specialized Mission Aircraft" data-desc="Turboprop & utility aircraft configured for medical evacuations, cargo transport, and remote runway operations." data-specs="RANGE: 1,800 NM | PASSENGERS: FLEXIBLE | MISSION: UTILITY / MEDEVAC">
+            <span>03</span> Specialized Mission Aircraft
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — AIRCRAFT OPPORTUNITIES -->
+  <section class="opportunities-section" id="aircraft">
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>MARKET AVAILABILITY</span>
+        <h2 class="section-title">AIRCRAFT. WHEN OPPORTUNITY TAKES FLIGHT.</h2>
+        <p class="section-subtitle">Curated off-market aircraft acquisitions, dry leases, and portfolio transfers.</p>
+      </div>
+
+      <div class="opp-grid">
+        <div class="opp-card">
+          <div class="opp-card-img-wrap">
+            <img src="/service-sales.jpg" alt="Long Range Heavy Jet Opportunity" class="opp-card-img" />
+            <span class="opp-status-badge">AVAILABLE FOR LEASE / SALE</span>
+          </div>
+          <div class="opp-card-body">
+            <span class="opp-cat">BUSINESS AVIATION</span>
+            <h3 class="opp-title">Long Range Heavy Jet</h3>
+            <p class="opp-desc">Off-market business aircraft with complete maintenance tracking, low airframe hours, and premium interior configuration.</p>
+            <a href="#contact" class="btn-text-green">ENQUIRE OPPORTUNITY →</a>
+          </div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-card-img-wrap">
+            <img src="/why-viven-horizon.jpg" alt="Super Midsize Executive Aircraft" class="opp-card-img" />
+            <span class="opp-status-badge">ACMI / DRY LEASE</span>
+          </div>
+          <div class="opp-card-body">
+            <span class="opp-cat">EXECUTIVE FLEET</span>
+            <h3 class="opp-title">Super Midsize Aircraft</h3>
+            <p class="opp-desc">Immediate availability for operator dry-lease expansion or structured corporate flight department placement.</p>
+            <a href="#contact" class="btn-text-green">ENQUIRE OPPORTUNITY →</a>
+          </div>
+        </div>
+
+        <div class="opp-card">
+          <div class="opp-card-img-wrap">
+            <img src="/charter-missions.jpg" alt="Turboprop Operational Aircraft" class="opp-card-img" />
+            <span class="opp-status-badge">CHARTER / TRANSFER</span>
+          </div>
+          <div class="opp-card-body">
+            <span class="opp-cat">UTILITY & CHARTER</span>
+            <h3 class="opp-title">Turboprop Operational Aircraft</h3>
+            <p class="opp-desc">Versatile short-field performance aircraft ideal for regional logistics, island transfer, and utility missions.</p>
+            <a href="#contact" class="btn-text-green">ENQUIRE OPPORTUNITY →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — AVIATION COMPONENTS -->
+  <section class="components-section" id="components">
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>PROCUREMENT PLATFORM</span>
+        <h2 class="section-title">THE PARTS THAT KEEP AVIATION MOVING.</h2>
+        <p class="section-subtitle">Certified component supply chain support for operators, MROs, and fleet managers.</p>
+      </div>
+
+      <div class="comp-interactive-grid">
+        <div class="comp-cats-list">
+          <div class="comp-cat-item active" data-comp-img="/intro-turbine.jpg" data-comp-title="Engines & Powerplants" data-comp-desc="Turbofan and turboprop engine assemblies, APUs, and certified engine rotatables with full trace documentation.">
+            <span class="comp-icon">⚙</span>
+            <span class="comp-name">ENGINES & POWERPLANTS</span>
+          </div>
+
+          <div class="comp-cat-item" data-comp-img="/service-parts.jpg" data-comp-title="Avionics & Flight Systems" data-comp-desc="Navigation radars, flight management computers, communication suites, and cockpit displays.">
+            <span class="comp-icon">📡</span>
+            <span class="comp-name">AVIONICS & RADAR</span>
+          </div>
+
+          <div class="comp-cat-item" data-comp-img="/service-sales.jpg" data-comp-title="Landing Gear & Hydraulics" data-comp-desc="Main and nose gear assemblies, actuators, brake units, and hydraulic pumps ready for exchange.">
+            <span class="comp-icon">🛞</span>
+            <span class="comp-name">LANDING GEAR & HYDRAULICS</span>
+          </div>
+
+          <div class="comp-cat-item" data-comp-img="/who-we-are.jpg" data-comp-title="Airframe Components & Rotatables" data-comp-desc="Flight control surfaces, structural airframe parts, doors, and overhaul-ready rotatables.">
+            <span class="comp-icon">✈</span>
+            <span class="comp-name">AIRFRAME & ROTATABLES</span>
+          </div>
+
+          <div class="comp-cat-item" data-comp-img="/why-viven-horizon.jpg" data-comp-title="Ground Support Equipment (GSE)" data-comp-desc="Towbars, GPU units, maintenance stands, and ground support tooling for flight line efficiency.">
+            <span class="comp-icon">🛠</span>
+            <span class="comp-name">GSE / EQUIPMENT</span>
+          </div>
+        </div>
+
+        <div class="comp-preview-panel">
+          <div class="comp-img-wrapper">
+            <img src="/intro-turbine.jpg" alt="Aviation Components" id="compPreviewImg" class="comp-preview-img" />
+          </div>
+          <div class="comp-info-body">
+            <h3 id="compPreviewTitle" class="comp-preview-title">Engines & Powerplants</h3>
+            <p id="compPreviewDesc" class="comp-preview-desc">Turbofan and turboprop engine assemblies, APUs, and certified engine rotatables with full trace documentation.</p>
+            <a href="#contact" class="btn-primary-green">SUBMIT A REQUIREMENT →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — HOW VIVEN WORKS -->
+  <section class="process-section" id="how-it-works">
+    <div class="section-container">
+      <div class="section-header-meta center-text">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>THE VIVEN METHOD</span>
+        <h2 class="section-title">FROM REQUIREMENT TO EXECUTION.</h2>
+        <p class="section-subtitle">A structured 4-stage process guiding every aircraft, capital, or charter transaction.</p>
+      </div>
+
+      <div class="process-steps-grid">
+        <div class="process-step-card">
+          <div class="step-num">01</div>
+          <h3 class="step-title">UNDERSTAND</h3>
+          <p class="step-desc">We analyze your mission parameters, budget expectations, timeline, and commercial objectives in detail.</p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-num">02</div>
+          <h3 class="step-title">SOURCE</h3>
+          <p class="step-desc">We query our global network to source verified aircraft, qualified operators, structured capital, or components.</p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-num">03</div>
+          <h3 class="step-title">STRUCTURE</h3>
+          <p class="step-desc">We structure tailored commercial agreements, lease contracts, or financial solutions aligned with regulatory standards.</p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-num">04</div>
+          <h3 class="step-title">EXECUTE</h3>
+          <p class="step-desc">We oversee process management through delivery, flight operation deployment, and ongoing lifecycle support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — WHY VIVEN -->
+  <section class="why-section" id="why-viven">
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>OUR ADVANTAGE</span>
+        <h2 class="section-title">WHY VIVEN</h2>
+      </div>
+
+      <div class="why-editorial-grid">
+        <div class="why-item">
+          <span class="why-accent-line"></span>
+          <h3 class="why-title">GLOBAL ACCESS</h3>
+          <p class="why-desc">Direct connections with business aircraft operators, owners, MROs, and institutional capital across Asia-Pacific and worldwide.</p>
+        </div>
+
+        <div class="why-item">
+          <span class="why-accent-line"></span>
+          <h3 class="why-title">SPECIALIST KNOWLEDGE</h3>
+          <p class="why-desc">Hands-on aviation expertise spanning pilot flight instruction, commercial transaction structuring, and technical asset management.</p>
+        </div>
+
+        <div class="why-item">
+          <span class="why-accent-line"></span>
+          <h3 class="why-title">TAILORED SOLUTIONS</h3>
+          <p class="why-desc">No rigid off-the-shelf templates — every charter, lease, sales, or component package is built specifically around your mission.</p>
+        </div>
+
+        <div class="why-item">
+          <span class="why-accent-line"></span>
+          <h3 class="why-title">TRUSTED EXECUTION</h3>
+          <p class="why-desc">Complete transparency, rigorous safety oversight, and absolute dedication to client confidentiality and contractual compliance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — GLOBAL CONNECTIONS -->
+  <section class="network-section" id="global-network">
+    <div class="section-container">
+      <div class="section-header-meta center-text">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>GEOGRAPHIC REACH</span>
+        <h2 class="section-title">CONNECTED TO THE GLOBAL AVIATION MARKET.</h2>
+        <p class="section-subtitle">Bridging Southeast Asia with key regional and international aviation hubs.</p>
+      </div>
+
+      <div class="network-map-wrapper">
+        <div class="map-bg-canvas">
+          <svg viewBox="0 0 1000 500" fill="none" class="world-svg">
+            <path d="M150 150 Q300 100 450 160 T750 200" stroke="rgba(10, 22, 40, 0.08)" stroke-width="1"/>
+            <path d="M200 300 Q400 250 650 320 T900 280" stroke="rgba(10, 22, 40, 0.08)" stroke-width="1"/>
+            <path d="M 680 340 Q 600 200 400 220" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <path d="M 680 340 Q 800 220 850 300" stroke="#5ea82e" stroke-width="1.5" stroke-dasharray="4 4"/>
           </svg>
-        </button>
+        </div>
 
-        <!-- Aircraft Visuals Container -->
-        <div class="charter-aircraft-viewport">
-          <!-- Aircraft 01 -->
-          <div class="charter-plane-card active" data-index="0" data-num="01" data-name="BOMBARDIER GLOBAL 7500" data-cat="EXECUTIVE PRIVATE CHARTER">
-            <div class="plane-img-frame">
-              <img src="/service-charter.jpg" alt="Bombardier Global 7500 Private Jet" class="plane-floating-img" />
-              <div class="plane-shadow-glow"></div>
-            </div>
-          </div>
-
-          <!-- Aircraft 02 -->
-          <div class="charter-plane-card" data-index="1" data-num="02" data-name="GULFSTREAM G650ER" data-cat="BUSINESS TRAVEL FLEET">
-            <div class="plane-img-frame">
-              <img src="/charter-business.jpg" alt="Gulfstream G650ER Business Jet" class="plane-floating-img" />
-              <div class="plane-shadow-glow"></div>
-            </div>
-          </div>
-
-          <!-- Aircraft 03 -->
-          <div class="charter-plane-card" data-index="2" data-num="03" data-name="PILATUS PC-6 PORTER" data-cat="SPECIALIZED MISSIONS">
-            <div class="plane-img-frame">
-              <img src="/charter-missions.jpg" alt="Pilatus PC-6 Porter Aircraft" class="plane-floating-img" />
-              <div class="plane-shadow-glow"></div>
-            </div>
+        <div class="map-node node-hq" style="top: 68%; left: 68%;">
+          <span class="map-dot-pulse"></span>
+          <div class="map-tooltip">
+            <strong>INDONESIA (HQ)</strong>
+            <span>PT. VIVEN GLOBAL AVIASI</span>
           </div>
         </div>
 
-        <!-- Arrow Right -->
-        <button class="charter-arrow-btn next-btn" id="charterNextBtn" aria-label="Next Aircraft" type="button">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
+        <div class="map-node node-hub" style="top: 62%; left: 66%;">
+          <span class="map-dot"></span>
+          <div class="map-tooltip">
+            <strong>SINGAPORE HUB</strong>
+            <span>Regional Aviation Gateway</span>
+          </div>
+        </div>
 
-      <!-- BELOW AIRCRAFT: Active Aircraft Information -->
-      <div class="charter-info-panel">
-        <div class="charter-num-badge" id="charterNumBadge">01</div>
-        <h3 class="charter-plane-name" id="charterPlaneName">BOMBARDIER GLOBAL 7500</h3>
-        <p class="charter-plane-cat" id="charterPlaneCat">EXECUTIVE PRIVATE CHARTER</p>
-      </div>
+        <div class="map-node node-hub" style="top: 40%; left: 75%;">
+          <span class="map-dot"></span>
+          <div class="map-tooltip">
+            <strong>EAST ASIA HUB</strong>
+            <span>Charter & Capital Network</span>
+          </div>
+        </div>
 
-      <!-- CAROUSEL INDICATOR (01 ─── 02 ─── 03) -->
-      <div class="charter-carousel-track">
-        <button class="track-dot active" data-index="0" type="button">
-          <span class="dot-num">01</span>
-        </button>
-        <div class="track-line"></div>
-        <button class="track-dot" data-index="1" type="button">
-          <span class="dot-num">02</span>
-        </button>
-        <div class="track-line"></div>
-        <button class="track-dot" data-index="2" type="button">
-          <span class="dot-num">03</span>
-        </button>
-      </div>
-
-      <!-- BOTTOM: CTA Buttons -->
-      <div class="charter-cta-group">
-        <a href="#services" class="btn-primary">
-          <span>Explore Charter</span>
-          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </a>
-        <a href="#contact" class="btn-secondary">
-          <span>Talk to Our Aviation Team</span>
-          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </a>
+        <div class="map-node node-hub" style="top: 35%; left: 25%;">
+          <span class="map-dot"></span>
+          <div class="map-tooltip">
+            <strong>EUROPEAN NETWORK</strong>
+            <span>Aircraft Leasing & Parts</span>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- Section Bottom Visual Divider -->
-    <div class="charter-section-divider"></div>
   </section>
 
-  <!-- Section 03 — Services -->
-  <section class="services-section" id="services">
-    <!-- Subtle Background Ambient Layer -->
-    <div class="services-bg-layer">
-      <div class="services-grid-pattern"></div>
-      <div class="services-glow-aura"></div>
-    </div>
-
-    <div class="services-container">
-      <!-- Left Column: Sticky Editorial Header & Active Chapter Tracker -->
-      <div class="services-sticky-col">
-        <div class="sticky-content-wrap">
-
-          <!-- Eyebrow -->
-          <div class="services-eyebrow-wrap">
-            <span class="services-eyebrow">
-              <span class="eyebrow-accent-line"></span>
-              WHAT WE DO
-            </span>
-          </div>
-
-          <!-- Main Heading -->
-          <h2 class="services-headline">
-            <span class="services-line-wrap">
-              <span class="services-line">AVIATION SOLUTIONS,</span>
-            </span>
-            <span class="services-line-wrap">
-              <span class="services-line services-line-accent">BUILT AROUND YOUR MISSION.</span>
-            </span>
-          </h2>
-
-          <!-- Supporting Text -->
-          <p class="services-supporting-copy">
-            From sourcing an aircraft to supporting its operation, Viven Aviation provides tailored solutions across the
-            aviation ecosystem.
-          </p>
-
-          <!-- Vertical Chapter Progress Indicator (01 -> 04) -->
-          <div class="services-progress-box">
-            <div class="progress-number-display">
-              <span class="active-chapter-num" id="activeChapterNum">01</span>
-              <span class="total-chapters-num">/ 04</span>
-            </div>
-
-            <div class="progress-track-bar">
-              <div class="progress-fill-line" id="progressFillLine"></div>
-            </div>
-
-            <div class="progress-labels">
-              <span class="chapter-dot active" data-chapter="1" title="01 Aircraft Charter">01</span>
-              <span class="chapter-dot" data-chapter="2" title="02 Sales & Leasing">02</span>
-              <span class="chapter-dot" data-chapter="3" title="03 Financing">03</span>
-              <span class="chapter-dot" data-chapter="4" title="04 Parts & Components">04</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Right Column: Vertical Chapter Sequence (01 -> 04) -->
-      <div class="services-chapters-col">
-
-        <!-- SERVICE 01 — AIRCRAFT CHARTER -->
-        <article class="service-chapter-card" id="service-chapter-1" data-chapter="1">
-          <div class="chapter-header-meta">
-            <span class="chapter-big-num">01</span>
-            <span class="chapter-sub-tag">MISSION / FLEXIBILITY</span>
-          </div>
-
-          <h3 class="chapter-title">AIRCRAFT CHARTER</h3>
-
-          <p class="chapter-desc">
-            Flexible aircraft solutions for business, private and specialized missions — connecting clients with
-            aircraft suited to their requirements.
-          </p>
-
-          <a href="#charter" class="chapter-cta-btn">
-            <span>Explore Charter</span>
-            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-
-          <div class="chapter-visual-frame">
-            <div class="chapter-visual-mask">
-              <img src="/service-charter.jpg" alt="Viven Aviation Aircraft Charter in Flight"
-                class="chapter-visual-img" />
-              <div class="chapter-visual-overlay"></div>
-            </div>
-            <div class="tech-spec-badge">
-              <span class="spec-dot"></span>
-              SPECIFICATION // BUSINESS & CHARTER FLIGHTS
-            </div>
-          </div>
-        </article>
-
-        <!-- SERVICE 02 — AIRCRAFT SALES & LEASING -->
-        <article class="service-chapter-card" id="service-chapter-2" data-chapter="2">
-          <div class="chapter-header-meta">
-            <span class="chapter-big-num">02</span>
-            <span class="chapter-sub-tag">ACQUISITION / ACCESS</span>
-          </div>
-
-          <h3 class="chapter-title">AIRCRAFT SALES & LEASING</h3>
-
-          <p class="chapter-desc">
-            Source, acquire or lease the right aircraft through a network of aviation opportunities tailored to your
-            operational and commercial needs.
-          </p>
-
-          <a href="#sales" class="chapter-cta-btn">
-            <span>Explore Aircraft</span>
-            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-
-          <div class="chapter-visual-frame">
-            <div class="chapter-visual-mask">
-              <img src="/service-sales.jpg" alt="Viven Aviation Aircraft Sales & Executive Leasing"
-                class="chapter-visual-img" />
-              <div class="chapter-visual-overlay"></div>
-            </div>
-            <div class="tech-spec-badge">
-              <span class="spec-dot"></span>
-              TRANSACTION // SALES, ACMI & DRY LEASING
-            </div>
-          </div>
-        </article>
-
-        <!-- SERVICE 03 — AIRCRAFT FINANCING -->
-        <article class="service-chapter-card" id="service-chapter-3" data-chapter="3">
-          <div class="chapter-header-meta">
-            <span class="chapter-big-num">03</span>
-            <span class="chapter-sub-tag">STRUCTURE / CAPITAL</span>
-          </div>
-
-          <h3 class="chapter-title">AIRCRAFT FINANCING</h3>
-
-          <p class="chapter-desc">
-            Navigate aircraft acquisition with structured financing solutions designed around your requirements and
-            transaction.
-          </p>
-
-          <a href="#financing" class="chapter-cta-btn">
-            <span>Explore Financing</span>
-            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-
-          <div class="chapter-visual-frame">
-            <div class="chapter-visual-mask">
-              <img src="/service-financing.jpg" alt="Viven Aviation Structured Aircraft Financing & Avionics"
-                class="chapter-visual-img" />
-              <div class="chapter-visual-overlay"></div>
-            </div>
-            <div class="tech-spec-badge">
-              <span class="spec-dot"></span>
-              ADVISORY // STRUCTURED AVIATION CAPITAL
-            </div>
-          </div>
-        </article>
-
-        <!-- SERVICE 04 — PARTS & COMPONENTS -->
-        <article class="service-chapter-card" id="service-chapter-4" data-chapter="4">
-          <div class="chapter-header-meta">
-            <span class="chapter-big-num">04</span>
-            <span class="chapter-sub-tag">SUPPLY / SUPPORT</span>
-          </div>
-
-          <h3 class="chapter-title">PARTS & COMPONENTS</h3>
-
-          <p class="chapter-desc">
-            Reliable sourcing of aircraft parts and components to support aviation operations and keep aircraft moving.
-          </p>
-
-          <a href="#components" class="chapter-cta-btn">
-            <span>Explore Parts</span>
-            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
-
-          <div class="chapter-visual-frame">
-            <div class="chapter-visual-mask">
-              <img src="/service-parts.jpg" alt="Viven Aviation Aircraft Engine & Precision Component Sourcing"
-                class="chapter-visual-img" />
-              <div class="chapter-visual-overlay"></div>
-            </div>
-            <div class="tech-spec-badge">
-              <span class="spec-dot"></span>
-              LOGISTICS // ROTABLE PARTS & TURBINE COMPONENTS
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- Section Transition Visual Breathing Room -->
-    <div class="services-section-divider"></div>
-  </section>
-
-  <!-- Section 05 — Why Viven -->
-  <section class="why-viven-section" id="why-viven">
-    <!-- Subtle Background Ambient Layer & Atmospheric Runway Visual -->
-    <div class="why-viven-bg-layer">
-      <div class="why-viven-grid-pattern"></div>
-      <div class="why-viven-glow-aura"></div>
-    </div>
-
-    <div class="why-viven-container">
-      <!-- Left Column: Sticky Editorial Panel & Atmospheric Runway Backdrop -->
-      <div class="why-viven-sticky-col">
-        <div class="why-viven-sticky-wrap">
-          
-          <!-- Eyebrow -->
-          <div class="why-viven-eyebrow-wrap">
-            <span class="why-viven-eyebrow">
-              <span class="eyebrow-accent-line"></span>
-              WHY VIVEN
-            </span>
-          </div>
-
-          <!-- Main Headline -->
-          <h2 class="why-viven-headline">
-            <span class="why-viven-line-wrap">
-              <span class="why-viven-line">EXPERIENCE</span>
-            </span>
-            <span class="why-viven-line-wrap">
-              <span class="why-viven-line why-viven-line-accent">THAT MOVES</span>
-            </span>
-            <span class="why-viven-line-wrap">
-              <span class="why-viven-line">WITH YOU.</span>
-            </span>
-          </h2>
-
-          <!-- Supporting Copy -->
-          <p class="why-viven-supporting-copy">
-            Every aviation requirement is different. Viven Aviation brings together specialist knowledge, industry connections and tailored solutions to help clients navigate complex aviation decisions.
-          </p>
-
-          <!-- Embedded Atmospheric Visual Frame -->
-          <div class="why-viven-visual-frame">
-            <div class="why-viven-visual-mask">
-              <img src="/why-viven-horizon.jpg" alt="Viven Aviation Dusk Runway Horizon & Flight Operations" class="why-viven-visual-img" id="whyVivenVisualImg" />
-              <div class="why-viven-visual-overlay"></div>
-            </div>
-            <div class="tech-spec-badge">
-              <span class="spec-dot"></span>
-              NETWORK // INTERNATIONAL AVIATION EXECUTION
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Right Column: Vertical Differentiator Sequence (01 -> 04) -->
-      <div class="why-viven-differentiators-col">
-        <div class="differentiators-track-line">
-          <div class="differentiators-fill-line" id="diffFillLine"></div>
-        </div>
-
-        <!-- 01 GLOBAL CONNECTIONS -->
-        <article class="differentiator-card active-diff" id="diff-card-1" data-diff="1">
-          <div class="diff-header-meta">
-            <span class="diff-num">01</span>
-            <span class="diff-tag">NETWORK / ACCESS</span>
-          </div>
-
-          <h3 class="diff-title">GLOBAL CONNECTIONS</h3>
-
-          <p class="diff-desc">
-            Access to an international network of aircraft owners, operators, suppliers and aviation partners.
-          </p>
-        </article>
-
-        <!-- 02 SPECIALIST KNOWLEDGE -->
-        <article class="differentiator-card" id="diff-card-2" data-diff="2">
-          <div class="diff-header-meta">
-            <span class="diff-num">02</span>
-            <span class="diff-tag">EXPERTISE / INSIGHT</span>
-          </div>
-
-          <h3 class="diff-title">SPECIALIST KNOWLEDGE</h3>
-
-          <p class="diff-desc">
-            Focused expertise across aircraft sourcing, transactions, leasing, financing and aviation components.
-          </p>
-        </article>
-
-        <!-- 03 TAILORED SOLUTIONS -->
-        <article class="differentiator-card" id="diff-card-3" data-diff="3">
-          <div class="diff-header-meta">
-            <span class="diff-num">03</span>
-            <span class="diff-tag">STRATEGY / BESPOKE</span>
-          </div>
-
-          <h3 class="diff-title">TAILORED SOLUTIONS</h3>
-
-          <p class="diff-desc">
-            We build solutions around the mission, requirement and commercial objective — not a standard template.
-          </p>
-        </article>
-
-        <!-- 04 TRUSTED EXECUTION -->
-        <article class="differentiator-card" id="diff-card-4" data-diff="4">
-          <div class="diff-header-meta">
-            <span class="diff-num">04</span>
-            <span class="diff-tag">CLARITY / INTEGRITY</span>
-          </div>
-
-          <h3 class="diff-title">TRUSTED EXECUTION</h3>
-
-          <p class="diff-desc">
-            From initial requirement to final transaction, we focus on clarity, coordination and execution.
-          </p>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- Section Transition Visual Breathing Room -->
-    <div class="why-viven-section-divider"></div>
-  </section>
-
-  <!-- Section 06 — Our Team -->
+  <!-- 12 — TEAM -->
   <section class="team-section" id="team">
-    <div class="team-bg-layer">
-      <div class="team-grid-pattern"></div>
-      <div class="team-glow-aura"></div>
-    </div>
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>OUR TEAM</span>
+        <h2 class="section-title">PEOPLE WHO KNOW AVIATION.</h2>
+        <p class="section-subtitle">Led by experienced aviation executives, flight instructors, and commercial specialists.</p>
+      </div>
 
-    <div class="team-container">
-      <!-- Section Header -->
-      <div class="team-header-block">
-        <div class="team-eyebrow-wrap">
-          <span class="team-eyebrow">
-            <span class="eyebrow-accent-line"></span>
-            OUR TEAM
-          </span>
+      <div class="team-spotlight-wrapper">
+        <div class="team-featured-card">
+          <div class="team-featured-img-wrap">
+            <img src="/team-venkatramanan.jpg" alt="Venkatramanan Chinnasamy" id="teamFeaturedImg" class="team-featured-img" />
+          </div>
+          <div class="team-featured-info">
+            <span class="team-role-tag" id="teamFeaturedRole">MANAGING DIRECTOR</span>
+            <h3 class="team-member-name" id="teamFeaturedName">Venkatramanan Chinnasamy</h3>
+            <p class="team-member-bio" id="teamFeaturedBio">
+              Directs overall commercial operations, strategic capital allocation, and executive aircraft advisory for Viven Aviation across international markets.
+            </p>
+          </div>
         </div>
 
-        <h2 class="team-headline">
-          <span class="team-line-wrap">
-            <span class="team-line">LEADERSHIP &</span>
-          </span>
-          <span class="team-line-wrap">
-            <span class="team-line team-line-accent">AVIATION EXPERTISE.</span>
-          </span>
-        </h2>
-
-        <p class="team-supporting-copy">
-          Combining executive capital management, aircraft transaction advisory, and direct flight operations experience.
-        </p>
-      </div>
-
-      <!-- 3-Person Editorial Team Grid -->
-      <div class="team-grid">
-        
-        <!-- TEAM MEMBER 01: Venkatramanan Chinnasamy -->
-        <article class="team-card active" data-member="1">
-          <div class="team-portrait-frame">
-            <div class="team-portrait-mask">
-              <img src="/team-vignesh.jpg" alt="Venkatramanan Chinnasamy - Managing Director" class="team-portrait-img" />
-              <div class="team-portrait-overlay"></div>
+        <div class="team-profile-selectors">
+          <button class="team-profile-btn active" data-team-img="/team-venkatramanan.jpg" data-role="MANAGING DIRECTOR" data-name="Venkatramanan Chinnasamy" data-bio="Directs overall commercial operations, strategic capital allocation, and executive aircraft advisory for Viven Aviation across international markets.">
+            <img src="/team-venkatramanan.jpg" alt="Venkatramanan Chinnasamy" class="thumb-img" />
+            <div class="thumb-text">
+              <strong>Venkatramanan Chinnasamy</strong>
+              <span>Managing Director</span>
             </div>
-            <div class="team-member-tag">MANAGEMENT // STRATEGY</div>
-          </div>
+          </button>
 
-          <div class="team-info-wrap">
-            <div class="team-header-row">
-              <span class="team-member-num">01</span>
-              <a href="https://linkedin.com" target="_blank" rel="noopener" class="team-linkedin-link" aria-label="LinkedIn Profile">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                </svg>
-              </a>
+          <button class="team-profile-btn" data-team-img="/team-vignesh.jpg" data-role="EXECUTIVE DIRECTOR" data-name="Vignesh Narasimhan" data-bio="Oversees global business development, airline ACMI leasing partnerships, and strategic component procurement networks.">
+            <img src="/team-vignesh.jpg" alt="Vignesh Narasimhan" class="thumb-img" />
+            <div class="thumb-text">
+              <strong>Vignesh Narasimhan</strong>
+              <span>Executive Director</span>
             </div>
+          </button>
 
-            <h3 class="team-name">VENKATRAMANAN CHINNASAMY</h3>
-            <p class="team-role">MANAGING DIRECTOR</p>
-            <p class="team-bio">
-              Directs executive strategy, aircraft acquisition frameworks, and global partnership initiatives for Viven Aviation.
-            </p>
-          </div>
-        </article>
-
-        <!-- TEAM MEMBER 02: Vignesh Narasimhan -->
-        <article class="team-card" data-member="2">
-          <div class="team-portrait-frame">
-            <div class="team-portrait-mask">
-              <img src="/team-venkatramanan.jpg" alt="Vignesh Narasimhan - Executive Director" class="team-portrait-img" />
-              <div class="team-portrait-overlay"></div>
+          <button class="team-profile-btn" data-team-img="/team-okto.jpg" data-role="PILOT & FLIGHT INSTRUCTOR" data-name="Okto Fajar Rachmadi, S.Kom." data-bio="Brings flight operations leadership, pilot instruction experience, and technical flight safety standards to Viven's operational charter solutions.">
+            <img src="/team-okto.jpg" alt="Okto Fajar Rachmadi" class="thumb-img" />
+            <div class="thumb-text">
+              <strong>Okto Fajar Rachmadi, S.Kom.</strong>
+              <span>Pilot & Flight Instructor</span>
             </div>
-            <div class="team-member-tag">TRANSACTIONS // OPERATIONS</div>
-          </div>
-
-          <div class="team-info-wrap">
-            <div class="team-header-row">
-              <span class="team-member-num">02</span>
-              <a href="https://linkedin.com" target="_blank" rel="noopener" class="team-linkedin-link" aria-label="LinkedIn Profile">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                </svg>
-              </a>
-            </div>
-
-            <h3 class="team-name">VIGNESH NARASIMHAN</h3>
-            <p class="team-role">EXECUTIVE DIRECTOR</p>
-            <p class="team-bio">
-              Oversees aircraft leasing, charter fulfillment, and client relationships across international markets.
-            </p>
-          </div>
-        </article>
-
-        <!-- TEAM MEMBER 03: Okto Fajar Rachmadi, S.Kom. -->
-        <article class="team-card pilot-card" data-member="3">
-          <div class="team-portrait-frame">
-            <div class="team-portrait-mask">
-              <img src="/team-okto.jpg" alt="Okto Fajar Rachmadi, S.Kom. - Pilot & Flight Instructor" class="team-portrait-img" />
-              <div class="team-portrait-overlay"></div>
-            </div>
-            <div class="team-member-tag pilot-tag">FLIGHT OPERATIONS</div>
-          </div>
-
-          <div class="team-info-wrap">
-            <div class="team-header-row">
-              <span class="team-member-num">03</span>
-              <span class="pilot-badge-pill">PILOT / FLIGHT INSTRUCTOR</span>
-            </div>
-
-            <h3 class="team-name">OKTO FAJAR RACHMADI, S.Kom.</h3>
-            <p class="team-role">PILOT & FLIGHT INSTRUCTOR</p>
-            <p class="team-bio">
-              An experienced pilot and flight instructor with extensive experience across flight operations, flight instruction and simulator training. Okto brings more than 7,000 hours of flight experience, with a strong focus on aviation safety, operational discipline and pilot development.
-            </p>
-            <p class="team-bio-sub">
-              He has experience as a First Officer, Flight Instructor, Simulator Instructor and Pilot in Command, with experience across C208BEX operations and PC-6 aircraft.
-            </p>
-
-            <!-- Key Profile Details -->
-            <div class="team-meta-row">
-              <div class="meta-badge-item">
-                <span class="meta-dot"></span>
-                <span class="meta-label">7,274+ FLIGHT HOURS</span>
-              </div>
-              <div class="meta-badge-item">
-                <span class="meta-dot"></span>
-                <span class="meta-label">CFI LICENSE NO. 8217</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
+          </button>
+        </div>
       </div>
     </div>
-
-    <!-- Section Bottom Visual Breathing Room -->
-    <div class="team-section-divider"></div>
   </section>
 
-  <!-- Section 07 — Contact Us -->
+  <!-- 13 — INSIGHTS -->
+  <section class="insights-section" id="insights">
+    <div class="section-container">
+      <div class="section-header-meta">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>THE PERSPECTIVE</span>
+        <h2 class="section-title">THE AVIATION PERSPECTIVE.</h2>
+      </div>
+
+      <div class="insights-grid">
+        <article class="insight-card">
+          <div class="insight-img-wrap">
+            <img src="/service-sales.jpg" alt="Executive Aircraft Market" class="insight-img" />
+            <span class="insight-cat-tag">AIRCRAFT MARKET</span>
+          </div>
+          <div class="insight-body">
+            <span class="insight-date">OCTOBER 2026</span>
+            <h3 class="insight-title">Navigating Executive Aircraft Leasing & Capital Allocation</h3>
+            <p class="insight-summary">An analysis of asset residual values, dry lease demand, and corporate fleet financing strategies across regional markets.</p>
+            <a href="#contact" class="btn-text-green">READ PERSPECTIVE →</a>
+          </div>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-img-wrap">
+            <img src="/service-charter.jpg" alt="Charter Operations" class="insight-img" />
+            <span class="insight-cat-tag">CHARTER & OPERATIONS</span>
+          </div>
+          <div class="insight-body">
+            <span class="insight-date">SEPTEMBER 2026</span>
+            <h3 class="insight-title">Optimizing Mission Efficiency: From ACMI to Private Charter</h3>
+            <p class="insight-summary">How operators and corporate flight departments utilize ACMI wet leasing to manage seasonal demand peaks and aircraft maintenance downtime.</p>
+            <a href="#contact" class="btn-text-green">READ PERSPECTIVE →</a>
+          </div>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-img-wrap">
+            <img src="/intro-turbine.jpg" alt="Component Procurement" class="insight-img" />
+            <span class="insight-cat-tag">PARTS & COMPONENTS</span>
+          </div>
+          <div class="insight-body">
+            <span class="insight-date">SEPTEMBER 2026</span>
+            <h3 class="insight-title">Lifecycle Component Management for Fleet Readiness</h3>
+            <p class="insight-summary">Best practices for turbine engine exchanges, rotatable spares inventory management, and FAA/EASA certified component sourcing.</p>
+            <a href="#contact" class="btn-text-green">READ PERSPECTIVE →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 — FINAL REQUIREMENT CTA -->
+  <section class="final-cta-section" id="final-cta">
+    <div class="section-container center-text">
+      <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>INITIATE DIALOGUE</span>
+      <h2 class="final-cta-title">WHAT'S YOUR AVIATION REQUIREMENT?</h2>
+      <p class="final-cta-subtitle">Select your topic of interest below to immediately pre-fill your inquiry.</p>
+
+      <div class="final-cta-options-row">
+        <button class="final-opt-btn active" data-req-val="Aircraft Charter">CHARTER</button>
+        <button class="final-opt-btn" data-req-val="Aircraft Sales & Leasing">BUY / LEASE</button>
+        <button class="final-opt-btn" data-req-val="Aircraft Financing">FINANCING</button>
+        <button class="final-opt-btn" data-req-val="ACMI Solutions">ACMI</button>
+        <button class="final-opt-btn" data-req-val="Parts & Components">PARTS</button>
+        <button class="final-opt-btn" data-req-val="Aviation Consultancy">CONSULTANCY</button>
+      </div>
+
+      <div class="final-cta-action">
+        <a href="#contact" class="btn-primary-green btn-large" id="finalStartConvBtn">START A CONVERSATION →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 — CONTACT -->
   <section class="contact-section" id="contact">
-    <!-- Atmospheric Background & Runway Horizon -->
-    <div class="contact-bg-layer">
-      <div class="contact-grid-pattern"></div>
-      <div class="contact-glow-aura"></div>
-      <div class="contact-horizon-backdrop"></div>
-    </div>
-
-    <!-- Micro Tech Details -->
-    <div class="contact-deco-side left-side">
-      <span>VIVEN AVIATION // CONTACT 01</span>
-    </div>
-    <div class="contact-deco-side right-side">
-      <span>LAT 47.4502° N // LON 8.5622° E</span>
-    </div>
-
-    <div class="contact-container">
-      <!-- LEFT COLUMN: Editorial Heading & Contact Details -->
-      <div class="contact-info-col">
-        <!-- Eyebrow -->
-        <div class="contact-eyebrow-wrap">
-          <span class="contact-eyebrow">
-            <span class="eyebrow-accent-line"></span>
-            CONTACT VIVEN
-          </span>
-        </div>
-
-        <!-- Main Headline -->
-        <h2 class="contact-headline">
-          <span class="contact-line-wrap">
-            <span class="contact-line">LET'S TALK</span>
-          </span>
-          <span class="contact-line-wrap">
-            <span class="contact-line contact-line-accent">AVIATION.</span>
-          </span>
-        </h2>
-
-        <!-- Supporting Copy -->
-        <p class="contact-supporting-copy">
-          Whether you are looking for an aircraft, planning a charter, exploring a leasing or financing opportunity, or need aviation components, our team is ready to discuss your requirements.
+    <div class="section-container grid-two-col">
+      <div class="contact-text-col">
+        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>CONTACT VIVEN</span>
+        <h2 class="contact-headline">LET'S TALK AVIATION.</h2>
+        <p class="contact-desc">
+          Whether you are seeking aircraft charter, sales & leasing, structured capital, or aviation components, our team is ready to deliver.
         </p>
 
-        <!-- Verified Contact Details -->
-        <div class="contact-details-group">
-          <!-- EMAIL -->
-          <div class="contact-detail-item">
-            <span class="detail-label">EMAIL</span>
-            <a href="mailto:enquiry@vivenaviation.com" class="detail-value">enquiry@vivenaviation.com</a>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <span class="info-lbl">EMAIL ENQUIRIES</span>
+            <a href="mailto:enquiry@vivenaviation.com" class="info-val">enquiry@vivenaviation.com</a>
           </div>
 
-          <!-- PHONE -->
-          <div class="contact-detail-item">
-            <span class="detail-label">PHONE</span>
-            <a href="tel:+919840012345" class="detail-value">+91 98400 12345</a>
+          <div class="contact-info-item">
+            <span class="info-lbl">LEGAL ENTITY</span>
+            <span class="info-val">PT. VIVEN GLOBAL AVIASI</span>
           </div>
 
-          <!-- LOCATION -->
-          <div class="contact-detail-item">
-            <span class="detail-label">GLOBAL PRESENCE</span>
-            <span class="detail-value-text">Singapore • Dubai • Bangalore • Zurich</span>
+          <div class="contact-info-item">
+            <span class="info-lbl">OPERATIONAL HQ</span>
+            <span class="info-val">Indonesia</span>
           </div>
-        </div>
-
-        <!-- Direct Conversation CTA Link -->
-        <div class="contact-direct-cta-wrap">
-          <span class="direct-cta-note">Prefer a direct conversation?</span>
-          <a href="mailto:enquiry@vivenaviation.com" class="direct-cta-btn">
-            <span>Talk to Our Aviation Team</span>
-            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: Refined Enquiry Form -->
       <div class="contact-form-col">
-        <div class="contact-form-card">
-          <!-- Form Header -->
-          <div class="form-header-meta">
-            <span class="form-title-tag">ENQUIRY // FLIGHT & CAPITAL</span>
-            <span class="form-sec-num">01 / 01</span>
+        <form class="contact-form-card" id="vivenContactForm" novalidate>
+          <h3 class="form-title">SUBMIT AN INQUIRY</h3>
+
+          <div class="form-field">
+            <label for="fullName" class="field-label">FULL NAME *</label>
+            <input type="text" id="fullName" name="fullName" class="field-input" placeholder="e.g. Alexander Vance" required />
           </div>
 
-          <!-- Form Element -->
-          <form class="contact-form" id="vivenContactForm" novalidate>
-            <!-- Full Name & Email Address (2-col row) -->
-            <div class="form-row two-col">
-              <div class="form-field">
-                <label for="fullName" class="field-label">FULL NAME *</label>
-                <input type="text" id="fullName" name="fullName" class="field-input" placeholder="e.g. Alexander Vance" required />
-              </div>
-
-              <div class="form-field">
-                <label for="emailAddress" class="field-label">EMAIL ADDRESS *</label>
-                <input type="email" id="emailAddress" name="emailAddress" class="field-input" placeholder="e.g. alexander@corporate.com" required />
-              </div>
-            </div>
-
-            <!-- Phone Number & Company (2-col row) -->
-            <div class="form-row two-col">
-              <div class="form-field">
-                <label for="phoneNumber" class="field-label">PHONE NUMBER</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" class="field-input" placeholder="+1 (555) 000-0000" />
-              </div>
-
-              <div class="form-field">
-                <label for="company" class="field-label">COMPANY / ORGANIZATION</label>
-                <input type="text" id="company" name="company" class="field-input" placeholder="Company Name" />
-              </div>
-            </div>
-
-            <!-- Enquiry Type Dropdown -->
-            <div class="form-field">
-              <label for="enquiryType" class="field-label">ENQUIRY TYPE *</label>
-              <div class="select-wrapper">
-                <select id="enquiryType" name="enquiryType" class="field-select" required>
-                  <option value="" disabled selected>Select an option...</option>
-                  <option value="Aircraft Charter">Aircraft Charter</option>
-                  <option value="Aircraft Sales & Leasing">Aircraft Sales & Leasing</option>
-                  <option value="Aircraft Financing">Aircraft Financing</option>
-                  <option value="Parts & Components">Parts & Components</option>
-                  <option value="General Enquiry">General Enquiry</option>
-                </select>
-                <svg class="select-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Message Textarea -->
-            <div class="form-field">
-              <label for="message" class="field-label">MESSAGE *</label>
-              <textarea id="message" name="message" class="field-textarea" rows="4" placeholder="Describe your requirement, schedule, or aircraft specifications..." required></textarea>
-            </div>
-
-            <!-- Form Submit Button -->
-            <button type="submit" class="btn-primary contact-submit-btn" id="contactSubmitBtn">
-              <span class="btn-text">SEND ENQUIRY</span>
-              <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-          </form>
-
-          <!-- Success Feedback State -->
-          <div class="contact-success-box" id="contactSuccessBox" style="display: none;">
-            <div class="success-icon-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
-              </svg>
-            </div>
-            <h3 class="success-title">ENQUIRY RECEIVED</h3>
-            <p class="success-desc">Thank you. Our team will review your requirement and get back to you shortly.</p>
+          <div class="form-field">
+            <label for="emailAddress" class="field-label">EMAIL ADDRESS *</label>
+            <input type="email" id="emailAddress" name="emailAddress" class="field-input" placeholder="e.g. alexander@corporate.com" required />
           </div>
+
+          <div class="form-field">
+            <label for="company" class="field-label">COMPANY / ORGANIZATION</label>
+            <input type="text" id="company" name="company" class="field-input" placeholder="Company Name" />
+          </div>
+
+          <div class="form-field">
+            <label for="enquiryType" class="field-label">REQUIREMENT TYPE *</label>
+            <select id="enquiryType" name="enquiryType" class="field-select" required>
+              <option value="Aircraft Charter">Aircraft Charter</option>
+              <option value="Aircraft Sales & Leasing">Aircraft Sales & Leasing</option>
+              <option value="Aircraft Financing">Aircraft Financing</option>
+              <option value="ACMI Solutions">ACMI Solutions</option>
+              <option value="Parts & Components">Parts & Components</option>
+              <option value="Aviation Consultancy">Aviation Consultancy</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="message" class="field-label">MESSAGE *</label>
+            <textarea id="message" name="message" class="field-textarea" rows="4" placeholder="Describe your flight, capital, or component requirement..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary-green contact-submit-btn" id="contactSubmitBtn">
+            <span>SEND ENQUIRY →</span>
+          </button>
+        </form>
+
+        <div class="contact-success-box" id="contactSuccessBox" style="display: none;">
+          <h3 class="success-title">ENQUIRY RECEIVED</h3>
+          <p class="success-desc">Thank you. Our aviation team will review your requirement and reach out promptly.</p>
         </div>
       </div>
     </div>
-
-    <!-- Section Bottom Visual Breathing Room -->
-    <div class="contact-section-divider"></div>
   </section>
 
-  <!-- Site Footer -->
+  <!-- 16 — FOOTER -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-top">
         <a href="#" class="footer-brand" aria-label="Viven Aviation Home">
           <img src="/Logo_web.svg" alt="Viven Aviation Logo" class="footer-logo-img" />
         </a>
-        <p class="footer-tagline">Connecting Aircraft. Creating Possibilities.</p>
+        <p class="footer-tagline">CONNECTING AIRCRAFT. CREATING POSSIBILITIES.</p>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">&copy; 2026 PT. Viven Global Aviasi. All rights reserved.</p>
-        <div class="footer-links">
+
+      <div class="footer-middle-grid">
+        <div class="footer-col">
+          <h4>NAVIGATION</h4>
           <a href="#about">About</a>
-          <a href="#services">Services</a>
+          <a href="#interactive-help">Requirements</a>
+          <a href="#services">Solutions</a>
+          <a href="#charter">Charter</a>
           <a href="#aircraft">Aircraft</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
         </div>
+
+        <div class="footer-col">
+          <h4>SOLUTIONS</h4>
+          <a href="#services">Sales & Leasing</a>
+          <a href="#services">Aircraft Financing</a>
+          <a href="#services">ACMI Wet Lease</a>
+          <a href="#components">Parts & Components</a>
+          <a href="#services">Consultancy</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <a href="#team">Our Team</a>
+          <a href="#insights">Insights</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 PT. VIVEN GLOBAL AVIASI. All rights reserved.</p>
+        <p class="footer-legal">Trading as Viven Aviation | Indonesia HQ</p>
       </div>
     </div>
   </footer>
