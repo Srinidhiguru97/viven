@@ -22,6 +22,46 @@
 </head>
 
 <body>
+  <!-- Viven Aviation Executive Brand Intro Loader -->
+  <div id="vivenBrandLoader" class="viven-brand-loader" aria-hidden="true">
+    <!-- Ambient Light Ivory Surface & Grid Background -->
+    <div class="loader-bg">
+      <div class="loader-grid"></div>
+    </div>
+
+    <!-- Flight Trajectory SVG Path Canvas -->
+    <svg class="loader-flight-canvas" viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Animated Trajectory Line (Viven Signature Green) -->
+      <path class="flight-trajectory-line" d="M 50 520 L 220 380 L 380 440 L 500 240 L 700 260 L 950 100" stroke="#5ea82e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <!-- Flight Navigation Waypoints / Pulse Nodes -->
+      <circle class="waypoint-node node-1" cx="220" cy="380" r="4" fill="#5ea82e" />
+      <circle class="waypoint-node node-2" cx="380" cy="440" r="4" fill="#5ea82e" />
+      <circle class="waypoint-node node-3" cx="500" cy="240" r="5" fill="#5ea82e" />
+      
+      <!-- Coordinate Labels (Micro-decor) -->
+      <g class="loader-nav-label label-1">
+        <text x="232" y="375" fill="#0a1628" font-size="10" font-family="Inter, sans-serif" font-weight="600" letter-spacing="1">FLIGHT PATH // 001</text>
+      </g>
+
+      <g class="loader-nav-label label-2">
+        <text x="515" y="235" fill="#5ea82e" font-size="10" font-family="Inter, sans-serif" font-weight="600" letter-spacing="1">LAT 01°18'N • LON 103°51'E</text>
+      </g>
+    </svg>
+
+    <!-- Center Stage Logo Reveal Container -->
+    <div class="loader-logo-stage">
+      <div class="loader-logo-wrapper">
+        <img src="/Logo_web.svg" alt="Viven Aviation Logo" class="loader-logo-img" />
+      </div>
+
+      <!-- Micro Brand Statement -->
+      <div class="loader-tagline-wrap">
+        <span class="loader-tagline">CONNECTING AIRCRAFT. CREATING POSSIBILITIES.</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Atmospheric Canvas for Ambient Particle & Thermal Depth -->
   <canvas id="atmosphereCanvas"></canvas>
 

@@ -4,7 +4,7 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroLoadSequence();
+  initBrandLoaderSequence();
   initNavbarScrollState();
   initMouseParallax();
   initScrollParallax();
@@ -20,18 +20,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
-   1. STAGGERED INITIAL LOAD ANIMATION REVEAL
+   1. VIVEN BRAND INTRO LOADER SEQUENCE
    -------------------------------------------------------------------------- */
-function initHeroLoadSequence() {
+function initBrandLoaderSequence() {
+  const loader = document.getElementById('vivenBrandLoader');
   const heroSection = document.getElementById('hero');
-  if (!heroSection) return;
 
-  // Add loaded class after DOM paints to kick off CSS reveal timelines
-  requestAnimationFrame(() => {
+  if (!loader) {
+    if (heroSection) heroSection.classList.add('loaded');
+    return;
+  }
+
+  // Lock scrolling during brand intro reveal
+  document.body.style.overflow = 'hidden';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    loader.classList.add('reduced-motion');
     setTimeout(() => {
-      heroSection.classList.add('loaded');
-    }, 100);
+      finishIntro();
+    }, 600);
+    return;
+  }
+
+  // Trigger CSS timelines on next frame
+  requestAnimationFrame(() => {
+    loader.classList.add('active');
   });
+
+  // Seamless transition to homepage at 2.85s mark
+  setTimeout(() => {
+    finishIntro();
+  }, 2850);
+
+  function finishIntro() {
+    loader.classList.add('finish');
+    document.body.style.overflow = '';
+
+    // Reveal hero section & homepage
+    if (heroSection) {
+      heroSection.classList.add('loaded');
+    }
+
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 700);
+  }
 }
 
 /* --------------------------------------------------------------------------
