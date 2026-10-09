@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initBrandLoaderSequence();
   initNavbarScrollState();
+  initHeroAtmosphereMotion();
   initInteractiveHelp();
   initEcosystemNodes();
   initSolutionsAccordion();
@@ -61,7 +62,7 @@ function initBrandLoaderSequence() {
 }
 
 /* --------------------------------------------------------------------------
-   2. NAVBAR SCROLL STATE
+   2. NAVBAR SCROLL STATE & HERO ATMOSPHERE PARALLAX
    -------------------------------------------------------------------------- */
 function initNavbarScrollState() {
   const navbar = document.getElementById('navbar');
@@ -77,6 +78,47 @@ function initNavbarScrollState() {
 
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
+}
+
+function initHeroAtmosphereMotion() {
+  const heroSection = document.getElementById('hero');
+  const heroBgImg = document.getElementById('heroBgImg');
+  if (!heroSection || !heroBgImg) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let targetX = 0;
+  let targetY = 0;
+
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX = (e.clientX - centerX) / (rect.width / 2);
+    mouseY = (e.clientY - centerY) / (rect.height / 2);
+  });
+
+  heroSection.addEventListener('mouseleave', () => {
+    mouseX = 0;
+    mouseY = 0;
+  });
+
+  function animateHeroMotion() {
+    targetX += (mouseX * 14 - targetX) * 0.05;
+    targetY += (mouseY * 8 - targetY) * 0.05;
+
+    const scrollY = window.scrollY;
+    const scrollParallaxY = Math.min(scrollY * 0.2, 180);
+
+    heroBgImg.style.transform = `scale(1.05) translate3d(${-targetX}px, ${scrollParallaxY - targetY}px, 0)`;
+
+    requestAnimationFrame(animateHeroMotion);
+  }
+
+  animateHeroMotion();
 }
 
 /* --------------------------------------------------------------------------
