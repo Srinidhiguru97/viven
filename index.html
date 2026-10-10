@@ -54,7 +54,6 @@
 
       <nav class="nav-links">
         <a href="#about" class="nav-link">About</a>
-        <a href="#interactive-help" class="nav-link">Requirements</a>
         <a href="#services" class="nav-link">Solutions</a>
         <a href="#charter" class="nav-link">Charter</a>
         <a href="#aircraft" class="nav-link">Aircraft</a>
@@ -67,136 +66,239 @@
       <div class="nav-actions">
         <a href="#contact" class="nav-cta-btn" id="navTalkToUs">
           <span>Talk to Us</span>
-          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
-            <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor"
-              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
         </a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- 01 — HERO SECTION -->
   <section class="hero-section hero-editorial-stage" id="hero">
-    <!-- Cinematic Golden Hour Sky & Aircraft Backdrop -->
+    <!-- Cinematic Golden Hour Sky & Aircraft Video Backdrop -->
     <div class="hero-bg-wrapper" id="heroBgWrapper">
-      <img src="/assets/viven-hero-aircraft.png" alt="Viven Executive Turboprop Aircraft" class="hero-bg-img" id="heroBgImg" />
+      <video class="hero-bg-video" id="heroBgVideo" autoplay loop muted playsinline poster="/hero-bg.png">
+        <source src="/bg-video.MP4" type="video/mp4" />
+        <source src="/bg-video.mp4" type="video/mp4" />
+      </video>
       <div class="hero-atmosphere-vignette"></div>
     </div>
 
-    <div class="hero-content-container hero-split-layout">
-      <!-- Left Editorial Text Block -->
-      <div class="hero-text-block" id="heroTextBlock">
-        <div class="hero-eyebrow-wrap">
-          <span class="hero-eyebrow-line"></span>
-          <span class="hero-eyebrow" id="heroEyebrow">GLOBAL AVIATION SOLUTIONS</span>
-        </div>
+    <!-- Main Content Area -->
+    <div class="hero-main-stage">
+      <div class="hero-content-container hero-split-layout">
+        <!-- Left Editorial Text Block -->
+        <div class="hero-text-block" id="heroTextBlock">
+          <h1 class="hero-headline" id="heroHeadline">
+            <span class="headline-line-wrap">
+              <span class="headline-line">AVIATION,</span>
+            </span>
+            <span class="headline-line-wrap">
+              <span class="headline-line headline-accent-green">WITHOUT LIMITS.</span>
+            </span>
+          </h1>
 
-        <h1 class="hero-headline" id="heroHeadline">
-          <span class="headline-line-wrap">
-            <span class="headline-line">AVIATION,</span>
-          </span>
-          <span class="headline-line-wrap">
-            <span class="headline-line headline-accent-green">WITHOUT LIMITS.</span>
-          </span>
-        </h1>
+          <p class="hero-supporting-copy" id="heroCopy">
+            Aircraft, capital and expertise — bringing the right aviation solutions together for every opportunity.
+          </p>
 
-        <p class="hero-supporting-copy" id="heroCopy">
-          Aircraft, capital and expertise — bringing the right aviation solutions together for every opportunity.
-        </p>
-
-        <div class="hero-cta-group" id="heroCtaGroup">
-          <a href="#services" class="btn-primary-green" id="btnPrimary">
-            <span>EXPLORE OUR SOLUTIONS →</span>
-          </a>
-
-          <a href="#contact" class="btn-secondary-navy" id="btnSecondary">
-            <span>TALK TO OUR AVIATION TEAM →</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Service Navigation Strip -->
-    <div class="hero-info-strip" id="heroInfoStrip">
-      <div class="info-strip-container">
-        <div class="info-strip-links">
-          <a href="#charter" class="info-strip-item">CHARTER</a>
-          <span class="info-strip-bullet">•</span>
-          <a href="#aircraft" class="info-strip-item">AIRCRAFT</a>
-          <span class="info-strip-bullet">•</span>
-          <a href="#services" class="info-strip-item">FINANCING</a>
-          <span class="info-strip-bullet">•</span>
-          <a href="#services" class="info-strip-item">ACMI</a>
-          <span class="info-strip-bullet">•</span>
-          <a href="#components" class="info-strip-item">COMPONENTS</a>
-          <span class="info-strip-bullet">•</span>
-          <a href="#services" class="info-strip-item">CONSULTANCY</a>
-        </div>
-        <div class="info-strip-icon-indicator" title="Scroll down">
-          <svg class="strip-flight-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="currentColor"/>
-          </svg>
+          <div class="hero-cta-group" id="heroCtaGroup">
+            <a href="#services" class="btn-primary-green" id="btnPrimary">
+              <span>EXPLORE OUR SOLUTIONS</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 02 — HOW CAN WE HELP? (INTERACTIVE REQUIREMENT SELECTOR) -->
-  <section class="help-section" id="interactive-help">
-    <div class="section-container">
-      <div class="section-header-meta">
-        <span class="section-eyebrow"><span class="eyebrow-accent-dot"></span>REQUIREMENTS ASSESSOR</span>
-        <h2 class="section-title">WHAT BRINGS YOU TO VIVEN?</h2>
-        <p class="section-subtitle">Select your primary objective to explore tailored aviation solutions.</p>
+  <!-- 02 — YOUR REQUIREMENT (FIVE EDITORIAL SERVICE CARDS) -->
+  <section class="requirements-section" id="interactive-help">
+    <!-- Top-Right Subtle Atmosphere Background Image -->
+    <div class="req-bg-atmosphere" aria-hidden="true">
+      <img src="/why-viven-horizon.jpg" alt="" class="req-bg-img" />
+      <div class="req-bg-overlay"></div>
+    </div>
+
+    <div class="requirements-container">
+      <!-- Intro Header Row: Headline & Description -->
+      <div class="req-header-row">
+        <div class="req-intro-left">
+          <h2 class="req-headline">
+            <span class="req-headline-navy">WHAT BRINGS</span><br />
+            <span class="req-headline-navy">YOU TO </span><span class="req-headline-green">VIVEN?</span>
+          </h2>
+
+          <p class="req-supporting-text">
+            Every aviation requirement is different.<br />
+            Tell us what you need, and let's explore the right solution.
+          </p>
+        </div>
       </div>
 
-      <div class="help-interactive-grid">
-        <div class="help-options-list">
-          <button class="help-option-btn active" data-help-target="help-charter">
-            <span class="opt-num">01</span>
-            <span class="opt-title">I NEED TO CHARTER AN AIRCRAFT</span>
-            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
-          </button>
-
-          <button class="help-option-btn" data-help-target="help-buy">
-            <span class="opt-num">02</span>
-            <span class="opt-title">I WANT TO BUY OR LEASE</span>
-            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
-          </button>
-
-          <button class="help-option-btn" data-help-target="help-financing">
-            <span class="opt-num">03</span>
-            <span class="opt-title">I NEED AVIATION FINANCING</span>
-            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
-          </button>
-
-          <button class="help-option-btn" data-help-target="help-parts">
-            <span class="opt-num">04</span>
-            <span class="opt-title">I NEED AIRCRAFT PARTS</span>
-            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
-          </button>
-
-          <button class="help-option-btn" data-help-target="help-consultancy">
-            <span class="opt-num">05</span>
-            <span class="opt-title">I NEED AVIATION CONSULTANCY</span>
-            <svg class="opt-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5"/></svg>
-          </button>
-        </div>
-
-        <div class="help-preview-card" id="helpPreviewCard">
-          <div class="help-card-image-wrap">
-            <img src="/service-charter.jpg" alt="Aviation Solution Preview" id="helpCardImg" class="help-card-img" />
-            <div class="help-card-badge" id="helpCardBadge">PRIVATE & GROUP CHARTER</div>
+      <!-- Five Editorial Service Cards Grid -->
+      <div class="req-cards-grid">
+        <!-- Card 01 — Aircraft Charter (Highlighted Card) -->
+        <a href="#charter" class="req-card req-card-highlight" id="reqCard1">
+          <div class="req-card-img-wrap">
+            <img src="/service-charter.jpg" alt="Aircraft Charter" class="req-card-img" />
+            <span class="req-card-num">01 <span class="num-line">──</span></span>
           </div>
-          <div class="help-card-body">
-            <h3 class="help-card-title" id="helpCardTitle">Executive Aircraft Charter</h3>
-            <p class="help-card-desc" id="helpCardDesc">
-              Direct access to luxury business jets, turboprops, and mission-ready charter aircraft customized around your exact flight schedule.
+          <div class="req-card-content">
+            <div class="req-card-icon-wrap">
+              <svg class="req-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.1-2.1.8l-.5.7 6.2 3.8-3 3-2.3-.5L2 16l3.5 1.5L7 21l1.5-1.6-.5-2.3 3-3 3.8 6.2.7-.5c.7-.5 1-1.3.8-2.1z"/>
+              </svg>
+            </div>
+            <div class="req-card-title-row">
+              <h3 class="req-card-title">Aircraft Charter</h3>
+              <svg class="req-card-title-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="req-card-desc">
+              Find an aircraft for your journey or operational mission.
             </p>
-            <a href="#contact" class="btn-text-green" id="helpCardCta">INITIATE CHARTER REQUEST →</a>
+            <div class="req-card-divider"></div>
+            <div class="req-card-footer">
+              <span class="req-card-action">LEARN MORE</span>
+              <svg class="req-card-footer-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
           </div>
-        </div>
+        </a>
+
+        <!-- Card 02 — Aircraft Sales & Leasing -->
+        <a href="#aircraft" class="req-card" id="reqCard2">
+          <div class="req-card-img-wrap">
+            <img src="/service-sales.jpg" alt="Aircraft Sales & Leasing" class="req-card-img" />
+            <span class="req-card-num">02 <span class="num-line">──</span></span>
+          </div>
+          <div class="req-card-content">
+            <div class="req-card-icon-wrap">
+              <svg class="req-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
+              </svg>
+            </div>
+            <div class="req-card-title-row">
+              <h3 class="req-card-title">Aircraft Sales & Leasing</h3>
+              <svg class="req-card-title-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="req-card-desc">
+              Explore aircraft acquisition, disposal and leasing opportunities.
+            </p>
+            <div class="req-card-divider"></div>
+            <div class="req-card-footer">
+              <span class="req-card-action">LEARN MORE</span>
+              <svg class="req-card-footer-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 03 — Aviation Financing -->
+        <a href="#services" class="req-card" id="reqCard3">
+          <div class="req-card-img-wrap">
+            <img src="/service-financing.jpg" alt="Aviation Financing" class="req-card-img" />
+            <span class="req-card-num">03 <span class="num-line">──</span></span>
+          </div>
+          <div class="req-card-content">
+            <div class="req-card-icon-wrap">
+              <svg class="req-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="req-card-title-row">
+              <h3 class="req-card-title">Aviation Financing</h3>
+              <svg class="req-card-title-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="req-card-desc">
+              Discuss financing requirements for aircraft and aviation transactions.
+            </p>
+            <div class="req-card-divider"></div>
+            <div class="req-card-footer">
+              <span class="req-card-action">LEARN MORE</span>
+              <svg class="req-card-footer-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 04 — Parts & Components -->
+        <a href="#components" class="req-card" id="reqCard4">
+          <div class="req-card-img-wrap">
+            <img src="/service-parts.jpg" alt="Parts & Components" class="req-card-img" />
+            <span class="req-card-num">04 <span class="num-line">──</span></span>
+          </div>
+          <div class="req-card-content">
+            <div class="req-card-icon-wrap">
+              <svg class="req-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </div>
+            <div class="req-card-title-row">
+              <h3 class="req-card-title">Parts & Components</h3>
+              <svg class="req-card-title-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="req-card-desc">
+              Submit requirements for aircraft parts, engines and components.
+            </p>
+            <div class="req-card-divider"></div>
+            <div class="req-card-footer">
+              <span class="req-card-action">LEARN MORE</span>
+              <svg class="req-card-footer-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 05 — Aviation Consultancy -->
+        <a href="#team" class="req-card" id="reqCard5">
+          <div class="req-card-img-wrap">
+            <img src="/why-viven-horizon.jpg" alt="Aviation Consultancy" class="req-card-img" />
+            <span class="req-card-num">05 <span class="num-line">──</span></span>
+          </div>
+          <div class="req-card-content">
+            <div class="req-card-icon-wrap">
+              <svg class="req-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="req-card-title-row">
+              <h3 class="req-card-title">Aviation Consultancy</h3>
+              <svg class="req-card-title-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="req-card-desc">
+              Get support navigating aviation business and transaction requirements.
+            </p>
+            <div class="req-card-divider"></div>
+            <div class="req-card-footer">
+              <span class="req-card-action">LEARN MORE</span>
+              <svg class="req-card-footer-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3.33 8h9.34M8 3.33L12.67 8 8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </section>

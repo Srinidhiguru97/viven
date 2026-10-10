@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initBrandLoaderSequence();
   initNavbarScrollState();
+  initMobileMenu();
   initHeroAtmosphereMotion();
   initInteractiveHelp();
   initEcosystemNodes();
@@ -80,10 +81,43 @@ function initNavbarScrollState() {
   handleScroll();
 }
 
+function initMobileMenu() {
+  const navbar = document.getElementById('navbar');
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  if (!navbar || !toggleBtn) return;
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navbar.classList.toggle('mobile-open');
+  });
+
+  // Close menu when clicking outside or clicking a nav link
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target)) {
+      navbar.classList.remove('mobile-open');
+    }
+  });
+
+  const navLinks = navbar.querySelectorAll('.nav-link, .nav-cta-btn');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('mobile-open');
+    });
+  });
+}
+
 function initHeroAtmosphereMotion() {
   const heroSection = document.getElementById('hero');
-  const heroBgImg = document.getElementById('heroBgImg');
-  if (!heroSection || !heroBgImg) return;
+  const heroBgMedia = document.getElementById('heroBgVideo') || document.getElementById('heroBgImg');
+  if (!heroSection || !heroBgMedia) return;
+
+  const heroVideo = document.getElementById('heroBgVideo');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.play().catch(err => {
+      console.warn('Hero video autoplay restriction:', err);
+    });
+  }
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return;
@@ -113,7 +147,7 @@ function initHeroAtmosphereMotion() {
     const scrollY = window.scrollY;
     const scrollParallaxY = Math.min(scrollY * 0.2, 180);
 
-    heroBgImg.style.transform = `scale(1.05) translate3d(${-targetX}px, ${scrollParallaxY - targetY}px, 0)`;
+    heroBgMedia.style.transform = `scale(1.05) translate3d(${-targetX}px, ${scrollParallaxY - targetY}px, 0)`;
 
     requestAnimationFrame(animateHeroMotion);
   }
@@ -122,79 +156,27 @@ function initHeroAtmosphereMotion() {
 }
 
 /* --------------------------------------------------------------------------
-   3. SECTION 02 — INTERACTIVE REQUIREMENT SELECTOR ("WHAT BRINGS YOU TO VIVEN?")
+   3. SECTION 02 — FIVE EDITORIAL SERVICE CARDS INTERACTIVITY
    -------------------------------------------------------------------------- */
 function initInteractiveHelp() {
-  const buttons = document.querySelectorAll('.help-option-btn');
-  const previewImg = document.getElementById('helpCardImg');
-  const previewBadge = document.getElementById('helpCardBadge');
-  const previewTitle = document.getElementById('helpCardTitle');
-  const previewDesc = document.getElementById('helpCardDesc');
-  const previewCta = document.getElementById('helpCardCta');
+  const cards = document.querySelectorAll('.req-card');
+  const card1 = document.getElementById('reqCard1');
+  if (!cards.length) return;
 
-  if (!buttons.length) return;
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (card !== card1 && card1) {
+        card1.classList.remove('req-card-highlight');
+      }
+    });
 
-  const helpData = {
-    'help-charter': {
-      img: '/service-charter.jpg',
-      badge: 'PRIVATE & GROUP CHARTER',
-      title: 'Executive Aircraft Charter',
-      desc: 'Direct access to luxury business jets, turboprops, and mission-ready charter aircraft customized around your exact flight schedule.',
-      cta: 'INITIATE CHARTER REQUEST →',
-      reqVal: 'Aircraft Charter'
-    },
-    'help-buy': {
-      img: '/service-sales.jpg',
-      badge: 'AIRCRAFT ACQUISITION',
-      title: 'Aircraft Sales & Leasing',
-      desc: 'End-to-end guidance for business jet acquisitions, off-market sales, dry-leases, and global fleet transactions.',
-      cta: 'EXPLORE SALES & LEASING →',
-      reqVal: 'Aircraft Sales & Leasing'
-    },
-    'help-financing': {
-      img: '/service-financing.jpg',
-      badge: 'CAPITAL STRUCTURES',
-      title: 'Structured Aircraft Financing',
-      desc: 'Asset-backed credit, debt financing, and tailored financial advisory for aircraft buyers and operators.',
-      cta: 'DISCUSS FINANCING →',
-      reqVal: 'Aircraft Financing'
-    },
-    'help-parts': {
-      img: '/service-parts.jpg',
-      badge: 'SUPPLY CHAIN',
-      title: 'Aircraft Parts & Rotatables',
-      desc: 'Global sourcing for turbine engines, avionics, landing gear, and certified replacement rotatables.',
-      cta: 'SUBMIT PARTS INQUIRY →',
-      reqVal: 'Parts & Components'
-    },
-    'help-consultancy': {
-      img: '/intro-turbine.jpg',
-      badge: 'FLEET ADVISORY',
-      title: 'Aviation Consultancy',
-      desc: 'Strategic fleet planning, aircraft valuation, regulatory compliance, and operational auditing.',
-      cta: 'BOOK ADVISORY SESSION →',
-      reqVal: 'Aviation Consultancy'
-    }
-  };
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('mouseenter', () => {
-      const targetKey = btn.getAttribute('data-help-target');
-      const data = helpData[targetKey];
-      if (!data) return;
-
-      buttons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      if (previewImg) previewImg.src = data.img;
-      if (previewBadge) previewBadge.textContent = data.badge;
-      if (previewTitle) previewTitle.textContent = data.title;
-      if (previewDesc) previewDesc.textContent = data.desc;
-      if (previewCta) previewCta.textContent = data.cta;
-
-      // Sync pre-select on enquiry form dropdown
-      const enquirySelect = document.getElementById('enquiryType');
-      if (enquirySelect) enquirySelect.value = data.reqVal;
+    card.addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        const isAnyHovered = Array.from(cards).some(c => c.matches(':hover'));
+        if (!isAnyHovered && card1) {
+          card1.classList.add('req-card-highlight');
+        }
+      }, 50);
     });
   });
 }
