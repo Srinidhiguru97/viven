@@ -2213,6 +2213,11 @@ section {
     gap: 3rem;
   }
 
+  .req-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
   .sol-display-card {
     position: static;
   }
@@ -2233,19 +2238,52 @@ section {
 }
 
 @media (max-width: 768px) {
+  /* Header UI Refinements on Mobile */
   .navbar {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-logo-img {
+    height: 28px;
+    width: auto;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-cta-btn {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(94, 168, 46, 0.25);
   }
 
   .mobile-menu-toggle {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 16px;
+    padding: 0;
   }
 
   .nav-links {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 60px;
+    top: 56px;
     left: 0;
     width: 100%;
     background: rgba(248, 246, 240, 0.98);
@@ -2364,6 +2402,73 @@ section {
         rgba(248, 246, 240, 0.1) 75%, 
         transparent 100%
       );
+  }
+
+  /* Section 02: List Cards One by One on Mobile */
+  .requirements-section {
+    padding: 3.5rem 1.25rem 4rem;
+  }
+
+  .req-header-row {
+    margin-bottom: 2rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .req-intro-left {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .req-headline {
+    text-align: center;
+    font-size: clamp(2.2rem, 7.5vw, 2.8rem);
+    line-height: 1.08;
+    margin-bottom: 1rem;
+  }
+
+  .req-supporting-text {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 360px;
+  }
+
+  .req-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .req-card {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(10, 22, 40, 0.06);
+  }
+
+  .req-card-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    height: auto;
+  }
+
+  .req-card-content {
+    padding: 1.25rem 1.15rem 1.15rem;
+  }
+
+  .req-card-title {
+    font-size: 1.1rem;
+  }
+
+  .req-card-desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
   }
 
   section {
