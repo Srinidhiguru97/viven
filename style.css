@@ -820,10 +820,10 @@ section {
   line-height: 1.5;
 }
 
-/* 5-Cards Horizontal Grid */
+/* 4-Cards Horizontal Grid */
 .req-cards-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.35rem;
   width: 100%;
 }
@@ -842,7 +842,7 @@ section {
   position: relative;
 }
 
-/* Highlighted First Card (Aircraft Charter) */
+/* Highlighted First Card (Aircraft Sales & Leasing) */
 .req-card.req-card-highlight {
   border: 1.5px solid var(--viven-green);
   box-shadow: 0 6px 24px rgba(94, 168, 46, 0.22);
@@ -1043,60 +1043,517 @@ section {
 }
 
 /* ==========================================================================
-   03 — WHO WE ARE
+   03 — WHO WE ARE / OUR STORY (PREMIUM EDITORIAL REFINEMENT)
    ========================================================================== */
+.about-section {
+  background-color: var(--bg-warm-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* --- A. Introductory Content Layout --- */
+.about-intro-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: flex-end;
+  gap: 4.5rem;
+}
+
+.about-header-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-section .about-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.about-section .eyebrow-accent-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--viven-green);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
 .about-headline {
   font-family: var(--font-headline);
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-size: clamp(2.35rem, 3.8vw, 3.6rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
   color: var(--navy-primary);
-  margin-bottom: 1.5rem;
+  margin: 0;
 }
 
-.about-copy {
-  font-size: 1.125rem;
-  color: var(--navy-secondary);
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-}
-
-.about-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  border-top: 1px solid var(--border-light);
-  padding-top: 2rem;
-}
-
-.stat-box .stat-num {
+.about-headline-line {
   display: block;
-  font-family: var(--font-headline);
-  font-size: 1.75rem;
-  font-weight: 700;
+  overflow: hidden;
+}
+
+.about-headline-inner {
+  display: block;
+}
+
+.about-headline-green {
   color: var(--viven-green);
 }
 
-.stat-box .stat-lbl {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--navy-muted);
-  text-transform: uppercase;
+.about-content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 0.35rem;
 }
 
-.about-img-frame {
+.about-copy {
+  font-family: var(--font-body);
+  color: var(--navy-secondary);
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+.about-copy-primary {
+  font-size: clamp(1.025rem, 1.2vw, 1.15rem);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.about-copy-secondary {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  font-weight: 400;
+  color: var(--navy-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Secondary Editorial CTA */
+.about-cta-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.about-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy-primary);
+  text-decoration: none;
+  padding: 0.6rem 0;
   position: relative;
-  border-radius: 12px;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--border-light);
+  transition: background-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left;
+}
+
+.about-cta-arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--viven-green);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.about-cta-link:hover {
+  color: var(--viven-green);
+}
+
+.about-cta-link:hover::after {
+  background-color: var(--viven-green);
+  transform: scaleX(1.05);
+}
+
+.about-cta-link:hover .about-cta-arrow {
+  transform: translateX(5px);
+  color: var(--viven-green-hover);
+}
+
+.about-cta-link:focus-visible {
+  outline: 2px solid var(--viven-green);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* --- B. Premium Aviation Photograph Stage --- */
+.about-image-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 42vw, 560px);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.08);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 16px 44px -8px rgba(10, 22, 40, 0.08);
+  background-color: var(--bg-surface-beige);
+}
+
+.about-section.js-reveal .about-image-stage {
+  clip-path: inset(0 0 10% 0 round 14px);
+  opacity: 0.85;
+  transition: clip-path 1.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-section.is-revealed .about-image-stage {
+  clip-path: inset(0 0 0 0 round 14px);
+  opacity: 1;
 }
 
 .about-parallax-img {
+  position: absolute;
+  top: -12%;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  height: 124%;
+  object-fit: cover;
+  object-position: center 65%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.about-image-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+/* --- C. Refined Company Facts Information Band --- */
+.about-facts-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: var(--bg-surface-white);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  box-shadow: 0 10px 32px -8px rgba(10, 22, 40, 0.04);
+  overflow: hidden;
+}
+
+.about-fact-item {
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-fact-item:not(:last-child) {
+  border-right: 1px solid var(--border-light);
+}
+
+.about-fact-item:hover {
+  background-color: var(--bg-surface-pale-green);
+}
+
+.about-fact-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+}
+
+.about-fact-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(94, 168, 46, 0.1);
+  color: var(--viven-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.about-fact-item:hover .about-fact-icon-wrap {
+  background-color: var(--viven-green);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.about-fact-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.about-fact-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy-muted);
+  transition: color 0.25s ease;
+}
+
+.about-fact-item:hover .about-fact-label {
+  color: var(--viven-green-deep);
+}
+
+.about-fact-value {
+  font-family: var(--font-headline);
+  font-size: clamp(1.45rem, 1.85vw, 1.95rem);
+  font-weight: 700;
+  color: var(--navy-primary);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+  transition: color 0.25s ease;
+}
+
+.about-fact-item:hover .about-fact-value {
+  color: var(--viven-green-deep);
+}
+
+.about-fact-desc {
+  font-family: var(--font-body);
+  font-size: 0.84375rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--navy-muted);
+  margin-top: auto;
+}
+
+/* --- Reveal & Animation States --- */
+.about-section.js-reveal .about-eyebrow {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-section.js-reveal .about-headline-inner {
+  opacity: 0;
+  transform: translateY(105%);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-section.js-reveal .about-copy {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-section.js-reveal .about-cta-wrapper {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-section.is-revealed .about-eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.05s;
+}
+
+.about-section.is-revealed .about-headline-line:nth-child(1) .about-headline-inner {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+
+.about-section.is-revealed .about-headline-line:nth-child(2) .about-headline-inner {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
+.about-section.is-revealed .about-copy-primary {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.38s;
+}
+
+.about-section.is-revealed .about-copy-secondary {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.48s;
+}
+
+.about-section.is-revealed .about-cta-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.58s;
+}
+
+/* Facts Reveal: sequential stagger */
+.about-facts-strip.js-reveal .about-fact-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-facts-strip.is-revealed .about-fact-item:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+.about-facts-strip.is-revealed .about-fact-item:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.about-facts-strip.is-revealed .about-fact-item:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
+.about-facts-strip.is-revealed .about-fact-item:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.38s;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1024px) {
+  .about-intro-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-container {
+    gap: 2.75rem;
+  }
+
+  .about-copy {
+    max-width: 100%;
+  }
+
+  .about-facts-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-fact-item:not(:last-child) {
+    border-right: none;
+  }
+
+  .about-fact-item:nth-child(1),
+  .about-fact-item:nth-child(3) {
+    border-right: 1px solid var(--border-light);
+  }
+
+  .about-fact-item:nth-child(1),
+  .about-fact-item:nth-child(2) {
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .about-fact-item {
+    padding: 2rem 1.65rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-facts-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .about-fact-item:not(:last-child) {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-light) !important;
+  }
+
+  .about-fact-item:nth-child(3) {
+    border-right: none !important;
+  }
+
+  .about-fact-item {
+    padding: 1.65rem 1.35rem;
+  }
+
+  .about-fact-value {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .about-fact-desc {
+    font-size: 0.8125rem;
+  }
+
+  .about-image-stage {
+    height: 280px;
+    border-radius: 10px;
+  }
+
+  .about-parallax-img {
+    top: 0;
+    height: 100%;
+    transform: none !important;
+    object-position: center 60%;
+  }
+
+  .about-headline {
+    font-size: clamp(2rem, 6.5vw, 2.5rem);
+  }
+
+  .about-copy-primary {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .about-copy-secondary {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-container {
+    gap: 2rem;
+  }
+
+  .about-image-stage {
+    height: 230px;
+    border-radius: 8px;
+  }
+
+  .about-facts-strip {
+    border-radius: 10px;
+  }
+
+  .about-fact-item {
+    padding: 1.35rem 1.1rem;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .about-section.js-reveal .about-eyebrow,
+  .about-section.js-reveal .about-headline-inner,
+  .about-section.js-reveal .about-copy,
+  .about-section.js-reveal .about-cta-wrapper,
+  .about-facts-strip.js-reveal .about-fact-item,
+  .about-parallax-img {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -1351,113 +1808,7 @@ section {
 }
 
 /* ==========================================================================
-   06 — AIRCRAFT CHARTER EXPERIENCE
-   ========================================================================== */
-.charter-showcase-section {
-  background-color: var(--bg-ivory-light);
-}
-
-.charter-showcase-wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.charter-main-stage {
-  background: var(--bg-surface-white);
-  border: 1px solid var(--border-light);
-  border-radius: 16px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.06);
-  margin-bottom: 2rem;
-}
-
-.charter-stage-img-wrap {
-  height: 380px;
-  overflow: hidden;
-}
-
-.charter-stage-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.charter-stage-info {
-  padding: 3rem;
-}
-
-.charter-model-name {
-  font-family: var(--font-headline);
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: var(--navy-primary);
-  margin-bottom: 1rem;
-}
-
-.charter-model-desc {
-  color: var(--navy-secondary);
-  font-size: 0.9375rem;
-  margin-bottom: 1.75rem;
-  line-height: 1.6;
-}
-
-.charter-specs-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 2rem;
-}
-
-.spec-pill {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--navy-primary);
-  background: var(--bg-surface-beige);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-}
-
-.spec-pill span {
-  color: var(--viven-green-deep);
-}
-
-.charter-selector-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.charter-tab {
-  padding: 1.1rem 1.5rem;
-  background: var(--bg-surface-white);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--navy-primary);
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.charter-tab span {
-  color: var(--viven-green);
-  margin-right: 0.5rem;
-}
-
-.charter-tab:hover,
-.charter-tab.active {
-  border-color: var(--viven-green);
-  background: var(--bg-surface-pale-green);
-  color: var(--viven-green-deep);
-}
-
-/* ==========================================================================
-   07 — AIRCRAFT OPPORTUNITIES
+   06 — AIRCRAFT OPPORTUNITIES
    ========================================================================== */
 .opp-grid {
   display: grid;
@@ -2206,7 +2557,6 @@ section {
   .grid-two-col,
   .help-interactive-grid,
   .solutions-stacked-layout,
-  .charter-main-stage,
   .comp-interactive-grid,
   .team-spotlight-wrapper {
     grid-template-columns: 1fr;
@@ -2230,10 +2580,6 @@ section {
 
   .process-steps-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .charter-selector-tabs {
-    grid-template-columns: 1fr;
   }
 }
 

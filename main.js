@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initHeroAtmosphereMotion();
   initInteractiveHelp();
+  initWhoWeAreSection();
   initEcosystemNodes();
   initSolutionsAccordion();
-  initCharterShowcase();
   initComponentCategories();
   initTeamSpotlight();
   initFinalCtaSelector();
@@ -194,7 +194,7 @@ function initEcosystemNodes() {
   const nodeData = {
     aircraft: {
       title: 'AIRCRAFT ASSETS',
-      desc: 'Commercial, corporate, and specialized mission airframes connected for charter, sale, or lease.'
+      desc: 'Commercial, corporate, and specialized mission airframes connected for sale, lease, or acquisition.'
     },
     operators: {
       title: 'FLIGHT OPERATORS',
@@ -205,8 +205,8 @@ function initEcosystemNodes() {
       desc: 'Private and corporate owners optimizing asset utilization and lifecycle financing.'
     },
     clients: {
-      title: 'CHARTER & B2B CLIENTS',
-      desc: 'Executives, corporations, and travel managers seeking reliable private flight logistics.'
+      title: 'OPERATIONAL & B2B CLIENTS',
+      desc: 'Executives, corporations, and flight departments seeking reliable aviation assets and logistics.'
     },
     investors: {
       title: 'CAPITAL INVESTORS',
@@ -271,43 +271,7 @@ function initSolutionsAccordion() {
 }
 
 /* --------------------------------------------------------------------------
-   6. SECTION 06 — AIRCRAFT CHARTER SHOWCASE
-   -------------------------------------------------------------------------- */
-function initCharterShowcase() {
-  const tabs = document.querySelectorAll('.charter-tab');
-  const stageImg = document.getElementById('charterStageImg');
-  const modelName = document.getElementById('charterModelName');
-  const modelDesc = document.getElementById('charterModelDesc');
-  const specsRow = document.getElementById('charterSpecsRow');
-
-  if (!tabs.length) return;
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const imgSrc = tab.getAttribute('data-charter-img');
-      const nameText = tab.getAttribute('data-name');
-      const descText = tab.getAttribute('data-desc');
-      const specsText = tab.getAttribute('data-specs');
-
-      if (stageImg && imgSrc) stageImg.src = imgSrc;
-      if (modelName && nameText) modelName.textContent = nameText;
-      if (modelDesc && descText) modelDesc.textContent = descText;
-
-      if (specsRow && specsText) {
-        const specsArr = specsText.split(' | ');
-        specsRow.innerHTML = specsArr
-          .map((s) => `<div class="spec-pill">${s}</div>`)
-          .join('');
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   7. SECTION 08 — B2B COMPONENT CATEGORIES
+   6. SECTION 07 — B2B COMPONENT CATEGORIES
    -------------------------------------------------------------------------- */
 function initComponentCategories() {
   const items = document.querySelectorAll('.comp-cat-item');
@@ -403,3 +367,105 @@ function initContactForm() {
     }
   });
 }
+
+/* --------------------------------------------------------------------------
+   11. SECTION 03 — WHO WE ARE / OUR STORY (ANIMATIONS & SUBTLE PARALLAX)
+   -------------------------------------------------------------------------- */
+function initWhoWeAreSection() {
+  const section = document.getElementById('about');
+  const factsStrip = document.getElementById('aboutFactsStrip');
+  const parallaxImg = document.getElementById('aboutParallaxImg');
+
+  if (!section) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. Setup reveal observers
+  if (!prefersReducedMotion) {
+    section.classList.add('js-reveal');
+    if (factsStrip) factsStrip.classList.add('js-reveal');
+
+    // Reveal headline and intro content
+    const introObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          section.classList.add('is-revealed');
+          introObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    introObserver.observe(section);
+
+    // Reveal facts strip sequentially
+    if (factsStrip) {
+      const factsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            factsStrip.classList.add('is-revealed');
+            factsObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -20px 0px'
+      });
+
+      factsObserver.observe(factsStrip);
+    }
+  } else {
+    // If reduced motion, immediately show
+    section.classList.add('is-revealed');
+    if (factsStrip) factsStrip.classList.add('is-revealed');
+  }
+
+  // 2. Subtle Scroll-Based Parallax for Photograph
+  if (parallaxImg && !prefersReducedMotion) {
+    let ticking = false;
+
+    const updateParallax = () => {
+      if (window.innerWidth <= 768) {
+        parallaxImg.style.transform = 'none';
+        ticking = false;
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Only calculate if section is in or near viewport
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        const totalTravel = viewportHeight + rect.height;
+        const currentProgress = (viewportHeight - rect.top) / totalTravel;
+        // Restrained subtle parallax: max shift from -28px to +28px
+        const maxOffset = 28;
+        const translateY = (currentProgress - 0.5) * (maxOffset * 2);
+
+        parallaxImg.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
+      }
+
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial check
+    updateParallax();
+  }
+}
+
