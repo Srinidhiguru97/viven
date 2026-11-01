@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarScrollState();
   initMobileMenu();
   initHeroAtmosphereMotion();
-  initInteractiveHelp();
   initWhoWeAreSection();
-  initEcosystemNodes();
   initSolutionsAccordion();
   initComponentCategories();
   initTeamSpotlight();
@@ -156,118 +154,108 @@ function initHeroAtmosphereMotion() {
 }
 
 /* --------------------------------------------------------------------------
-   3. SECTION 02 — FIVE EDITORIAL SERVICE CARDS INTERACTIVITY
-   -------------------------------------------------------------------------- */
-function initInteractiveHelp() {
-  const cards = document.querySelectorAll('.req-card');
-  const card1 = document.getElementById('reqCard1');
-  if (!cards.length) return;
-
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (card !== card1 && card1) {
-        card1.classList.remove('req-card-highlight');
-      }
-    });
-
-    card.addEventListener('mouseleave', () => {
-      setTimeout(() => {
-        const isAnyHovered = Array.from(cards).some(c => c.matches(':hover'));
-        if (!isAnyHovered && card1) {
-          card1.classList.add('req-card-highlight');
-        }
-      }, 50);
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4. SECTION 04 — INTERACTIVE AVIATION ECOSYSTEM NETWORK
-   -------------------------------------------------------------------------- */
-function initEcosystemNodes() {
-  const nodes = document.querySelectorAll('.ecosystem-node');
-  const infoTitle = document.getElementById('ecoInfoTitle');
-  const infoDesc = document.getElementById('ecoInfoDesc');
-
-  if (!nodes.length) return;
-
-  const nodeData = {
-    aircraft: {
-      title: 'AIRCRAFT ASSETS',
-      desc: 'Commercial, corporate, and specialized mission airframes connected for sale, lease, or acquisition.'
-    },
-    operators: {
-      title: 'FLIGHT OPERATORS',
-      desc: 'Certified AOC holders and flight management teams supported with ACMI and fleet capacity.'
-    },
-    owners: {
-      title: 'AIRCRAFT OWNERS',
-      desc: 'Private and corporate owners optimizing asset utilization and lifecycle financing.'
-    },
-    clients: {
-      title: 'OPERATIONAL & B2B CLIENTS',
-      desc: 'Executives, corporations, and flight departments seeking reliable aviation assets and logistics.'
-    },
-    investors: {
-      title: 'CAPITAL INVESTORS',
-      desc: 'Financial institutions and private funds participating in structured aviation debt and equity.'
-    },
-    suppliers: {
-      title: 'COMPONENT SUPPLIERS',
-      desc: 'MRO facilities, engine overhaul shops, and certified parts manufacturers.'
-    },
-    capital: {
-      title: 'AVIATION CAPITAL',
-      desc: 'Tailored financial structures backing fleet acquisitions, dry-leases, and engine overhauls.'
-    }
-  };
-
-  nodes.forEach((node) => {
-    node.addEventListener('mouseenter', () => {
-      const ecoKey = node.getAttribute('data-eco');
-      const data = nodeData[ecoKey];
-      if (!data) return;
-
-      nodes.forEach((n) => n.classList.remove('active'));
-      node.classList.add('active');
-
-      if (infoTitle) infoTitle.textContent = data.title;
-      if (infoDesc) infoDesc.textContent = data.desc;
-
-      // Highlight line
-      const lines = document.querySelectorAll('.eco-line');
-      lines.forEach((l) => (l.style.stroke = 'rgba(10, 22, 40, 0.15)'));
-      const activeLine = document.getElementById(`line-${ecoKey}`);
-      if (activeLine) {
-        activeLine.style.stroke = '#5ea82e';
-        activeLine.style.strokeWidth = '2.5';
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   5. SECTION 05 — STACKED SOLUTIONS ACCORDION
+   5. SECTION 05 — WHAT WE DO ACCORDION & AIRCRAFT PARALLAX
    -------------------------------------------------------------------------- */
 function initSolutionsAccordion() {
-  const items = document.querySelectorAll('.solution-item');
-  const featuredImg = document.getElementById('solFeaturedImg');
-  const featuredBadge = document.getElementById('solFeaturedBadge');
+  const items = document.querySelectorAll('.wwd-acc-item');
+  const frame = document.getElementById('wwdImageFrame');
+  const visualCol = document.getElementById('wwdVisualCol');
+  const offeringsBlock = document.getElementById('aviation-solutions');
 
-  if (!items.length) return;
+  // 1. Interactive Accordion (Single Item Expanded at a time)
+  if (items.length) {
+    items.forEach((item) => {
+      const header = item.querySelector('.wwd-acc-header');
+      if (!header) return;
 
-  items.forEach((item) => {
-    item.addEventListener('click', () => {
-      items.forEach((i) => i.classList.remove('active'));
-      item.classList.add('active');
+      header.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isCurrentlyActive = item.classList.contains('active');
 
-      const imgSrc = item.getAttribute('data-sol-img');
-      const badgeText = item.getAttribute('data-sol-badge');
+        // Close all items
+        items.forEach((i) => {
+          i.classList.remove('active');
+          const h = i.querySelector('.wwd-acc-header');
+          if (h) h.setAttribute('aria-expanded', 'false');
+        });
 
-      if (featuredImg && imgSrc) featuredImg.src = imgSrc;
-      if (featuredBadge && badgeText) featuredBadge.textContent = badgeText;
+        // Toggle: if it wasn't active, activate it
+        if (!isCurrentlyActive) {
+          item.classList.add('active');
+          header.setAttribute('aria-expanded', 'true');
+        }
+      });
     });
-  });
+  }
+
+  // 2. Reduced Motion Check
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // 3. Subtle Scroll-Reveal for What We Do Section & Aircraft Frame
+  if (offeringsBlock && 'IntersectionObserver' in window) {
+    offeringsBlock.classList.add('wwd-reveal-init');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          offeringsBlock.classList.add('wwd-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(offeringsBlock);
+  }
+
+  // 4. Subtle Parallax Movement for the Aircraft Frame
+  if (visualCol && frame && window.innerWidth > 1024) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovering = false;
+    let rafId = null;
+
+    const onMouseMove = (e) => {
+      const rect = visualCol.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      mouseX = (e.clientX - centerX) / (rect.width / 2);
+      mouseY = (e.clientY - centerY) / (rect.height / 2);
+    };
+
+    visualCol.addEventListener('mouseenter', () => {
+      isHovering = true;
+      if (!rafId) rafId = requestAnimationFrame(animateParallax);
+    });
+
+    visualCol.addEventListener('mousemove', onMouseMove);
+
+    visualCol.addEventListener('mouseleave', () => {
+      isHovering = false;
+      mouseX = 0;
+      mouseY = 0;
+    });
+
+    function animateParallax() {
+      currentX += (mouseX * 8 - currentX) * 0.08;
+      currentY += (mouseY * 6 - currentY) * 0.08;
+
+      if (frame) {
+        frame.style.transform = `skewX(-14deg) translate3d(${currentX}px, ${currentY}px, 0)`;
+      }
+
+      if (isHovering || Math.abs(currentX) > 0.05 || Math.abs(currentY) > 0.05) {
+        rafId = requestAnimationFrame(animateParallax);
+      } else {
+        if (frame) {
+          frame.style.transform = '';
+        }
+        rafId = null;
+      }
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -281,18 +269,67 @@ function initComponentCategories() {
 
   if (!items.length) return;
 
+  function activateItem(item, shouldCenter = false) {
+    if (item.classList.contains('active')) {
+      if (shouldCenter && window.innerWidth <= 768) {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+      return;
+    }
+
+    items.forEach((i) => {
+      i.classList.remove('active');
+      i.setAttribute('aria-selected', 'false');
+    });
+
+    item.classList.add('active');
+    item.setAttribute('aria-selected', 'true');
+
+    const imgSrc = item.getAttribute('data-comp-img');
+    const titleText = item.getAttribute('data-comp-title');
+    const descText = item.getAttribute('data-comp-desc');
+
+    if (img && imgSrc) {
+      img.style.opacity = '0.35';
+      setTimeout(() => {
+        img.src = imgSrc;
+        img.style.opacity = '1';
+      }, 120);
+    }
+
+    if (title && titleText) {
+      title.textContent = titleText;
+    }
+
+    if (desc && descText) {
+      desc.textContent = descText;
+    }
+
+    if (shouldCenter && window.innerWidth <= 768) {
+      item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
   items.forEach((item) => {
+    // Click listener for mobile and desktop
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateItem(item, true);
+    });
+
+    // Keyboard support (Enter / Space)
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateItem(item, true);
+      }
+    });
+
+    // Desktop hover preview for pointers
     item.addEventListener('mouseenter', () => {
-      items.forEach((i) => i.classList.remove('active'));
-      item.classList.add('active');
-
-      const imgSrc = item.getAttribute('data-comp-img');
-      const titleText = item.getAttribute('data-comp-title');
-      const descText = item.getAttribute('data-comp-desc');
-
-      if (img && imgSrc) img.src = imgSrc;
-      if (title && titleText) title.textContent = titleText;
-      if (desc && descText) desc.textContent = descText;
+      if (window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
+        activateItem(item, false);
+      }
     });
   });
 }
@@ -468,4 +505,5 @@ function initWhoWeAreSection() {
     updateParallax();
   }
 }
+
 
