@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initWhoWeAreSection();
   initSolutionsAccordion();
   initComponentCategories();
+  initGlobalNetworkMap();
   initTeamSpotlight();
-  initFinalCtaSelector();
   initContactForm();
 });
 
@@ -365,42 +365,95 @@ function initTeamSpotlight() {
 }
 
 /* --------------------------------------------------------------------------
-   9. SECTION 14 — FINAL REQUIREMENT CTA SELECTOR
-   -------------------------------------------------------------------------- */
-function initFinalCtaSelector() {
-  const btns = document.querySelectorAll('.final-opt-btn');
-  const enquirySelect = document.getElementById('enquiryType');
-
-  if (!btns.length) return;
-
-  btns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      btns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const val = btn.getAttribute('data-req-val');
-      if (enquirySelect && val) {
-        enquirySelect.value = val;
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
    10. SECTION 15 — CONTACT FORM SUBMISSION
    -------------------------------------------------------------------------- */
 function initContactForm() {
   const form = document.getElementById('vivenContactForm');
   const successBox = document.getElementById('contactSuccessBox');
+  const errorBox = document.getElementById('contactErrorBox');
+  const submitBtn = document.getElementById('contactSubmitBtn');
+  const fallbackLink = document.getElementById('fallbackMailLink');
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  const RECIPIENT_EMAIL = 'srinidhidevices@gmail.com';
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    if (form.checkValidity()) {
-      form.style.display = 'none';
-      if (successBox) successBox.style.display = 'block';
+    if (errorBox) errorBox.style.display = 'none';
+
+    // Validate form inputs
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const fullName = (document.getElementById('fullName')?.value || '').trim();
+    const emailAddress = (document.getElementById('emailAddress')?.value || '').trim();
+    const company = (document.getElementById('company')?.value || '').trim() || 'N/A';
+    const enquiryType = document.getElementById('enquiryType')?.value || 'General Inquiry';
+    const message = (document.getElementById('message')?.value || '').trim();
+
+    // Prepare payload for FormSubmit
+    const payload = {
+      name: fullName,
+      email: emailAddress,
+      company: company,
+      requirement_type: enquiryType,
+      message: message,
+      _subject: `New Aviation Inquiry: ${enquiryType} - ${fullName}`,
+      _template: 'table',
+      _captcha: 'false'
+    };
+
+    // Update submit button state
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '<span>SEND ENQUIRY →</span>';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>TRANSMITTING INQUIRY...</span>';
+    }
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok || result.success === 'true' || result.success === true) {
+        // Success
+        form.reset();
+        form.style.display = 'none';
+        if (successBox) successBox.style.display = 'block';
+      } else {
+        throw new Error(result.message || 'Server error');
+      }
+    } catch (err) {
+      console.warn('Form transmission warning, enabling email fallback:', err);
+
+      const mailtoSubject = encodeURIComponent(`New Aviation Inquiry: ${enquiryType} - ${fullName}`);
+      const mailtoBody = encodeURIComponent(
+        `Full Name: ${fullName}\nEmail: ${emailAddress}\nCompany: ${company}\nRequirement: ${enquiryType}\n\nMessage:\n${message}`
+      );
+      const mailtoUrl = `mailto:${RECIPIENT_EMAIL}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+      if (fallbackLink) {
+        fallbackLink.href = mailtoUrl;
+      }
+      if (errorBox) {
+        errorBox.style.display = 'block';
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
     }
   });
 }
@@ -505,5 +558,323 @@ function initWhoWeAreSection() {
     updateParallax();
   }
 }
+
+/* --------------------------------------------------------------------------
+   GLOBAL NETWORK MAP - INTERACTIVE DESTINATION EXPLORER
+   -------------------------------------------------------------------------- */
+function initGlobalNetworkMap() {
+  const section = document.getElementById('global-network');
+  if (!section) return;
+
+  const NETWORK_LOCATIONS = [
+    {
+      id: 'indonesia',
+      index: '01',
+      name: 'Indonesia',
+      region: 'SOUTHEAST ASIA',
+      role: 'Central Network Hub',
+      description: 'Leading the way in aviation excellence across the archipelago.',
+      ctaText: 'ENQUIRE IN INDONESIA',
+      routeD: null
+    },
+    {
+      id: 'singapore',
+      index: '02',
+      name: 'Singapore',
+      region: 'SOUTHEAST ASIA',
+      role: 'Regional Aviation Gateway',
+      description: 'Partnering with the aviation hub of Asia.',
+      ctaText: 'ENQUIRE IN SINGAPORE',
+      routeD: 'M 757.0 362.0 Q 751.0 330.2 745.0 334.5'
+    },
+    {
+      id: 'malaysia',
+      index: '03',
+      name: 'Malaysia',
+      region: 'SOUTHEAST ASIA',
+      role: 'Southeast Asia Growth Skies',
+      description: "Providing innovative solutions for Southeast Asia's growing skies.",
+      ctaText: 'ENQUIRE IN MALAYSIA',
+      routeD: 'M 757.0 362.0 Q 748.4 325.4 739.8 324.8'
+    },
+    {
+      id: 'thailand',
+      index: '04',
+      name: 'Thailand',
+      region: 'SOUTHEAST ASIA',
+      role: 'Commercial Aviation Corridor',
+      description: 'Elevating aviation services in the Land of Smiles.',
+      ctaText: 'ENQUIRE IN THAILAND',
+      routeD: 'M 757.0 362.0 Q 745.0 295.5 733.0 278.0'
+    },
+    {
+      id: 'philippines',
+      index: '05',
+      name: 'Philippines',
+      region: 'SOUTHEAST ASIA',
+      role: 'Archipelago Aviation Solutions',
+      description: 'Empowering aviation solutions.',
+      ctaText: 'ENQUIRE IN PHILIPPINES',
+      routeD: 'M 757.0 362.0 Q 776.0 297.2 795.0 282.0'
+    },
+    {
+      id: 'india',
+      index: '06',
+      name: 'India',
+      region: 'SOUTH ASIA',
+      role: 'Strategic Subcontinent Market',
+      description: 'Enhancing aviation excellence across the vibrant subcontinent.',
+      ctaText: 'ENQUIRE IN INDIA',
+      routeD: 'M 757.0 362.0 Q 716.5 292.2 676.0 285.0'
+    },
+    {
+      id: 'sri-lanka',
+      index: '07',
+      name: 'Sri Lanka',
+      region: 'SOUTH ASIA',
+      role: 'Indian Ocean Aviation Hub',
+      description: 'Delivering tailored aviation solutions to the Pearl of the Indian Ocean.',
+      ctaText: 'ENQUIRE IN SRI LANKA',
+      routeD: 'M 757.0 362.0 Q 720.0 313.3 683.0 314.0'
+    },
+    {
+      id: 'tanzania',
+      index: '08',
+      name: 'Tanzania',
+      region: 'EAST AFRICA',
+      role: 'East African Market Expansion',
+      description: 'Empowering aviation growth across East Africa.',
+      ctaText: 'ENQUIRE IN TANZANIA',
+      routeD: 'M 757.0 362.0 Q 656.0 303.4 555.0 358.0'
+    },
+    {
+      id: 'algeria',
+      index: '09',
+      name: 'Algeria',
+      region: 'NORTH AFRICA',
+      role: 'North African Aviation Sector',
+      description: "Strengthening connections in North Africa's aviation sector.",
+      ctaText: 'ENQUIRE IN ALGERIA',
+      routeD: 'M 757.0 362.0 Q 609.5 209.2 462.0 236.0'
+    },
+    {
+      id: 'france',
+      index: '10',
+      name: 'France',
+      region: 'EUROPE',
+      role: 'European Aerospace Heart',
+      description: 'Supporting aviation excellence in the heart of Europe.',
+      ctaText: 'ENQUIRE IN FRANCE',
+      routeD: 'M 757.0 362.0 Q 607.5 178.1 458.0 188.0'
+    },
+    {
+      id: 'saint-barthelemy',
+      index: '11',
+      name: 'Saint Barthélemy',
+      region: 'CARIBBEAN',
+      role: 'Caribbean Regional Support',
+      description: 'Ensuring seamless aviation support in the Caribbean.',
+      ctaText: 'ENQUIRE IN SAINT BARTHÉLEMY',
+      routeD: 'M 757.0 362.0 Q 516.2 202.5 275.5 283.0'
+    }
+  ];
+
+  const ALL_OVERVIEW = {
+    id: 'all',
+    index: 'ALL',
+    name: 'Global Network',
+    region: 'GLOBAL REACH',
+    role: '11 Connected Aviation Markets',
+    description: 'From Southeast Asia to key international aviation markets, Viven Aviation connects clients with opportunities, expertise, and solutions across the global aviation ecosystem.',
+    ctaText: 'CONNECT WITH OUR NETWORK'
+  };
+
+  // DOM Elements
+  const detailCard = document.getElementById('netDetailCard');
+  const cardNum = document.getElementById('netCardNum');
+  const cardRegion = document.getElementById('netCardRegion');
+  const cardTitle = document.getElementById('netCardTitle');
+  const cardRole = document.getElementById('netCardRole');
+  const cardDesc = document.getElementById('netCardDesc');
+  const cardCta = document.getElementById('netCardCta');
+  const prevBtn = document.getElementById('netPrevBtn');
+  const nextBtn = document.getElementById('netNextBtn');
+  const activeRouteArc = document.getElementById('activeRouteArc');
+  const directoryList = document.getElementById('netDirectoryList');
+  const pills = section.querySelectorAll('.net-dest-pill');
+  const markers = section.querySelectorAll('.map-marker-node');
+  const landPaths = section.querySelectorAll('.world-land-path[data-country]');
+  const bgArcs = section.querySelectorAll('.flight-arc-bg');
+
+  let currentIndex = 0; // default Indonesia
+  let isTransitioning = false;
+
+  function updateActiveState(locationId) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    let locData;
+    const isAll = locationId === 'all';
+
+    if (isAll) {
+      locData = ALL_OVERVIEW;
+    } else {
+      const foundIdx = NETWORK_LOCATIONS.findIndex(l => l.id === locationId);
+      if (foundIdx !== -1) {
+        currentIndex = foundIdx;
+        locData = NETWORK_LOCATIONS[currentIndex];
+      } else {
+        currentIndex = 0;
+        locData = NETWORK_LOCATIONS[0];
+      }
+    }
+
+    // 1. Update Pills
+    pills.forEach(pill => {
+      const pid = pill.getAttribute('data-location-id');
+      const isActive = pid === locData.id;
+      pill.classList.toggle('active', isActive);
+      pill.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+      if (isActive && directoryList) {
+        // Smoothly scroll pill into view if needed (for horizontally scrollable pill bars)
+        const pLeft = pill.offsetLeft;
+        const pWidth = pill.offsetWidth;
+        const dScroll = directoryList.scrollLeft;
+        const dWidth = directoryList.clientWidth;
+        if (pLeft < dScroll || pLeft + pWidth > dScroll + dWidth) {
+          directoryList.scrollTo({
+            left: pLeft - dWidth / 2 + pWidth / 2,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+
+    // 2. Update Map Markers
+    markers.forEach(marker => {
+      const mid = marker.getAttribute('data-location-id');
+      if (isAll) {
+        marker.classList.add('is-active');
+      } else {
+        marker.classList.toggle('is-active', mid === locData.id);
+      }
+    });
+
+    // 3. Update Landmass Highlighting
+    landPaths.forEach(path => {
+      const cid = path.getAttribute('data-country');
+      if (isAll) {
+        path.classList.add('is-active-land');
+      } else {
+        path.classList.toggle('is-active-land', cid === locData.id);
+      }
+    });
+
+    // 4. Update Flight Arcs
+    if (isAll) {
+      bgArcs.forEach(arc => arc.classList.add('is-active-arc'));
+      if (activeRouteArc) activeRouteArc.setAttribute('d', '');
+    } else {
+      bgArcs.forEach(arc => {
+        const rTarget = arc.getAttribute('data-route');
+        arc.classList.toggle('is-active-arc', rTarget === locData.id);
+      });
+
+      if (activeRouteArc) {
+        if (locData.routeD) {
+          activeRouteArc.setAttribute('d', locData.routeD);
+          const pathLen = activeRouteArc.getTotalLength ? activeRouteArc.getTotalLength() : 300;
+          activeRouteArc.style.strokeDasharray = pathLen;
+          activeRouteArc.style.strokeDashoffset = pathLen;
+          // Trigger layout reflow to restart animation
+          void activeRouteArc.getBoundingClientRect();
+          activeRouteArc.style.strokeDashoffset = '0';
+        } else {
+          activeRouteArc.setAttribute('d', '');
+        }
+      }
+    }
+
+    // 5. Update Information Panel with smooth crossfade
+    if (detailCard) {
+      detailCard.classList.add('is-updating');
+
+      setTimeout(() => {
+        if (cardNum) cardNum.textContent = isAll ? '11 / 11' : `${locData.index} / 11`;
+        if (cardRegion) cardRegion.textContent = locData.region;
+        if (cardTitle) cardTitle.textContent = locData.name;
+        if (cardRole) cardRole.textContent = locData.role;
+        if (cardDesc) cardDesc.textContent = locData.description;
+        if (cardCta) {
+          const span = cardCta.querySelector('span');
+          if (span) span.textContent = locData.ctaText;
+        }
+
+        detailCard.classList.remove('is-updating');
+        isTransitioning = false;
+      }, 140);
+    } else {
+      isTransitioning = false;
+    }
+  }
+
+  // Event Listeners for Pills
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const id = pill.getAttribute('data-location-id');
+      if (id) updateActiveState(id);
+    });
+  });
+
+  // Event Listeners for Map Markers
+  markers.forEach(marker => {
+    const id = marker.getAttribute('data-location-id');
+    marker.addEventListener('click', () => {
+      if (id) updateActiveState(id);
+    });
+    marker.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (id) updateActiveState(id);
+      }
+    });
+  });
+
+  // Event Listeners for Next & Prev Buttons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + NETWORK_LOCATIONS.length) % NETWORK_LOCATIONS.length;
+      updateActiveState(NETWORK_LOCATIONS[currentIndex].id);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % NETWORK_LOCATIONS.length;
+      updateActiveState(NETWORK_LOCATIONS[currentIndex].id);
+    });
+  }
+
+  // Event Listeners for Pill Scroll Track Arrows (Tablet & Mobile)
+  const pillScrollLeft = document.getElementById('netPillScrollLeft');
+  const pillScrollRight = document.getElementById('netPillScrollRight');
+
+  if (pillScrollLeft && directoryList) {
+    pillScrollLeft.addEventListener('click', () => {
+      directoryList.scrollBy({ left: -160, behavior: 'smooth' });
+    });
+  }
+
+  if (pillScrollRight && directoryList) {
+    pillScrollRight.addEventListener('click', () => {
+      directoryList.scrollBy({ left: 160, behavior: 'smooth' });
+    });
+  }
+
+  // Immediate initial selection
+  updateActiveState('indonesia');
+}
+
 
 
