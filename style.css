@@ -190,7 +190,8 @@ img {
   transition: color 0.25s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: var(--viven-green);
 }
 
@@ -205,7 +206,8 @@ img {
   transition: width 0.25s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
