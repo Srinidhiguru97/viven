@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlobalNetworkMap();
   initTeamSpotlight();
   initContactForm();
+  initFooterBackToTop();
 });
 
 /* --------------------------------------------------------------------------
@@ -262,7 +263,9 @@ function initSolutionsAccordion() {
    6. SECTION 07 — B2B COMPONENT CATEGORIES
    -------------------------------------------------------------------------- */
 function initComponentCategories() {
-  const items = document.querySelectorAll('.comp-cat-item');
+  const items = Array.from(document.querySelectorAll('.comp-cat-item'));
+  const prevBtn = document.getElementById('compNavPrev');
+  const nextBtn = document.getElementById('compNavNext');
   const img = document.getElementById('compPreviewImg');
   const title = document.getElementById('compPreviewTitle');
   const desc = document.getElementById('compPreviewDesc');
@@ -271,7 +274,7 @@ function initComponentCategories() {
 
   function activateItem(item, shouldCenter = false) {
     if (item.classList.contains('active')) {
-      if (shouldCenter && window.innerWidth <= 768) {
+      if (shouldCenter && window.innerWidth <= 768 && window.innerWidth > 426) {
         item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
       return;
@@ -305,9 +308,69 @@ function initComponentCategories() {
       desc.textContent = descText;
     }
 
-    if (shouldCenter && window.innerWidth <= 768) {
+    if (shouldCenter && window.innerWidth <= 768 && window.innerWidth > 426) {
       item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
+  }
+
+  function getActiveIndex() {
+    const idx = items.findIndex((i) => i.classList.contains('active'));
+    return idx >= 0 ? idx : 0;
+  }
+
+  function navigateStep(direction) {
+    const currentIndex = getActiveIndex();
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) {
+      newIndex = items.length - 1;
+    } else if (newIndex >= items.length) {
+      newIndex = 0;
+    }
+    activateItem(items[newIndex], true);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      navigateStep(-1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      navigateStep(1);
+    });
+  }
+
+  // Swipe gesture support on mobile under 426px
+  const catsList = document.querySelector('.comp-cats-list');
+  if (catsList) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    catsList.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    catsList.addEventListener('touchend', (e) => {
+      if (window.innerWidth <= 426 && e.changedTouches && e.changedTouches.length) {
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          if (deltaX < 0) {
+            navigateStep(1);
+          } else {
+            navigateStep(-1);
+          }
+        }
+      }
+    }, { passive: true });
   }
 
   items.forEach((item) => {
@@ -874,6 +937,22 @@ function initGlobalNetworkMap() {
 
   // Immediate initial selection
   updateActiveState('indonesia');
+}
+
+/* --------------------------------------------------------------------------
+   12. SECTION 16 — FOOTER BACK TO TOP
+   -------------------------------------------------------------------------- */
+function initFooterBackToTop() {
+  const backToTopBtn = document.getElementById('footerBackToTop');
+  if (!backToTopBtn) return;
+
+  backToTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
 }
 
 
