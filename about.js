@@ -56,35 +56,66 @@ function initVideoModal() {
   const modal = document.getElementById('videoModal');
   const modalTitle = document.getElementById('modalVideoTitle');
   const modalVideo = document.getElementById('modalVideoPlayer');
+  const modalImage = document.getElementById('modalImageViewer');
   const closeBtn = document.getElementById('modalCloseBtn');
   const backdrop = modal?.querySelector('.video-modal-backdrop');
-  const tiles = document.querySelectorAll('.bento-tile[data-video-src]');
+  const tiles = document.querySelectorAll('.bento-tile[data-video-src], .bento-tile[data-image-src]');
 
-  if (!modal || !modalVideo) return;
+  if (!modal) return;
 
-  function openModal(src, title) {
-    modalVideo.src = src;
+  function openVideo(src, title) {
+    if (modalImage) modalImage.style.display = 'none';
+    if (modalVideo) {
+      modalVideo.style.display = 'block';
+      modalVideo.src = src;
+      modalVideo.play().catch(() => {});
+    }
     if (modalTitle) modalTitle.textContent = title || 'VIVEN AVIATION FOOTAGE';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    modalVideo.play().catch(() => {});
+  }
+
+  function openImage(src, title) {
+    if (modalVideo) {
+      modalVideo.pause();
+      modalVideo.removeAttribute('src');
+      modalVideo.style.display = 'none';
+    }
+    if (modalImage) {
+      modalImage.src = src;
+      modalImage.style.display = 'block';
+    }
+    if (modalTitle) modalTitle.textContent = title || 'COCKPIT FLIGHT DECK';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
     modal.classList.remove('active');
-    modalVideo.pause();
-    modalVideo.currentTime = 0;
-    modalVideo.removeAttribute('src');
-    modalVideo.load();
+    if (modalVideo) {
+      modalVideo.pause();
+      modalVideo.currentTime = 0;
+      modalVideo.removeAttribute('src');
+      modalVideo.load();
+      modalVideo.style.display = 'block';
+    }
+    if (modalImage) {
+      modalImage.removeAttribute('src');
+      modalImage.style.display = 'none';
+    }
     document.body.style.overflow = '';
   }
 
   tiles.forEach((tile) => {
     tile.addEventListener('click', () => {
-      const src = tile.getAttribute('data-video-src');
-      const title = tile.getAttribute('data-video-title');
-      if (src) {
-        openModal(src, title);
+      const imageSrc = tile.getAttribute('data-image-src');
+      const videoSrc = tile.getAttribute('data-video-src');
+      const title = tile.getAttribute('data-image-title') || tile.getAttribute('data-video-title');
+
+      if (imageSrc) {
+        openImage(imageSrc, title);
+      } else if (videoSrc) {
+        openVideo(videoSrc, title);
       }
     });
   });
