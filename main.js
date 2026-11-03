@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarScrollState();
   initMobileMenu();
   initHeroAtmosphereMotion();
+  initGlobalTimezones();
   initWhoWeAreSection();
   initSolutionsAccordion();
   initComponentCategories();
@@ -22,9 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initBrandLoaderSequence() {
   const loader = document.getElementById('vivenBrandLoader');
   const heroSection = document.getElementById('hero');
+  const tzStrip = document.getElementById('heroTimezoneStrip');
 
   if (!loader) {
     if (heroSection) heroSection.classList.add('loaded');
+    if (tzStrip) tzStrip.classList.add('loaded');
     return;
   }
 
@@ -53,6 +56,9 @@ function initBrandLoaderSequence() {
 
     if (heroSection) {
       heroSection.classList.add('loaded');
+    }
+    if (tzStrip) {
+      tzStrip.classList.add('loaded');
     }
 
     setTimeout(() => {
@@ -152,6 +158,73 @@ function initHeroAtmosphereMotion() {
   }
 
   animateHeroMotion();
+}
+
+/* --------------------------------------------------------------------------
+   4b. GLOBAL AVIATION TIMEZONES (Intl.DateTimeFormat 24-hr Real-Time Hubs)
+   -------------------------------------------------------------------------- */
+function initGlobalTimezones() {
+  const strip = document.getElementById('heroTimezoneStrip');
+  if (!strip) return;
+
+  const hubs = [
+    { code: 'JKT', tz: 'Asia/Jakarta' },
+    { code: 'IST', tz: 'Asia/Kolkata' },
+    { code: 'SIN', tz: 'Asia/Singapore' },
+    { code: 'DXB', tz: 'Asia/Dubai' },
+    { code: 'LHR', tz: 'Europe/London' },
+    { code: 'NYC', tz: 'America/New_York' },
+    { code: 'LAX', tz: 'America/Los_Angeles' }
+  ];
+
+  // Pre-instantiate Intl formatters with correct IANA timezones and 24-hour format
+  const formatters = {};
+  hubs.forEach(h => {
+    try {
+      formatters[h.code] = new Intl.DateTimeFormat('en-GB', {
+        timeZone: h.tz,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      });
+    } catch (err) {
+      console.warn(`[Timezone] Formatter error for ${h.code} (${h.tz}):`, err);
+    }
+  });
+
+  // Query and cache DOM references
+  const timeElements = {};
+  hubs.forEach(h => {
+    const el = document.getElementById(`tzTime-${h.code}`);
+    if (el) timeElements[h.code] = el;
+  });
+
+  function updateHubTimes() {
+    const now = new Date();
+    hubs.forEach(h => {
+      const el = timeElements[h.code];
+      const formatter = formatters[h.code];
+      if (el && formatter) {
+        const timeStr = formatter.format(now);
+        if (el.textContent !== timeStr) {
+          el.textContent = timeStr;
+        }
+      }
+    });
+  }
+
+  // Initial immediate render
+  updateHubTimes();
+
+  // Tick every second to ensure minute updates happen precisely on the 00s
+  setInterval(updateHubTimes, 1000);
+
+  // Sync on tab visibility change
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      updateHubTimes();
+    }
+  });
 }
 
 /* --------------------------------------------------------------------------

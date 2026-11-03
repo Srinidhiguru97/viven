@@ -347,7 +347,7 @@ img {
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
-  padding: 2.5rem 4% 1.5rem;
+  padding: 2.5rem 4% 6rem;
   display: flex;
   align-items: center;
 }
@@ -357,7 +357,7 @@ img {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 680px;
+  max-width: 780px;
 }
 
 .hero-eyebrow-wrap {
@@ -400,7 +400,7 @@ img {
   letter-spacing: -0.025em;
   text-transform: uppercase;
   color: var(--navy-primary);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
   width: 100%;
   text-align: left;
 }
@@ -439,7 +439,7 @@ img {
   font-weight: 400;
   line-height: 1.65;
   color: var(--navy-secondary);
-  margin: 0 0 2.5rem 0;
+  margin: 0 0 2rem 0;
   max-width: 560px;
   text-align: left;
   opacity: 0;
@@ -494,6 +494,48 @@ img {
   box-shadow: 0 8px 25px rgba(94, 168, 46, 0.45);
 }
 
+/* Hero Secondary 'About Viven' Button */
+.btn-hero-about {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.05rem 2.2rem;
+  background-color: rgba(255, 255, 255, 0.45);
+  color: var(--navy-primary);
+  border: 1.5px solid rgba(16, 32, 56, 0.65);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(10, 22, 40, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-hero-about svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+  stroke: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.btn-hero-about:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: var(--navy-primary);
+  color: var(--navy-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 22, 40, 0.1);
+}
+
+.btn-hero-about:hover svg {
+  transform: translateX(3px);
+}
+
 /* Navy Secondary Button */
 .btn-secondary-navy {
   display: inline-flex;
@@ -520,6 +562,240 @@ img {
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(10, 22, 40, 0.15);
+}
+
+/* ==========================================================================
+   GLOBAL TIMEZONE STRIP (Docked 50px from Viewport Bottom)
+   ========================================================================== */
+.hero-timezone-dock {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.hero-tz-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 4%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.hero-timezone-strip {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(10, 22, 40, 0.09);
+  border-radius: 10px;
+  padding: 0.35rem 0.65rem;
+  box-shadow: 0 4px 20px rgba(10, 22, 40, 0.05), 0 1px 3px rgba(10, 22, 40, 0.02);
+  width: fit-content;
+  max-width: 100%;
+  position: relative;
+  z-index: 5;
+  white-space: nowrap;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+  box-sizing: border-box;
+}
+
+.hero-section.loaded .hero-timezone-strip,
+.hero-timezone-strip.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Label Group */
+.tz-label-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.2rem;
+  flex-shrink: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.tz-globe-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--viven-green);
+  flex-shrink: 0;
+}
+
+.tz-globe-icon svg {
+  display: block;
+  stroke: var(--viven-green);
+}
+
+.tz-label-text {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy-primary);
+  white-space: nowrap;
+}
+
+/* Vertical Divider between Label and Track */
+.tz-divider-v {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(10, 22, 40, 0.12);
+  margin: 0 0.45rem;
+  flex-shrink: 0;
+}
+
+/* Hubs Track */
+.tz-track {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+/* Individual Hub */
+.tz-hub {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.2rem 0.38rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  user-select: none;
+  cursor: default;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.tz-hub:hover {
+  background-color: rgba(10, 22, 40, 0.04);
+}
+
+/* Header: Pulse / Indicator + Time */
+.tz-hub-header {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Time value (prominent, 24-hr format) */
+.tz-time {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy-primary);
+  letter-spacing: 0.01em;
+  font-feature-settings: 'tnum' 1;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* Footer: 3-letter code + city name (secondary) */
+.tz-hub-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.22rem;
+  margin-top: 2px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tz-code {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--navy-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tz-city {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--navy-muted);
+  letter-spacing: 0.02em;
+  opacity: 0.88;
+  white-space: nowrap;
+}
+
+/* Compact Separator */
+.tz-sep {
+  width: 1px;
+  height: 18px;
+  background-color: rgba(10, 22, 40, 0.08);
+  flex-shrink: 0;
+  margin: 0 0.1rem;
+}
+
+/* Primary Hub (JKT - Jakarta) Highlight */
+.tz-hub-primary {
+  background: rgba(94, 168, 46, 0.08);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.tz-hub-primary:hover {
+  background: rgba(94, 168, 46, 0.15);
+}
+
+.tz-hub-primary .tz-time {
+  color: var(--viven-green-deep);
+  font-weight: 800;
+}
+
+.tz-hub-primary .tz-code {
+  color: var(--viven-green-deep);
+  font-weight: 800;
+}
+
+.tz-hub-primary .tz-city {
+  color: var(--viven-green-deep);
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* Gentle green pulsing indicator */
+.tz-hub-pulse {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--viven-green);
+  box-shadow: 0 0 0 0 rgba(94, 168, 46, 0.6);
+  animation: tzPulseBeacon 2.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+@keyframes tzPulseBeacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(94, 168, 46, 0.7);
+  }
+  60% {
+    box-shadow: 0 0 0 5px rgba(94, 168, 46, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(94, 168, 46, 0);
+  }
 }
 
 /* Dedicated Bottom Service Navigation Bar (No overlap, translucent & integrated) */
@@ -1356,14 +1632,14 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 55%;
-  transform: skewX(14deg) scale(1.28);
+  object-position: 88% 52%;
+  transform: skewX(14deg) scale(1.22);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
 
 .wwd-image-frame:hover .wwd-cessna-img {
-  transform: skewX(14deg) scale(1.33);
+  transform: skewX(14deg) scale(1.26);
 }
 
 /* Right accent slanted slice */
@@ -3240,6 +3516,39 @@ section {
     width: 60%;
     opacity: 0.55;
   }
+
+  /* Timezone Strip Tablet Adjustments */
+  .hero-timezone-dock {
+    bottom: 50px;
+  }
+
+  .hero-tz-inner {
+    padding: 0 2rem;
+  }
+
+  .hero-timezone-strip {
+    margin-top: 0;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .tz-hub {
+    padding: 0.2rem 0.35rem;
+  }
+
+  .tz-time {
+    font-size: 0.8125rem;
+  }
+
+  .tz-code,
+  .tz-city {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-height: 680px) and (min-width: 769px) {
+  .hero-timezone-dock {
+    bottom: 25px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -3340,6 +3649,7 @@ section {
     justify-content: center;
     text-align: center;
     padding: 2.5rem 1.25rem 2rem;
+    transform: none;
   }
 
   .hero-text-block {
@@ -3418,11 +3728,98 @@ section {
   }
 
   .btn-primary-green,
+  .btn-hero-about,
   .btn-secondary-light,
   .btn-secondary-navy {
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
+
+  /* Timezone Strip Mobile Single-Row Carousel */
+  .hero-timezone-dock {
+    position: relative;
+    bottom: auto;
+    margin-top: 50px;
+    padding-bottom: 0.5rem;
+    pointer-events: auto;
+  }
+
+  .hero-tz-inner {
+    padding: 0 1.25rem;
+    justify-content: center;
+  }
+
+  .hero-timezone-strip {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0.4rem 0.55rem;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 4px 18px rgba(10, 22, 40, 0.08);
+    border: 1px solid rgba(10, 22, 40, 0.09);
+  }
+
+  .tz-label-group {
+    flex-shrink: 0;
+    gap: 0.35rem;
+    padding-left: 0.15rem;
+  }
+
+  .tz-globe-icon svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .tz-label-text {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+  }
+
+  .tz-divider-v {
+    height: 22px;
+    margin: 0 0.45rem;
+  }
+
+  .tz-track {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 0.25rem;
+    padding-right: 0.5rem;
+    mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+  }
+
+  .tz-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tz-hub {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .tz-time {
+    font-size: 0.8125rem;
+  }
+
+  .tz-code,
+  .tz-city {
+    font-size: 0.58rem;
   }
 
   section {
@@ -3464,11 +3861,12 @@ section {
   }
 
   .wwd-cessna-img {
-    transform: skewX(10deg) scale(1.24);
+    object-position: 88% 52%;
+    transform: skewX(10deg) scale(1.20);
   }
 
   .wwd-image-frame:hover .wwd-cessna-img {
-    transform: skewX(10deg) scale(1.28);
+    transform: skewX(10deg) scale(1.24);
   }
 
   .wwd-accent-slice-left {
@@ -3795,11 +4193,14 @@ section {
 
 @media (prefers-reduced-motion: reduce) {
 
+  .hero-timezone-strip,
+  .tz-hub-pulse,
   .wwd-image-frame,
   .wwd-cessna-img,
   .wwd-acc-body,
   .wwd-acc-inner,
   .icon-line {
     transition: none !important;
+    animation: none !important;
   }
 }
