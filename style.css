@@ -2815,13 +2815,15 @@ section {
 }
 
 .team-featured-img-wrap {
-  height: 320px;
+  height: 100%;
+  min-height: 320px;
 }
 
 .team-featured-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 .team-featured-info {
