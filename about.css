@@ -67,7 +67,7 @@
 
 .about-hero-title {
   font-family: var(--font-headline);
-  font-size: clamp(2.35rem, 5vw, 3.85rem);
+  font-size: clamp(1.35rem, 5vw, 3.85rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.015em;
@@ -767,6 +767,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.75rem;
+}
+
+#what-we-do .principles-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+#what-we-do .approach-intro-desc + .approach-intro-desc {
+  margin-top: 1rem;
 }
 
 .principle-card {
