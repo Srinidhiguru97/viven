@@ -91,22 +91,29 @@ function initMobileMenu() {
   const toggleBtn = document.getElementById('mobileMenuToggle');
   if (!navbar || !toggleBtn) return;
 
+  const setMenuOpen = (open) => {
+    navbar.classList.toggle('mobile-open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
   toggleBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    navbar.classList.toggle('mobile-open');
+    const willOpen = !navbar.classList.contains('mobile-open');
+    setMenuOpen(willOpen);
   });
 
   // Close menu when clicking outside or clicking a nav link
   document.addEventListener('click', (e) => {
-    if (!navbar.contains(e.target)) {
-      navbar.classList.remove('mobile-open');
+    if (!navbar.contains(e.target) && navbar.classList.contains('mobile-open')) {
+      setMenuOpen(false);
     }
   });
 
   const navLinks = navbar.querySelectorAll('.nav-link, .nav-cta-btn');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      navbar.classList.remove('mobile-open');
+      setMenuOpen(false);
     });
   });
 }
@@ -478,6 +485,7 @@ function initTeamSpotlight() {
   const role = document.getElementById('teamFeaturedRole');
   const name = document.getElementById('teamFeaturedName');
   const bio = document.getElementById('teamFeaturedBio');
+  const featuredCard = document.querySelector('.team-featured-card');
 
   if (!btns.length) return;
 
@@ -495,6 +503,19 @@ function initTeamSpotlight() {
       if (role && roleText) role.textContent = roleText;
       if (name && nameText) name.textContent = nameText;
       if (bio && bioText) bio.textContent = bioText;
+
+      // 6c: On screens <= 767px, smoothly scroll .team-featured-card into view below fixed navbar if its top isn't visible
+      if (window.innerWidth <= 767 && featuredCard) {
+        const navHeight = 70;
+        const rect = featuredCard.getBoundingClientRect();
+        if (rect.top < navHeight || rect.top > window.innerHeight * 0.7) {
+          const scrollTarget = window.pageYOffset + rect.top - navHeight - 15;
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: 'smooth'
+          });
+        }
+      }
     });
   });
 }

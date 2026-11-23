@@ -29,21 +29,28 @@ function initNavbar() {
 
   // Mobile menu toggle
   if (toggleBtn && navbar) {
+    const setMenuOpen = (open) => {
+      navbar.classList.toggle('mobile-open', open);
+      document.body.classList.toggle('nav-open', open);
+      toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      navbar.classList.toggle('mobile-open');
+      const willOpen = !navbar.classList.contains('mobile-open');
+      setMenuOpen(willOpen);
     });
 
     document.addEventListener('click', (e) => {
-      if (!navbar.contains(e.target)) {
-        navbar.classList.remove('mobile-open');
+      if (!navbar.contains(e.target) && navbar.classList.contains('mobile-open')) {
+        setMenuOpen(false);
       }
     });
 
     const navLinks = navbar.querySelectorAll('.nav-link, .nav-cta-btn');
     navLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        navbar.classList.remove('mobile-open');
+        setMenuOpen(false);
       });
     });
   }
