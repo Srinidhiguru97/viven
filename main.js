@@ -803,8 +803,28 @@ function initGlobalNetworkMap() {
       routeD: 'M 757.0 362.0 Q 607.5 178.1 458.0 188.0'
     },
     {
-      id: 'saint-barthelemy',
+      id: 'london',
       index: '11',
+      name: 'London',
+      region: 'EUROPE',
+      role: 'European Aviation Finance Centre',
+      description: "Supplying certified aircraft parts and components while supporting leasing and financing partnerships in one of the world's leading aviation markets.",
+      ctaText: 'ENQUIRE IN LONDON',
+      routeD: 'M 757.0 362.0 Q 601.5 162.8 446.0 166.0'
+    },
+    {
+      id: 'new-york',
+      index: '12',
+      name: 'New York',
+      region: 'NORTH AMERICA',
+      role: 'North American Trade Gateway',
+      description: 'Facilitating aircraft parts procurement, component supply and transaction support for operators and investors across North America.',
+      ctaText: 'ENQUIRE IN NEW YORK',
+      routeD: 'M 757.0 362.0 Q 508.0 166.0 259.0 210.0'
+    },
+    {
+      id: 'saint-barthelemy',
+      index: '13',
       name: 'Saint Barthélemy',
       region: 'CARIBBEAN',
       role: 'Caribbean Regional Support',
@@ -819,7 +839,7 @@ function initGlobalNetworkMap() {
     index: 'ALL',
     name: 'Global Network',
     region: 'GLOBAL REACH',
-    role: '11 Connected Aviation Markets',
+    role: '13 Connected Aviation Markets',
     description: 'From Southeast Asia to key international aviation markets, Viven Aviation connects clients with opportunities, expertise, and solutions across the global aviation ecosystem.',
     ctaText: 'CONNECT WITH OUR NETWORK'
   };
@@ -936,7 +956,7 @@ function initGlobalNetworkMap() {
       detailCard.classList.add('is-updating');
 
       setTimeout(() => {
-        if (cardNum) cardNum.textContent = isAll ? '11 / 11' : `${locData.index} / 11`;
+        if (cardNum) cardNum.textContent = isAll ? `${NETWORK_LOCATIONS.length} / ${NETWORK_LOCATIONS.length}` : `${locData.index} / ${NETWORK_LOCATIONS.length}`;
         if (cardRegion) cardRegion.textContent = locData.region;
         if (cardTitle) cardTitle.textContent = locData.name;
         if (cardRole) cardRole.textContent = locData.role;
