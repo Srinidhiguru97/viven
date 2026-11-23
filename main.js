@@ -168,13 +168,12 @@ function initGlobalTimezones() {
   if (!strip) return;
 
   const hubs = [
-    { code: 'JKT', tz: 'Asia/Jakarta' },
-    { code: 'IST', tz: 'Asia/Kolkata' },
     { code: 'SIN', tz: 'Asia/Singapore' },
+    { code: 'JKT', tz: 'Asia/Jakarta' },
     { code: 'DXB', tz: 'Asia/Dubai' },
+    { code: 'IST', tz: 'Asia/Kolkata' },
     { code: 'LHR', tz: 'Europe/London' },
-    { code: 'NYC', tz: 'America/New_York' },
-    { code: 'LAX', tz: 'America/Los_Angeles' }
+    { code: 'NYC', tz: 'America/New_York' }
   ];
 
   // Pre-instantiate Intl formatters with correct IANA timezones and 24-hour format
